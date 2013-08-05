@@ -10,7 +10,7 @@
     },
     "private": true,
     "scripts": {
-        "start": "grunt supervise",
+        "start": "grunt start",
         "test": "grunt test"
     },
     "dependencies": {
