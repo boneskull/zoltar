@@ -13,6 +13,7 @@
         $scope.$on('setUser', function (evt, user) {
             $scope.user = user;
         });
+
     });
 
     index.controller('NavCtrl', function ($scope, Restangular) {

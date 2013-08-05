@@ -67,9 +67,9 @@ module.exports = function (grunt) {
     grunt.registerTask('test', ['jshint', 'karma']);
     grunt.registerTask('build', ['concat', 'uglify']);
 
-    grunt.registerTask('supervise', function () {
+    grunt.registerTask('node-dev', function () {
         require('child_process').spawn(
-            'supervisor',
+            'node-dev',
             ['server.js'],
             { stdio: 'inherit' }
         );
@@ -77,5 +77,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', ['build', 'test']);
 
+    grunt.registerTask('start', ['node-dev', 'watch']);
 
 };
