@@ -1,13 +1,17 @@
-
 /*
  * GET home page.
  */
 
-var globals = require('../globals');
+var config = require('../config');
 
-exports.index = function(req, res){
+module.exports = function (req, res) {
 
-    var data =  { version: globals.appVersion, name: globals.appName, title: 'Express' };
-    console.log(data);
-  res.render('index', data);
+    var data = {
+        version: config.appVersion,
+        name: config.appName,
+        development: config.development,
+        user: req.user
+    };
+
+    res.render('index', data);
 };

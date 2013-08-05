@@ -1,12 +1,22 @@
 module.exports = function (grunt) {
 
-
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             dist: {
-                src: ['public/javascripts/**/*.js', '!public/javascripts/<%= pkg.name %>-<%= pkg.version %>.js'],
-                dest: 'public/javascripts/<%= pkg.name %>-<%= pkg.version %>.js'
+                src: [
+                    'public/javascripts/support/es5-sham.min.js',
+                    'public/javascripts/support/angular.js',
+                    'public/javascripts/support/zepto.js',
+                    'public/javascripts/support/foundation.min.js',
+                    'public/javascripts/support/custom.modernizr.js',
+                    'public/javascripts/support/spin.min.js',
+                    'public/javascripts/support/ladda.min.js',
+                    'public/javascripts/support/underscore.js',
+                    'public/javascripts/support/restangular.js',
+                    'public/javascripts/zoltar/**/*.js'
+                ],
+                dest: 'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.js'
             }
         },
         uglify: {
@@ -15,12 +25,19 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'public/javascripts/<%= pkg.name %>-<%= pkg.version %>.min.js': ['public/javascripts/<%= pkg.name %>-<%= pkg.version %>.js']
+                    'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.min.js': ['public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.js']
                 }
             }
         },
         jshint: {
-            all: ['Gruntfile.js', 'public/javascripts/**/*.js', '!public/javascripts/lib/**/*.js', 'test/spec/*.js']
+            options: {
+                globals: {
+                    angular: true,
+                    $: true
+                },
+                expr: false
+            },
+            all: ['Gruntfile.js', 'public/javascripts/zoltar/**/*.js', 'test/spec/*.js', 'server.js', 'models/*.js', 'routes/*.js', 'config.js', 'routing.js']
         },
         karma: {
             unit: {
@@ -29,15 +46,16 @@ module.exports = function (grunt) {
         },
         watch: {
             scripts: {
-                files: 'public/javascripts/**/*.js',
-                tasks: ['test']
+                files: ['public/javascripts/zoltar/**/*.js',
+                    'public/javascripts/support/**/*.js',
+                    '!public/javascripts/dist/*.js'],
+                tasks: ['jshint', 'concat']
             },
             tests: {
                 files: 'test/spec/*.js',
                 tasks: ['test']
             }
         }
-
     });
 
     grunt.loadNpmTasks('grunt-karma');
@@ -48,6 +66,16 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['jshint', 'karma']);
     grunt.registerTask('build', ['concat', 'uglify']);
-    grunt.registerTask('default', ['build']);
+
+    grunt.registerTask('supervise', function () {
+        require('child_process').spawn(
+            'supervisor',
+            ['server.js'],
+            { stdio: 'inherit' }
+        );
+    });
+
+    grunt.registerTask('default', ['build', 'test']);
+
 
 };

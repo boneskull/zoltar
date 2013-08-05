@@ -1,7 +1,38 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 1em "Cabin Condensed", Helvetica, Arial, sans-serif;
 }
+
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+
+.fade-show,
+.fade-hide {
+    -webkit-transition: all linear 0.7s;
+    -moz-transition: all linear 0.7s;
+    -ms-transition: all linear 0.7s;
+    -o-transition: all linear 0.7s;
+    transition: all linear 0.7s;
+}
+
+.fade-show {
+    opacity: 0;
+}
+
+.fade-show-active {
+    opacity: 1;
+}
+
+.fade-hide {
+    opacity: 1;
+}
+
+.fade-hide-active {
+    opacity: 0;
+}
+
+.wire-one {
+    font-family: 'Wire One', sans-serif;
+    font-size: 7em;
 }

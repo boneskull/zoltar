@@ -1,106 +1,178 @@
 <!DOCTYPE html>
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" ng-app="zoltar"> <!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
+    <meta charset="utf-8"/>
 
-  <!-- Set the viewport width to device width for mobile -->
-  <meta name="viewport" content="width=device-width" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
 
-  <title>tech volunteer clearinghouse</title>
+    <title>tech volunteer clearinghouse</title>
+    <link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Condensed' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="/stylesheets/lib/normalize.css">
-  <link rel="stylesheet" href="/stylesheets/lib/foundation.css">
 
-  <script src="/javascripts/<%= name %>-<%= version %>.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/lib/normalize.css">
+    <link rel="stylesheet" href="/stylesheets/lib/foundation.min.css">
+    <link rel="stylesheet" href="/stylesheets/lib/ladda-themeless.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 
+    <% if (development) { %>
+    <script src="/javascripts/dist/<%= name %>-<%= version %>.js"></script>
+    <% } else { %>
+    <script src="/javascripts/dist/<%= name %>-<%= version %>.min.js"></script>
+    <% } %>
+    <script type="text/javascript">
+        <%
+        if (user) { %>
+            angular.module('zoltar').value('currentUsername', '<%= user.username %>');
+        <%
+        } else { %>
+            angular.module('zoltar').value('currentUsername', null);
+        <%
+        }
+        %>
+    </script>
 </head>
-<body>
+<body ng-controller="ZoltarCtrl">
 
-  <!-- Header and Nav -->
+<!-- Header and Nav -->
 
-  <div class="row">
+<div class="row" ng-show="user">
+    <div>logged in as {{ user.username }}</div>
+</div>
+<div class="row" ng-controller="NavCtrl">
     <div class="large-3 columns">
-      <h1><img src="http://placehold.it/400x100&text=Logo"></h1>
+        <h1>volunteerster</h1>
     </div>
     <div class="large-9 columns">
-      <ul class="button-group right">
-        <li><a href="#" class="button">Link 1</a></li>
-        <li><a href="#" class="button">Link 2</a></li>
-        <li><a href="#" class="button">Link 3</a></li>
-        <li><a href="#" class="button">Link 4</a></li>
-      </ul>
+        <ul class="button-group right">
+            <li ng-show="!user"><a data-reveal-id="login" class="button">Login</a></li>
+            <li ng-show="user"><a class="button" ng-click="logout()">Logout</a></li>
+        </ul>
     </div>
-  </div>
+</div>
 
-  <!-- End Header and Nav -->
+<!-- End Header and Nav -->
 
-  <!-- First Band (Image) -->
+<!-- First Band (Image) -->
 
-  <div class="row">
-    <div class="large-12 columns">
-      <img src="http://placehold.it/1000x400&text=[img]">
-
-      <hr>
+<div class="row">
+    <hr>
+    <div class="large-12 columns wire-one">
+        Matching tech talent with great volunteer opportunities.
     </div>
-  </div>
-  <!-- Second Band (Image Left with Text) -->
+</div>
+<!-- Second Band (Image Left with Text) -->
 
-  <div class="row">
+<div class="row">
+    <hr>
     <div class="large-4 columns">
-      <img src="http://placehold.it/400x300&text=[img]">
+        <img src="http://placehold.it/400x300&text=[img]">
     </div>
     <div class="large-8 columns">
-      <h4>This is a content section.</h4>
-      <div class="row">
-        <div class="large-6 columns">
-          <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+        <h4>This is a content section.</h4>
+
+        <div class="row">
+            <div class="large-6 columns">
+                <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
+                    reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs
+                    reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+            </div>
+            <div class="large-6 columns">
+                <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure
+                    bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim
+                    jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
+            </div>
         </div>
-        <div class="large-6 columns">
-          <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 
-  <!-- Third Band (Image Right with Text) -->
+<!-- Third Band (Image Right with Text) -->
 
-  <div class="row">
+<div class="row">
     <div class="large-8 columns">
-      <h4>This is a content section.</h4>
+        <h4>This is a content section.</h4>
 
-      <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+        <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
+            reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs
+            reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
 
-      <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
+        <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon
+            nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola
+            short ribs minim salami nulla nostrud pastrami.</p>
 
     </div>
     <div class="large-4 columns">
-      <img src="http://placehold.it/400x300&text=[img]">
+        <img src="http://placehold.it/400x300&text=[img]">
     </div>
-  </div>
+</div>
 
 
-  <!-- Footer -->
+<!-- Footer -->
 
-  <footer class="row">
+<footer class="row">
     <div class="large-12 columns">
-      <hr />
-      <div class="row">
-        <div class="large-6 columns">
-          <p>&copy; Copyright no one at all. Go to town.</p>
+        <hr/>
+        <div class="row">
+            <div class="large-6 columns">
+                <p>&copy; Copyright no one at all. Go to town.</p>
+            </div>
+            <div class="large-6 columns">
+                <ul class="inline-list right">
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                    <li><a href="#">Link 4</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="large-6 columns">
-          <ul class="inline-list right">
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-            <li><a href="#">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </footer>
+</footer>
+
+<reveal id="login" class="small">
+    <h2>Login</h2>
+
+    <form name="loginForm" ng-controller="LoginCtrl">
+        <div class="row">
+            <div class="large-6 columns">
+                <label for="username">Username:</label>
+            </div>
+            <div class="large-6 columns">
+                <input type="text" ng-required="true" ng-model="credentials.username" id="username"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-6 columns">
+                <label for="password">Password:</label>
+            </div>
+            <div class="large-6 columns">
+                <input type="password" ng-required="true" ng-model="credentials.password" id="password"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-6 columns">
+                <a ng-click="forgot()">Forgot?</a>
+            </div>
+            <div class="large-6 columns">
+                <ladda-button ladda="loginProgress"
+                              ng-class="{disabled: !credentials.username || !credentials.password}"
+                              ng-click="login()">Login
+                </ladda-button>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="alert-box radius alert" ng-show="failedLogin"
+                 ng-animate="{show: 'fade-show', hide: 'fade-hide'}">
+                Invalid username or password.
+            </div>
+        </div>
+    </form>
+</reveal>
 
 </body>
 </html>

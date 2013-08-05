@@ -1,5 +1,7 @@
 // Karma configuration
 
+var config = require(process.env.PWD + '/config.js');
+
 // base path, that will be used to resolve files and exclude
 basePath = '';
 
@@ -7,10 +9,8 @@ basePath = '';
 files = [
     JASMINE,
     JASMINE_ADAPTER,
-    'public/javascripts/lib/angular.min.js',
-    'public/javascripts/lib/angular-mocks.js',
-    'public/javascripts/app.js',
-    'public/javascripts/controllers/*.js',
+    'public/javascripts/support/angular-mocks.js',
+    'public/javascripts/dist/' + config.appName + '-' + config.appVersion + '.js',
     'test/spec/**/*.js'
 ];
 
