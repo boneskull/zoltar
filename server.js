@@ -39,8 +39,9 @@ app.use(express.cookieParser());
 app.use(express.session({
     secret: config.server.cookieSecret,
     maxAge: new Date(Date.now() + 3600000),
-    store: new MongoStore(
-        {db: mongoose.connection.db},
+    store: new MongoStore({
+            db: mongoose.connection.db
+        },
         function (err) {
             console.log(err || 'connect-mongodb setup ok');
         })
@@ -62,14 +63,18 @@ app.configure('production', function () {
     app.use(express.errorHandler());
 });
 
-
-User.findOne({username: 'admin'}, function (err, user) {
-    if (!user) {
-        User.register(new User({username: 'admin'}), 'p00p00', function (err, user) {
-            console.log(user);
-        });
-    }
-});
+//
+//User.findOne({username: 'admin'}, function (err, user) {
+//    if (!user) {
+//        user.remove();
+//    }
+//
+//    User.register(new User({username: 'admin', admin: true, email: 'chiller@badwing.com'}), 'p00p00', function (err, user) {
+//        console.log(user);
+//
+//    });
+//
+//});
 
 require('./routing')(app);
 

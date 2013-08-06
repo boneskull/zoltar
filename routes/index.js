@@ -10,7 +10,7 @@ module.exports = function (req, res) {
         version: config.appVersion,
         name: config.appName,
         development: config.development,
-        user: req.user
+        user: req.user && req.user.sanitize(true)
     };
 
     res.render('index', data);

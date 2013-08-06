@@ -1,0 +1,63 @@
+<div>
+    <div ng-controller="AdminAddUserCtrl">
+        <h3>ADMIN CONSOLE</h3>
+
+        <div class="row">
+            <div class="large-6 columns">
+                <fieldset>
+                    <legend>Add a User</legend>
+                    <form name="adduser">
+                        <div class="row">
+                            <div class="large-2 columns">
+                                <label for="username">Username:</label>
+                            </div>
+                            <div class="large-10 columns">
+                                <input type="text" required ng-model="newUser.username" id="username"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-2 columns">
+                                <label for="email">Email:</label>
+                            </div>
+                            <div class="large-10 columns">
+                                <input type="email" required ng-model="newUser.email" id="email"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-2 columns">
+                                <label for="url">URL:</label>
+                            </div>
+                            <div class="large-10 columns">
+                                <input type="text" ng-model="newUser.url" id="url"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-2 columns">
+                                <label for="password1">Password:</label>
+                            </div>
+                            <div class="large-10 columns">
+                                <input type="password" required ng-model="newUser.password1" id="password1"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-2 columns">
+                                <label for="password2">Password:</label>
+                            </div>
+                            <div class="large-10 columns">
+                                <input type="password" required ng-model="newUser.password2" id="password2"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-2 columns">
+
+                            </div>
+                            <div class="large-10 columns text-right">
+                                <button ng-click="addUser()">Add User</button>
+                            </div>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

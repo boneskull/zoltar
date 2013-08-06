@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('zoltar.common.controllers.loginctrl', []).controller('LoginCtrl', function ($scope, Restangular, User, $timeout) {
+    angular.module('zoltar.common.controllers').controller('LoginCtrl', function ($scope, Restangular, User, $timeout) {
 
         $scope.credentials = {};
 
@@ -17,14 +17,14 @@
             $scope.loginProgress = 0;
             login = Restangular.all('login');
             login.post(user)
-                .always(function () {
-                    delete user.password;
+                .always(function (res) {
                     $scope.loginProgress = 1;
+                    return res;
                 })
-                .then(function () {
+                .then(function (res) {
                     $scope.failedLogin = false;
                     $scope.$emit('close:login');
-                    $scope.$emit('setUser', user);
+                    $scope.$emit('setUser', res.user);
                 }, function () {
                     $scope.failedLogin = true;
                     $timeout(function () {

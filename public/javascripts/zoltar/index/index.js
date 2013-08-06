@@ -4,10 +4,10 @@
 
     var index = angular.module('zoltar.index', []);
 
-    index.controller('ZoltarCtrl', function ($scope, currentUsername, User) {
+    index.controller('ZoltarCtrl', function ($scope, currentUser, User) {
 
-        if (currentUsername) {
-            $scope.user = new User({username: currentUsername});
+        if (currentUser) {
+            $scope.user = new User(currentUser);
         }
 
         $scope.$on('setUser', function (evt, user) {

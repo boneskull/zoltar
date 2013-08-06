@@ -27,110 +27,129 @@
 
     <% if (user) { %>
     <script type="text/javascript">
-        angular.module('zoltar').value('currentUsername', '<%= user.username %>');
+        angular.module('zoltar').value('currentUser', <
+        %
+        -user % >
+        )
+        ;
     </script>
     <% } else { %>
     <script type="text/javascript">
-        angular.module('zoltar').value('currentUsername', null);
+        angular.module('zoltar').value('currentUser', null);
     </script>
     <% } %>
 </head>
 <body ng-controller="ZoltarCtrl">
 
-<!-- Header and Nav -->
+<script type="text/ng-template" id="header">
 
-<div class="row" ng-show="user">
-    <div>logged in as {{ user.username }}</div>
-</div>
-<div class="row" ng-controller="NavCtrl">
-    <div class="large-3 columns">
-        <h1>volunteerster</h1>
+    <div class="row" ng-show="user">
+        <div>logged in as {{ user.username }}</div>
     </div>
-    <div class="large-9 columns">
-        <ul class="button-group right">
-            <li ng-show="!user"><a data-reveal-id="login" class="button">Login</a></li>
-            <li ng-show="user"><a class="button" ng-click="logout()">Logout</a></li>
-        </ul>
+    <div class="row" ng-controller="NavCtrl">
+        <div class="large-3 columns">
+            <h1>volunteerster</h1>
+        </div>
+        <div class="large-9 columns">
+            <ul class="button-group right">
+                <li ng-show="!user"><a data-reveal-id="login" class="button">Login</a></li>
+                <li ng-show="user"><a class="button" ng-click="logout()">Logout</a></li>
+                <li ng-show="user.admin && path() !== '/admin'">
+                    <a class="button" href="/admin">Admin</a>
+                </li>
+                <li ng-show="path() === '/admin'">
+                    <a class="button" href="/">Main</a>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
+</script>
 
-<!-- End Header and Nav -->
+<script type="text/ng-template" id="footer">
 
-<!-- First Band (Image) -->
+    <!-- Footer -->
 
-<div class="row">
-    <hr>
-    <div class="large-12 columns wire-one">
-        Matching tech talent with great volunteer opportunities.
-    </div>
-</div>
-<!-- Second Band (Image Left with Text) -->
-
-<div class="row">
-    <hr>
-    <div class="large-4 columns">
-        <img src="http://placehold.it/400x300&text=[img]">
-    </div>
-    <div class="large-8 columns">
-        <h4>This is a content section.</h4>
-
-        <div class="row">
-            <div class="large-6 columns">
-                <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
-                    reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs
-                    reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+    <footer class="row">
+        <div class="large-12 columns">
+            <hr/>
+            <div class="row">
+                <div class="large-6 columns">
+                    <p>&copy; Copyright no one at all. Go to town.</p>
+                </div>
+                <div class="large-6 columns">
+                    <ul class="inline-list right">
+                        <li><a href="#">Link 1</a></li>
+                        <li><a href="#">Link 2</a></li>
+                        <li><a href="#">Link 3</a></li>
+                        <li><a href="#">Link 4</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="large-6 columns">
-                <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure
-                    bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim
-                    jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
+        </div>
+    </footer>
+</script>
+
+<script type="text/ng-template" id="main">
+    <div class="row">
+        <hr>
+        <div class="large-12 columns wire-one">
+            Matching tech talent with great volunteer opportunities.
+        </div>
+    </div>
+    <!-- Second Band (Image Left with Text) -->
+
+    <div class="row">
+        <hr>
+        <div class="large-4 columns">
+            <img src="http://placehold.it/400x300&text=[img]">
+        </div>
+        <div class="large-8 columns">
+            <h4>This is a content section.</h4>
+
+            <div class="row">
+                <div class="large-6 columns">
+                    <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit.
+                        Aute in
+                        reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs
+                        reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+                </div>
+                <div class="large-6 columns">
+                    <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball
+                        irure
+                        bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola
+                        enim
+                        jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<!-- Third Band (Image Right with Text) -->
+    <!-- Third Band (Image Right with Text) -->
 
-<div class="row">
-    <div class="large-8 columns">
-        <h4>This is a content section.</h4>
+    <div class="row">
+        <div class="large-8 columns">
+            <h4>This is a content section.</h4>
 
-        <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
-            reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs
-            reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+            <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
+                reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs
+                reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
 
-        <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon
-            nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola
-            short ribs minim salami nulla nostrud pastrami.</p>
+            <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon
+                nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl.
+                Capicola
+                short ribs minim salami nulla nostrud pastrami.</p>
 
-    </div>
-    <div class="large-4 columns">
-        <img src="http://placehold.it/400x300&text=[img]">
-    </div>
-</div>
-
-
-<!-- Footer -->
-
-<footer class="row">
-    <div class="large-12 columns">
-        <hr/>
-        <div class="row">
-            <div class="large-6 columns">
-                <p>&copy; Copyright no one at all. Go to town.</p>
-            </div>
-            <div class="large-6 columns">
-                <ul class="inline-list right">
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 2</a></li>
-                    <li><a href="#">Link 3</a></li>
-                    <li><a href="#">Link 4</a></li>
-                </ul>
-            </div>
+        </div>
+        <div class="large-4 columns">
+            <img src="http://placehold.it/400x300&text=[img]">
         </div>
     </div>
-</footer>
+</script>
+
+<ng-include src="'header'" ng-controller="HeaderCtrl"></ng-include>
+<ng-view></ng-view>
+<ng-include src="'footer'"></ng-include>
 
 <reveal id="login" class="small">
     <h2>Login</h2>

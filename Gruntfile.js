@@ -55,7 +55,27 @@ module.exports = function (grunt) {
                 files: 'test/spec/*.js',
                 tasks: ['test']
             }
+        },
+
+        concurrent: {
+            target: {
+                tasks: ['nodemon', 'watch'],
+                options: {
+                    logConcurrentOutput: true
+                }
+            }
+        },
+
+        nodemon: {
+            dev: {
+                options: {
+                    file: 'server.js',
+                    watchedExtensions: ['js'],
+                    debug: true
+                }
+            }
         }
+
     });
 
     grunt.loadNpmTasks('grunt-karma');
@@ -63,20 +83,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-concurrent');
 
     grunt.registerTask('test', ['jshint', 'karma']);
     grunt.registerTask('build', ['concat', 'uglify']);
 
-    grunt.registerTask('node-dev', function () {
-        require('child_process').spawn(
-            'node-dev',
-            ['server.js'],
-            { stdio: 'inherit' }
-        );
-    });
-
     grunt.registerTask('default', ['build', 'test']);
 
-    grunt.registerTask('start', ['node-dev', 'watch']);
+    grunt.registerTask('start', ['concurrent']);
 
 };
