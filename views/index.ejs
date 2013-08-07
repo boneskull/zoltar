@@ -27,11 +27,7 @@
 
     <% if (user) { %>
     <script type="text/javascript">
-        angular.module('zoltar').value('currentUser', <
-        %
-        -user % >
-        )
-        ;
+        angular.module('zoltar').value('currentUser', <%-user %>);
     </script>
     <% } else { %>
     <script type="text/javascript">

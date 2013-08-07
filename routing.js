@@ -30,10 +30,10 @@ module.exports = function (app) {
         return dfrd.promise;
     };
 
-    var emitUserlist = function emitUserlist(req) {
+    var broadcastUserlist = function broadcastUserlist(req) {
         isAdminSocket(req).then(function () {
             User.find({}, function (err, users) {
-                req.io.emit('admin:userlist', users.map(function (user) {
+                app.io.broadcast('admin:userlist', users.map(function (user) {
                     return user.sanitize();
                 }));
             });
@@ -60,14 +60,14 @@ module.exports = function (app) {
     app.io.route('admin', {
         ready: function (req) {
             if (isAdminSocket(req)) {
-                emitUserlist(req);
+                broadcastUserlist(req);
             }
         },
         register: function (req) {
             register(req.data, function (err, user) {
                 var msg;
                 if (user && !err) {
-                    emitUserlist(req);
+                    broadcastUserlist(req);
                     req.io.emit('admin:registrationSuccessful', user);
                 } else {
                     switch (err.code) {
@@ -92,7 +92,7 @@ module.exports = function (app) {
                                 if (err) {
                                     req.io.emit('admin:deleteUserFailure', err);
                                 } else {
-                                    emitUserlist(req);
+                                    broadcastUserlist(req);
                                     req.io.emit('admin:deleteUserSuccess');
                                 }
                             });
@@ -113,7 +113,7 @@ module.exports = function (app) {
                 res.send(500, err);
             }
             else {
-                emitUserlist(req);
+                broadcastUserlist(req);
                 res.send({user: user.sanitize()});
             }
 
