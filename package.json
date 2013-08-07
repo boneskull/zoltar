@@ -2,31 +2,33 @@
     "name": "zoltar",
     "version": "0.0.0",
     "devDependencies": {
+        "grunt": "~0.4.1",
         "grunt-contrib-concat": "~0.3.0",
         "grunt-contrib-uglify": "~0.2.0",
         "grunt-contrib-jshint": "~0.6.0",
         "grunt-contrib-watch": "~0.4.0",
         "grunt-karma": "~0.4.5",
         "grunt-nodemon": "0.0.8",
-        "grunt-concurrent": "~0.3.0"
+        "grunt-concurrent": "~0.3.0",
+        "nodemon": "~0.7.10"
     },
     "private": true,
     "scripts": {
-        "start": "grunt start",
+        "start": "node server.js",
         "test": "grunt test"
     },
     "main": "server.js",
     "dependencies": {
+        "express": "~3.3.4",
         "express.io": "~1.1.12",
         "q": "~0.9.6",
         "ejs": "*",
         "less-middleware": "*",
         "connect-mongo": "~0.3.3",
-        "grunt": "~0.4.1",
         "mongoose": "~3.6.15",
         "passport": "~0.1.17",
         "passport-local": "~0.1.6",
-        "passport-local-mongoose": "~0.2.4",
-        "nodemon": "~0.7.10"
-    }
+        "passport-local-mongoose": "~0.2.4"
+    },
+    "repository": "https://github.com/boneskull/zoltar.git"
 }

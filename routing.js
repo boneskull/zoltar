@@ -88,9 +88,14 @@ module.exports = function (app) {
                         if (err) {
                             req.io.emit('admin:deleteUserFailure', err);
                         } else {
-                            user.remove();
-                            emitUserlist(req);
-                            req.io.emit('admin:deleteUserSuccess');
+                            user.remove(function (err) {
+                                if (err) {
+                                    req.io.emit('admin:deleteUserFailure', err);
+                                } else {
+                                    emitUserlist(req);
+                                    req.io.emit('admin:deleteUserSuccess');
+                                }
+                            });
                         }
                     });
             }

@@ -82,6 +82,11 @@
                             <th>Email</th>
                             <th>Actions</th>
                         </tr>
+                        <tr ng-show="!userlist.length">
+                            <td colspan="3" class="text-center">
+                                <img src="/images/ajax-loader.gif"/>
+                            </td>
+                        </tr>
                         <tr ng-repeat="user in userlist">
                             <td><a ng-click="edit(user)">{{ user.username }}</a></td>
                             <td><a ng-click="edit(user)">{{ user.email }}</a></td>
