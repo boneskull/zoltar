@@ -49,8 +49,22 @@
     });
 
     admin.controller('AdminUserListCtrl', function ($scope, socket, $timeout) {
+
         socket.on('admin:userlist', function (userlist) {
             $scope.userlist = userlist;
+        });
+
+        socket.on('admin:deleteUserSuccess', function () {
+            $scope.deleteProgress = 1;
+            $timeout(function () {
+                $scope.deleteProgress = false;
+                $scope.cancelDelete();
+            }, 200);
+        });
+
+        socket.on('admin:deleteUserFailure', function (err) {
+            $scope.deleteProgress = 1;
+            $scope.deleteFailure = err;
         });
 
         $scope.confirmDelete = function (user) {
@@ -59,23 +73,15 @@
 
         $scope.cancelDelete = function () {
             $scope.$emit('close:confirmDelete');
+        };
+
+        $scope.onCloseConfirmDelete = function () {
             delete $scope.deleteUser;
         };
 
         $scope.delete = function () {
             $scope.deleteProgress = 0;
             socket.emit('admin:deleteUser', $scope.deleteUser);
-            socket.on('admin:deleteUserSuccess', function () {
-                $scope.deleteProgress = 1;
-                $timeout(function () {
-                    $scope.deleteProgress = false;
-                    $scope.cancelDelete();
-                }, 200);
-            });
-            socket.on('admin:deleteUserFailure', function (err) {
-                $scope.deleteProgress = 1;
-                $scope.deleteFailure = err;
-            });
         };
     });
 

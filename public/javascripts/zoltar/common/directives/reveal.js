@@ -11,18 +11,20 @@
             replace: true,
             template: '<div class="reveal-modal" ng-transclude></div>',
             link: function postLink(scope, element, attrs) {
+
+                // close yourself if this event is caught.
                 scope.$on('close:' + attrs.id, function () {
                     $(element).foundation('reveal', 'close');
                 });
+
+                // if onClosed attribute is specified, execute
+                // function upon closed event (fired by Reveal).
+                if (attrs.onClosed) {
+                    element.bind('closed', function () {
+                        scope.$apply(attrs.onClosed);
+                    });
+                }
             }
         };
     });
-//
-//    reveal.directive('revealClose', function () {
-//        return  function (scope, element, attrs) {
-//            element.bind('click', function () {
-//                scope.$emit('close:' + attrs.revealClose);
-//            });
-//        };
-//    });
 })();

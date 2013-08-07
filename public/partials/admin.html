@@ -90,20 +90,19 @@
                         <tr ng-repeat="user in userlist">
                             <td><a ng-click="edit(user)">{{ user.username }}</a></td>
                             <td><a ng-click="edit(user)">{{ user.email }}</a></td>
-                            <td><a ng-click="edit(user)">Edit</a> | <a ng-click="confirmDelete(user)"
-                                                                       data-reveal-id="confirmDelete">Delete</a></td>
+                            <td><a ng-click="edit(user)">Edit</a><span ng-show="!user.admin"> | <a
+                                    ng-click="confirmDelete(user)"
+                                    data-reveal-id="confirmDelete">Delete</a></span></td>
                         </tr>
                     </table>
                 </fieldset>
 
-                <reveal id="confirmDelete" class="medium">
+                <reveal id="confirmDelete" class="medium" on-closed="onCloseConfirmDelete()">
                     <h2>Delete user "{{ deleteUser.username }}"?</h2>
 
                     <div class="row">
-                        <div class="large-12 columns"><p>Are you sure you want to delete user "{{ deleteUser.username
-                            }}"
-                            ({{
-                            deleteUser.email }})?</p>
+                        <div class="large-12 columns"><p>Are you sure you want to delete user "{{ deleteUser.username }}"
+                            ({{ deleteUser.email }})?</p>
                         </div>
                     </div>
 
