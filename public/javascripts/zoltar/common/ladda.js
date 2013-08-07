@@ -37,7 +37,7 @@
             restrict: 'E',
             replace: true,
             transclude: true,
-            template: '<button data-spinner-size="30" class="button radius ladda-button" data-style="zoom-in"><span class="ladda-label" ng-transclude></span></button>'
+            template: '<button data-spinner-size="30" class="button ladda-button" style="overflow: visible;" data-style="zoom-in"><span class="ladda-label" ng-transclude></span></button>'
         };
     });
 })();

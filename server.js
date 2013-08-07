@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-var express = require('express'),
+var express = require('express.io'),
     config = require('./config'),
     mongoose = require('mongoose'),
     MongoStore = require('connect-mongo')(express),
@@ -10,13 +10,14 @@ var express = require('express'),
     passport = require('passport'),
     xsrf = require('./support/xsrf'),
     protectJSON = require('./support/protectJSON'),
-    LocalStrategy = require('passport-local').Strategy;
-path = require('path');
+    LocalStrategy = require('passport-local').Strategy,
+    app, User, server, io,
+    path = require('path');
 
-var app = express();
+app = express();
 
 // requires the model with Passport-Local Mongoose plugged in
-var User = require('./models/user');
+User = require('./models/user');
 
 // use static authenticate method of model in LocalStrategy
 passport.use(new LocalStrategy(User.authenticate()));
@@ -63,21 +64,22 @@ app.configure('production', function () {
     app.use(express.errorHandler());
 });
 
-//
-//User.findOne({username: 'admin'}, function (err, user) {
-//    if (!user) {
-//        user.remove();
-//    }
-//
-//    User.register(new User({username: 'admin', admin: true, email: 'chiller@badwing.com'}), 'p00p00', function (err, user) {
-//        console.log(user);
-//
-//    });
-//
-//});
 
+User.findOne({username: 'admin'}, function (err, user) {
+    if (!user) {
+        User.register(new User({username: 'admin', admin: true, email: 'chiller@badwing.com'}), 'p00p00', function (err, user) {
+            console.log(user);
+
+        });
+    }
+});
+
+
+app.http().io();
 require('./routing')(app);
-
-http.createServer(app).listen(app.get('port'), function () {
+app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+

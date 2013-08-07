@@ -9,9 +9,9 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width"/>
 
-    <title>tech volunteer clearinghouse</title>
+    <title>altrui.st: tech volunteer clearinghouse</title>
     <link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Cabin+Condensed' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
 
 
     <link rel="stylesheet" href="/stylesheets/lib/normalize.css">
@@ -48,7 +48,7 @@
     </div>
     <div class="row" ng-controller="NavCtrl">
         <div class="large-3 columns">
-            <h1>volunteerster</h1>
+            <h1>altrui.st</h1>
         </div>
         <div class="large-9 columns">
             <ul class="button-group right">
@@ -160,7 +160,7 @@
                 <label for="username">Username:</label>
             </div>
             <div class="large-6 columns">
-                <input type="text" ng-required="true" ng-model="credentials.username" id="username"/>
+                <input type="text" tabindex="1" ng-required="true" ng-model="credentials.username" id="username"/>
             </div>
         </div>
         <div class="row">
@@ -168,7 +168,7 @@
                 <label for="password">Password:</label>
             </div>
             <div class="large-6 columns">
-                <input type="password" ng-required="true" ng-model="credentials.password" id="password"/>
+                <input type="password" tabindex="2" ng-required="true" ng-model="credentials.password" id="password"/>
             </div>
         </div>
         <div class="row">
@@ -176,7 +176,7 @@
                 <a ng-click="forgot()">Forgot?</a>
             </div>
             <div class="large-6 columns">
-                <ladda-button ladda="loginProgress"
+                <ladda-button ladda="loginProgress" tabindex="3"
                               ng-class="{disabled: !credentials.username || !credentials.password}"
                               ng-click="login()">Login
                 </ladda-button>

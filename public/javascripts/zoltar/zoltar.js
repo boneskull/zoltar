@@ -7,7 +7,8 @@
         'zoltar.index',
         'foundation',
         'ladda',
-        'restangular'
+        'restangular',
+        'socket.io'
     ]);
 
     zoltar.constant('zoltarConstants', {

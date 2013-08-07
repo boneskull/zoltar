@@ -14,6 +14,7 @@ module.exports = function (grunt) {
                     'public/javascripts/support/ladda.min.js',
                     'public/javascripts/support/underscore.js',
                     'public/javascripts/support/restangular.js',
+                    'public/javascripts/support/socket.io.js',
                     'public/javascripts/zoltar/**/*.js'
                 ],
                 dest: 'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.js'
@@ -59,7 +60,7 @@ module.exports = function (grunt) {
 
         concurrent: {
             target: {
-                tasks: ['nodemon', 'watch'],
+                tasks: ['build', 'nodemon', 'watch'],
                 options: {
                     logConcurrentOutput: true
                 }

@@ -2,7 +2,9 @@
 (function () {
     'use strict';
 
-    angular.module('zoltar.common.directives.reveal', []).directive('reveal', function () {
+    var reveal = angular.module('zoltar.common.directives.reveal', []);
+
+    reveal.directive('reveal', function () {
         return {
             restrict: 'E',
             transclude: true,
@@ -15,4 +17,12 @@
             }
         };
     });
+//
+//    reveal.directive('revealClose', function () {
+//        return  function (scope, element, attrs) {
+//            element.bind('click', function () {
+//                scope.$emit('close:' + attrs.revealClose);
+//            });
+//        };
+//    });
 })();

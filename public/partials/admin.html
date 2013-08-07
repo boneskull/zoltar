@@ -1,9 +1,9 @@
 <div>
-    <div ng-controller="AdminAddUserCtrl">
+    <div>
         <h3>ADMIN CONSOLE</h3>
 
         <div class="row">
-            <div class="large-6 columns">
+            <div ng-controller="AdminAddUserCtrl" class="large-6 columns">
                 <fieldset>
                     <legend>Add a User</legend>
                     <form name="adduser">
@@ -41,7 +41,7 @@
                         </div>
                         <div class="row">
                             <div class="large-2 columns">
-                                <label for="password2">Password:</label>
+                                <label for="password2">Again:</label>
                             </div>
                             <div class="large-10 columns">
                                 <input type="password" required ng-model="newUser.password2" id="password2"/>
@@ -51,12 +51,67 @@
                             <div class="large-2 columns">
 
                             </div>
-                            <div class="large-10 columns text-right">
-                                <button ng-click="addUser()">Add User</button>
+                            <div class="large-10 columns">
+                                <div class="row">
+                                    <div class="large-7 columns">
+                                        <div class="alert-box radius" ng-show="addedUser">
+                                            Successfully added user <em>{{ addedUser }}</em>.
+                                        </div>
+                                        <div class="alert-box radius alert" ng-show="mismatchedPasswords">
+                                            Mismatched passwords!
+                                        </div>
+                                        <div class="alert-box radius alert" ng-show="registrationError">
+                                            {{ registrationError }}
+                                        </div>
+                                    </div>
+                                    <div class="large-5 columns text-right">
+                                        <button ng-click="addUser()">Add User</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </fieldset>
+            </div>
+            <div ng-controller="AdminUserListCtrl" class="large-6 columns">
+                <fieldset>
+                    <legend>Users</legend>
+                    <table class="table large-12">
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr ng-repeat="user in userlist">
+                            <td><a ng-click="edit(user)">{{ user.username }}</a></td>
+                            <td><a ng-click="edit(user)">{{ user.email }}</a></td>
+                            <td><a ng-click="edit(user)">Edit</a> | <a ng-click="confirmDelete(user)"
+                                                                       data-reveal-id="confirmDelete">Delete</a></td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <reveal id="confirmDelete" class="medium">
+                    <h2>Delete user "{{ deleteUser.username }}"?</h2>
+
+                    <div class="row">
+                        <div class="large-12 columns"><p>Are you sure you want to delete user "{{ deleteUser.username
+                            }}"
+                            ({{
+                            deleteUser.email }})?</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="large-12 text-right columns">
+                            <button class="button" ng-click="cancelDelete()">No!</button>
+                            <ladda-button ladda="deleteProgress" class="button" ng-click="delete(deleteUser)">KILL
+                            </ladda-button>
+
+                        </div>
+                    </div>
+                    <a class="close-reveal-modal">&#215;</a>
+                </reveal>
             </div>
         </div>
     </div>

@@ -16,12 +16,13 @@
 
     });
 
-    index.controller('NavCtrl', function ($scope, Restangular) {
+    index.controller('NavCtrl', function ($scope, Restangular, $location) {
 
         $scope.logout = function () {
             var logout = Restangular.all('logout');
             logout.post().then(function () {
                 $scope.$emit('setUser', null);
+                $location.path('/');
             });
         };
     });
