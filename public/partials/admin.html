@@ -88,8 +88,8 @@
                             </td>
                         </tr>
                         <tr ng-repeat="user in userlist">
-                            <td><a ng-click="edit(user)">{{ user.username }}</a></td>
-                            <td><a ng-click="edit(user)">{{ user.email }}</a></td>
+                            <td><a data-reveal-id="viewUser" ng-click="view(user)">{{ user.username }}</a></td>
+                            <td><a data-reveal-id="viewUser" ng-click="view(user)">{{ user.email }}</a></td>
                             <td><a ng-click="edit(user)">Edit</a><span ng-show="!user.admin"> | <a
                                     ng-click="confirmDelete(user)"
                                     data-reveal-id="confirmDelete">Delete</a></span></td>
@@ -101,7 +101,8 @@
                     <h2>Delete user "{{ deleteUser.username }}"?</h2>
 
                     <div class="row">
-                        <div class="large-12 columns"><p>Are you sure you want to delete user "{{ deleteUser.username }}"
+                        <div class="large-12 columns"><p>Are you sure you want to delete user "{{ deleteUser.username
+                            }}"
                             ({{ deleteUser.email }})?</p>
                         </div>
                     </div>
@@ -115,6 +116,59 @@
                         </div>
                     </div>
                     <a class="close-reveal-modal">&#215;</a>
+                </reveal>
+
+                <reveal id="viewUser" on-closed="onCloseViewUser()">
+
+                    <h2>{{ viewUser.username }}</h2>
+
+                    <form name="edit">
+                        <div class="row">
+                            <div class="large-2 columns">
+                                Email:
+                            </div>
+                            <div class="large-10 columns">
+                                <strong ng-hide="editMode"><a ng-href="mailto:{{ viewUser.email}}">{{ viewUser.email
+                                    }}</a></strong>
+                                <input type="email" ng-show="editMode" ng-model="viewUser.email"/>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="viewUser.url">
+                            <div class="large-2 columns">
+                                URL:
+                            </div>
+                            <div class="large-10 columns">
+                                <strong ng-hide="editMode"><a ng-href="{{ viewUser.url }}" target="_blank">{{
+                                    viewUser.url }}</a></strong>
+                                <input type="text" ng-show="editMode" ng-model="viewUser.url"/>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="viewUser.admin || editMode">
+                            <div class="large-2 columns">
+                                Admin:
+                            </div>
+                            <div class="large-10 columns">
+                                <span ng-hide="editMode">YES</span>
+                                <select ng-show="editMode" ng-model="viewUser.admin">
+                                    <option value="true">YES</option>
+                                    <option value="false">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns text-right">
+                                <button ng-hide="editMode" ng-click="editMode = true">Modify</button>
+                                <button ng-show="editMode" ng-click="editMode = false">Cancel</button>
+                                <ladda-button ladda="saveProgress" ng-show="editMode" ng-click="save(viewUser)">Save
+                                </ladda-button>
+                            </div>
+                        </div>
+                        <div class="alert-box alert" ng-show="saveUserFailure">
+                            {{ saveUserFailure }}
+                        </div>
+                    </form>
+                    <a class="close-reveal-modal">&#215;</a>
+
                 </reveal>
             </div>
         </div>

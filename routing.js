@@ -1,6 +1,7 @@
 var passport = require('passport'),
     User = require('./models/user'),
-    Q = require('q');
+    Q = require('q'),
+    extend = require('util')._extend;
 
 module.exports = function (app) {
 
@@ -13,31 +14,27 @@ module.exports = function (app) {
         }
     };
 
-    var isAdminSocket = function (req) {
-        var dfrd = Q.defer();
-        if (req.session.passport.user) {
-            User.findOne({username: req.session.passport.user},
-                function (err, user) {
-                    if (user.admin) {
-                        dfrd.resolve();
-                    } else {
-                        dfrd.reject();
-                    }
-                });
-        } else {
-            dfrd.reject();
-        }
-        return dfrd.promise;
+    var ifAdminSocket = function (req) {
+        return User.findOne({
+            username: req.session.passport.user
+        }).exec().then(function (user) {
+                if (!user.admin) {
+                    return Q.reject();
+                }
+            });
     };
 
     var broadcastUserlist = function broadcastUserlist(req) {
-        isAdminSocket(req).then(function () {
-            User.find({}, function (err, users) {
-                app.io.broadcast('admin:userlist', users.map(function (user) {
-                    return user.sanitize();
-                }));
+        ifAdminSocket(req)
+            .then(function () {
+                return User.find({}).exec();
+            })
+            .then(function (users) {
+                app.io.broadcast('admin:userlist',
+                    users.map(function (user) {
+                        return user.sanitize();
+                    }));
             });
-        });
     };
 
     var register = function register(data, cb) {
@@ -58,49 +55,84 @@ module.exports = function (app) {
     });
 
     app.io.route('admin', {
-        ready: function (req) {
-            if (isAdminSocket(req)) {
+            ready: function (req) {
                 broadcastUserlist(req);
-            }
-        },
-        register: function (req) {
-            register(req.data, function (err, user) {
-                var msg;
-                if (user && !err) {
-                    broadcastUserlist(req);
-                    req.io.emit('admin:registrationSuccessful', user);
-                } else {
-                    switch (err.code) {
-                        case 11000:
-                            msg = 'Duplicate email address "' + req.data.email + '"';
-                            break;
-                        default:
-                            msg = err.message;
+            },
+            register: function (req) {
+                register(req.data, function (err, user) {
+                    var msg;
+                    if (user && !err) {
+                        broadcastUserlist(req);
+                        req.io.emit('admin:registrationSuccessful', user);
+                    } else {
+                        switch (err.code) {
+                            case 11000:
+                                msg = 'Duplicate email address "' + req.data.email + '"';
+                                break;
+                            default:
+                                msg = err.message;
+                        }
+                        req.io.emit('admin:registrationFailure', msg);
                     }
-                    req.io.emit('admin:registrationFailure', msg);
-                }
-            });
-        },
-        deleteUser: function (req) {
-            if (isAdminSocket(req)) {
-                User.findOne({username: req.data.username},
-                    function (err, user) {
-                        if (err) {
-                            req.io.emit('admin:deleteUserFailure', err);
-                        } else {
+                });
+            },
+            deleteUser: function (req) {
+                ifAdminSocket(req).then(function () {
+                    User.findOne({username: req.data.username}).exec()
+                        .then(function (user) {
+                            var dfrd = Q.defer();
                             user.remove(function (err) {
                                 if (err) {
-                                    req.io.emit('admin:deleteUserFailure', err);
-                                } else {
-                                    broadcastUserlist(req);
-                                    req.io.emit('admin:deleteUserSuccess');
+                                    dfrd.reject(err);
+                                    return;
                                 }
+                                dfrd.resolve();
                             });
-                        }
-                    });
+                            return dfrd.promise;
+                        }, function (err) {
+                            req.io.emit('admin:deleteUserFailure', err);
+                        })
+                        .then(function () {
+                            broadcastUserlist(req);
+                            req.io.emit('admin:deleteUserSuccess');
+                        }, function (err) {
+                            req.io.emit('admin:deleteUserFailure', err);
+
+                        });
+                });
+
+            },
+            saveUser: function (req) {
+                if (ifAdminSocket(req)) {
+                    User.findOne({username: req.data.username}).exec()
+                        .then(function (user) {
+                            var dfrd = Q.defer();
+                            extend(user, {
+                                email: req.data.email,
+                                url: req.data.url,
+                                admin: req.data.admin
+                                // todo: add password
+                            });
+                            user.save(function (err) {
+                                if (err) {
+                                    dfrd.reject(err);
+                                }
+                                dfrd.resolve();
+                            });
+                            return dfrd.promise;
+                        }, function (err) {
+                            req.io.emit('admin:saveUserFailure', err);
+                        })
+                        .then(function () {
+                            broadcastUserlist(req);
+                            req.io.emit('admin:saveUserSuccess');
+                        }, function (err) {
+                            req.io.emit('admin:saveUserFailure', err);
+                        });
+                }
             }
         }
-    });
+    );
 
     app.post('/register', isAdmin, function (req, res) {
         var body = req.body;
@@ -128,4 +160,5 @@ module.exports = function (app) {
     app.post('/logout', function (req, res) {
         require('./routes/logout')(req, res);
     });
-};
+}
+;

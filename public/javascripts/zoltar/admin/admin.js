@@ -67,6 +67,19 @@
             $scope.deleteFailure = err;
         });
 
+        socket.on('admin:saveUserSuccess', function() {
+            $scope.saveProgress = 1;
+            $timeout(function() {
+                $scope.saveProgress = false;
+                $scope.cancelEdit();
+            }, 200);
+        });
+
+        socket.on('admin:saveUserFailure', function(err) {
+            $scope.saveProgress = 1;
+            $scope.saveFailure = err;
+        });
+
         $scope.confirmDelete = function (user) {
             $scope.deleteUser = user;
         };
@@ -82,6 +95,29 @@
         $scope.delete = function () {
             $scope.deleteProgress = 0;
             socket.emit('admin:deleteUser', $scope.deleteUser);
+        };
+
+        $scope.view = function(user) {
+            $scope.viewUser = user;
+        };
+
+        $scope.edit = function(user) {
+            $scope.editMode = true;
+            $scope.editUser = angular.copy(user);
+        };
+
+        $scope.save = function(user) {
+            $scope.saveProgress = 0;
+            socket.emit('admin:saveUser', user);
+        };
+
+        $scope.cancelEdit = function() {
+            $scope.editMode = false;
+            $scope.$emit('close:viewUser');
+        };
+
+        $scope.onCloseViewUser = function() {
+            delete $scope.viewUser;
         };
     });
 
