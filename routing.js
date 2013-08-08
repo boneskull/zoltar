@@ -127,7 +127,15 @@ module.exports = function (app) {
                             broadcastUserlist(req);
                             req.io.emit('admin:saveUserSuccess');
                         }, function (err) {
-                            req.io.emit('admin:saveUserFailure', err);
+                            var msg;
+                            switch (err.code) {
+                                case 11001:
+                                    msg = 'Duplicate email address "' + req.data.email + '"';
+                                    break;
+                                default:
+                                    msg = err.message;
+                            }
+                            req.io.emit('admin:saveUserFailure', msg);
                         });
                 }
             }

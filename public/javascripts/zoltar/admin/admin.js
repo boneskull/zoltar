@@ -65,19 +65,26 @@
         socket.on('admin:deleteUserFailure', function (err) {
             $scope.deleteProgress = 1;
             $scope.deleteFailure = err;
+            $timeout(function () {
+                $scope.deleteProgress = false;
+            }, 200);
         });
 
-        socket.on('admin:saveUserSuccess', function() {
+        socket.on('admin:saveUserSuccess', function () {
             $scope.saveProgress = 1;
-            $timeout(function() {
+            $timeout(function () {
                 $scope.saveProgress = false;
                 $scope.cancelEdit();
             }, 200);
         });
 
-        socket.on('admin:saveUserFailure', function(err) {
+        socket.on('admin:saveUserFailure', function (err) {
             $scope.saveProgress = 1;
-            $scope.saveFailure = err;
+            $scope.saveUserFailure = err;
+            $timeout(function () {
+                $scope.saveProgress = false;
+            }, 200);
+
         });
 
         $scope.confirmDelete = function (user) {
@@ -97,26 +104,27 @@
             socket.emit('admin:deleteUser', $scope.deleteUser);
         };
 
-        $scope.view = function(user) {
+        $scope.view = function (user) {
             $scope.viewUser = user;
         };
 
-        $scope.edit = function(user) {
+        $scope.edit = function (user) {
             $scope.editMode = true;
+            $scope.viewUser = user;
             $scope.editUser = angular.copy(user);
         };
 
-        $scope.save = function(user) {
+        $scope.save = function (user) {
             $scope.saveProgress = 0;
             socket.emit('admin:saveUser', user);
         };
 
-        $scope.cancelEdit = function() {
+        $scope.cancelEdit = function () {
             $scope.editMode = false;
             $scope.$emit('close:viewUser');
         };
 
-        $scope.onCloseViewUser = function() {
+        $scope.onCloseViewUser = function () {
             delete $scope.viewUser;
         };
     });

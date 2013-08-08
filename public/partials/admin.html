@@ -90,7 +90,7 @@
                         <tr ng-repeat="user in userlist">
                             <td><a data-reveal-id="viewUser" ng-click="view(user)">{{ user.username }}</a></td>
                             <td><a data-reveal-id="viewUser" ng-click="view(user)">{{ user.email }}</a></td>
-                            <td><a ng-click="edit(user)">Edit</a><span ng-show="!user.admin"> | <a
+                            <td><a ng-click="edit(user)" data-reveal-id="viewUser">Edit</a><span ng-show="!user.admin"> | <a
                                     ng-click="confirmDelete(user)"
                                     data-reveal-id="confirmDelete">Delete</a></span></td>
                         </tr>
@@ -130,7 +130,7 @@
                             <div class="large-10 columns">
                                 <strong ng-hide="editMode"><a ng-href="mailto:{{ viewUser.email}}">{{ viewUser.email
                                     }}</a></strong>
-                                <input type="email" ng-show="editMode" ng-model="viewUser.email"/>
+                                <input type="email" ng-show="editMode" ng-model="editUser.email"/>
                             </div>
                         </div>
                         <div class="row" ng-show="viewUser.url">
@@ -140,7 +140,7 @@
                             <div class="large-10 columns">
                                 <strong ng-hide="editMode"><a ng-href="{{ viewUser.url }}" target="_blank">{{
                                     viewUser.url }}</a></strong>
-                                <input type="text" ng-show="editMode" ng-model="viewUser.url"/>
+                                <input type="text" ng-show="editMode" ng-model="editUser.url"/>
                             </div>
                         </div>
                         <div class="row" ng-show="viewUser.admin || editMode">
@@ -149,7 +149,7 @@
                             </div>
                             <div class="large-10 columns">
                                 <span ng-hide="editMode">YES</span>
-                                <select ng-show="editMode" ng-model="viewUser.admin">
+                                <select ng-show="editMode" ng-model="editUser.admin">
                                     <option value="true">YES</option>
                                     <option value="false">NO</option>
                                 </select>
@@ -157,9 +157,9 @@
                         </div>
                         <div class="row">
                             <div class="large-12 columns text-right">
-                                <button ng-hide="editMode" ng-click="editMode = true">Modify</button>
-                                <button ng-show="editMode" ng-click="editMode = false">Cancel</button>
-                                <ladda-button ladda="saveProgress" ng-show="editMode" ng-click="save(viewUser)">Save
+                                <a class="button" ng-hide="editMode" ng-click="editMode = true">Modify</a>
+                                <a class="button" ng-show="editMode" ng-click="cancelEdit()">Cancel</a>
+                                <ladda-button ladda="saveProgress" ng-show="editMode" ng-click="save(editUser)">Save
                                 </ladda-button>
                             </div>
                         </div>
