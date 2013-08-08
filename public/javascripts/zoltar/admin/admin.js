@@ -16,7 +16,7 @@
             var newUser, register;
             delete $scope.addedUser;
             delete $scope.registrationError;
-            if ($scope.adduser.$valid) {
+            if ($scope.addUserForm.$valid) {
                 $scope.missingRequiredFields = false;
                 if ($scope.newUser.password1 !== $scope.newUser.password2) {
                     $scope.mismatchedPasswords = true;
@@ -50,6 +50,22 @@
 
     admin.controller('AdminUserListCtrl', function ($scope, socket, $timeout) {
 
+        $scope.toggles = {
+            editMode: false
+        };
+
+        $scope.setOrder = function (field) {
+            if ($scope.order === field) {
+                $scope.order = '-' + field;
+            }
+            else if ($scope.order === '-' + field) {
+                $scope.order = field;
+            }
+            else {
+                $scope.order = field;
+            }
+        };
+
         socket.on('admin:userlist', function (userlist) {
             $scope.userlist = userlist;
         });
@@ -70,22 +86,6 @@
             }, 200);
         });
 
-        socket.on('admin:saveUserSuccess', function () {
-            $scope.saveProgress = 1;
-            $timeout(function () {
-                $scope.saveProgress = false;
-                $scope.cancelEdit();
-            }, 200);
-        });
-
-        socket.on('admin:saveUserFailure', function (err) {
-            $scope.saveProgress = 1;
-            $scope.saveUserFailure = err;
-            $timeout(function () {
-                $scope.saveProgress = false;
-            }, 200);
-
-        });
 
         $scope.confirmDelete = function (user) {
             $scope.deleteUser = user;
@@ -109,18 +109,53 @@
         };
 
         $scope.edit = function (user) {
-            $scope.editMode = true;
+            $scope.toggles.editMode = true;
             $scope.viewUser = user;
             $scope.editUser = angular.copy(user);
         };
 
+    });
+
+    admin.controller('AdminEditUserCtrl', function ($scope, socket, $timeout) {
+
+        socket.on('admin:saveUserSuccess', function () {
+            $scope.saveProgress = 1;
+            $timeout(function () {
+                $scope.saveProgress = false;
+                $scope.cancelEdit();
+            }, 200);
+        });
+
+        socket.on('admin:saveUserFailure', function (err) {
+            $scope.saveProgress = 1;
+            $scope.saveUserFailure = err;
+            $timeout(function () {
+                $scope.saveProgress = false;
+            }, 200);
+
+        });
+
         $scope.save = function (user) {
-            $scope.saveProgress = 0;
-            socket.emit('admin:saveUser', user);
+            if ($scope.editUserForm.$valid) {
+                if ((user.password1 || user.password2) && user.password1 !==
+                    user.password2) {
+                    $scope.saveUserFailure = 'Mismatched passwords.';
+                    return;
+                } else if (user.password1 === user.password2) {
+                    user.password = user.password1;
+                    delete user.password1;
+                    delete user.password2;
+                }
+                $scope.saveProgress = 0;
+                socket.emit('admin:saveUser', user);
+
+            } else {
+                $scope.saveUserFailure = 'Missing required fields';
+            }
         };
 
         $scope.cancelEdit = function () {
-            $scope.editMode = false;
+            $scope.toggles.editMode = false;
             $scope.$emit('close:viewUser');
         };
 

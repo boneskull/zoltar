@@ -25,11 +25,16 @@
                     $scope.failedLogin = false;
                     $scope.$emit('close:login');
                     $scope.$emit('setUser', res.user);
+                    $timeout(function () {
+                        $scope.loginProgress = false;
+                    }, 200);
+                    $scope.credentials = {};
                 }, function () {
                     $scope.failedLogin = true;
                     $timeout(function () {
                         $scope.loginProgress = false;
                     }, 200);
+                    $scope.credentials = {};
                 });
         };
 

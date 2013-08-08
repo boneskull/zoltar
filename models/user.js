@@ -23,11 +23,16 @@ var User = new Schema({
         },
         validate: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
     },
+    created: {
+        type: Date,
+        default: Date.now(),
+        required: true
+    },
     url: String
 });
 
 
 User.plugin(passportLocalMongoose, {});
-User.plugin(sanitize, {accept: ['username', 'email', 'admin']});
+User.plugin(sanitize, {accept: ['username', 'email', 'admin', 'created']});
 
 module.exports = mongoose.model('User', User);

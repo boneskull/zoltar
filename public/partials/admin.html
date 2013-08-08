@@ -5,8 +5,8 @@
         <div class="row">
             <div ng-controller="AdminAddUserCtrl" class="large-6 columns">
                 <fieldset>
-                    <legend>Add a User</legend>
-                    <form name="adduser">
+                    <legend><i class="foundicon-plus"></i> Add a User</legend>
+                    <form name="addUserForm">
                         <div class="row">
                             <div class="large-2 columns">
                                 <label for="username">Username:</label>
@@ -75,11 +75,12 @@
             </div>
             <div ng-controller="AdminUserListCtrl" class="large-6 columns">
                 <fieldset>
-                    <legend>Users</legend>
+                    <legend><i class="foundicon-address-book"></i> Users</legend>
                     <table class="table large-12">
                         <tr>
-                            <th>Username</th>
-                            <th>Email</th>
+                            <th><a ng-click="setOrder('username')">Username</a> <span ng-show="order === 'username'">&uarr;</span><span ng-show="order === '-username'">&darr;</span></th>
+                            <th><a ng-click="setOrder('email')">Email</a><span ng-show="order === 'email'">&uarr;</span><span ng-show="order === '-email'">&darr;</span></th>
+                            <th><a ng-click="setOrder('created')">Registered</a><span ng-show="order === 'created'">&uarr;</span><span ng-show="order === '-created'">&darr;</span></th>
                             <th>Actions</th>
                         </tr>
                         <tr ng-show="!userlist.length">
@@ -87,12 +88,13 @@
                                 <img src="/images/ajax-loader.gif"/>
                             </td>
                         </tr>
-                        <tr ng-repeat="user in userlist">
+                        <tr ng-repeat="user in userlist|orderBy:order">
                             <td><a data-reveal-id="viewUser" ng-click="view(user)">{{ user.username }}</a></td>
                             <td><a data-reveal-id="viewUser" ng-click="view(user)">{{ user.email }}</a></td>
-                            <td><a ng-click="edit(user)" data-reveal-id="viewUser">Edit</a><span ng-show="!user.admin"> | <a
-                                    ng-click="confirmDelete(user)"
-                                    data-reveal-id="confirmDelete">Delete</a></span></td>
+                            <td>{{ user.created|date }}</td>
+                            <td><a ng-click="edit(user)" data-reveal-id="viewUser" title="edit {{ user.username }}"><i class="foundicon-settings"></i></a> <span ng-show="!user.admin"><a
+                                    ng-click="confirmDelete(user)" title="delete {{ user.username }}"
+                                    data-reveal-id="confirmDelete"><i class="foundicon-remove"></i></a></span></td>
                         </tr>
                     </table>
                 </fieldset>
@@ -119,56 +121,74 @@
                 </reveal>
 
                 <reveal id="viewUser" on-closed="onCloseViewUser()">
+                    <div ng-controller="AdminEditUserCtrl">
+                        <h2>{{ viewUser.username }}</h2>
 
-                    <h2>{{ viewUser.username }}</h2>
-
-                    <form name="edit">
-                        <div class="row">
-                            <div class="large-2 columns">
-                                Email:
+                        <form name="editUserForm">
+                            <div class="row">
+                                <div class="large-2 columns">
+                                    Email:
+                                </div>
+                                <div class="large-10 columns">
+                                    <strong ng-hide="toggles.editMode"><a ng-href="mailto:{{ viewUser.email}}">{{
+                                        viewUser.email
+                                        }}</a></strong>
+                                    <input type="email" requied ng-show="toggles.editMode" ng-model="editUser.email"/>
+                                </div>
                             </div>
-                            <div class="large-10 columns">
-                                <strong ng-hide="editMode"><a ng-href="mailto:{{ viewUser.email}}">{{ viewUser.email
-                                    }}</a></strong>
-                                <input type="email" ng-show="editMode" ng-model="editUser.email"/>
+                            <div class="row" ng-show="viewUser.url">
+                                <div class="large-2 columns">
+                                    URL:
+                                </div>
+                                <div class="large-10 columns">
+                                    <strong ng-hide="toggles.editMode"><a ng-href="{{ viewUser.url }}" target="_blank">{{
+                                        viewUser.url }}</a></strong>
+                                    <input type="text" ng-show="toggles.editMode" ng-model="editUser.url"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row" ng-show="viewUser.url">
-                            <div class="large-2 columns">
-                                URL:
+                            <div class="row" ng-show="viewUser.admin || toggles.editMode">
+                                <div class="large-2 columns">
+                                    Admin:
+                                </div>
+                                <div class="large-10 columns">
+                                    <span ng-hide="toggles.editMode">YES</span>
+                                    <select ng-show="toggles.editMode" ng-model="editUser.admin">
+                                        <option value="true">YES</option>
+                                        <option value="false">NO</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="large-10 columns">
-                                <strong ng-hide="editMode"><a ng-href="{{ viewUser.url }}" target="_blank">{{
-                                    viewUser.url }}</a></strong>
-                                <input type="text" ng-show="editMode" ng-model="editUser.url"/>
+                            <div class="row" ng-show="toggles.editMode">
+                                <div class="large-2 columns">
+                                    PW:
+                                </div>
+                                <div class="large-10 columns">
+                                    <input type="password" ng-model="editUser.password1"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row" ng-show="viewUser.admin || editMode">
-                            <div class="large-2 columns">
-                                Admin:
+                            <div class="row" ng-show="toggles.editMode">
+                                <div class="large-2 columns">
+                                    Again:
+                                </div>
+                                <div class="large-10 columns">
+                                    <input type="password" ng-model="editUser.password2"/>
+                                </div>
                             </div>
-                            <div class="large-10 columns">
-                                <span ng-hide="editMode">YES</span>
-                                <select ng-show="editMode" ng-model="editUser.admin">
-                                    <option value="true">YES</option>
-                                    <option value="false">NO</option>
-                                </select>
+                            <div class="row">
+                                <div class="large-12 columns text-right">
+                                    <a class="button" ng-hide="toggles.editMode" ng-click="toggles.editMode = true">Modify</a>
+                                    <a class="button" ng-show="toggles.editMode" ng-click="cancelEdit()">Cancel</a>
+                                    <ladda-button ladda="saveProgress" ng-show="toggles.editMode"
+                                                  ng-click="save(editUser)">Save
+                                    </ladda-button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="large-12 columns text-right">
-                                <a class="button" ng-hide="editMode" ng-click="editMode = true">Modify</a>
-                                <a class="button" ng-show="editMode" ng-click="cancelEdit()">Cancel</a>
-                                <ladda-button ladda="saveProgress" ng-show="editMode" ng-click="save(editUser)">Save
-                                </ladda-button>
+                            <div class="alert-box alert" ng-show="saveUserFailure">
+                                {{ saveUserFailure }}
                             </div>
-                        </div>
-                        <div class="alert-box alert" ng-show="saveUserFailure">
-                            {{ saveUserFailure }}
-                        </div>
-                    </form>
-                    <a class="close-reveal-modal">&#215;</a>
-
+                        </form>
+                        <a class="close-reveal-modal">&#215;</a>
+                    </div>
                 </reveal>
             </div>
         </div>

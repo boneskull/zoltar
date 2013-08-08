@@ -106,19 +106,26 @@ module.exports = function (app) {
                 if (ifAdminSocket(req)) {
                     User.findOne({username: req.data.username}).exec()
                         .then(function (user) {
-                            var dfrd = Q.defer();
+                            var dfrd = Q.defer(),
+                                save = function save() {
+                                    user.save(function (err) {
+                                        if (err) {
+                                            dfrd.reject(err);
+                                        }
+                                        dfrd.resolve();
+                                    });
+                                };
                             extend(user, {
                                 email: req.data.email,
                                 url: req.data.url,
                                 admin: req.data.admin
-                                // todo: add password
                             });
-                            user.save(function (err) {
-                                if (err) {
-                                    dfrd.reject(err);
-                                }
-                                dfrd.resolve();
-                            });
+                            if (req.data.password) {
+                                user.setPassword(req.data.password, save);
+                            }
+                            else {
+                                save();
+                            }
                             return dfrd.promise;
                         }, function (err) {
                             req.io.emit('admin:saveUserFailure', err);
@@ -142,13 +149,8 @@ module.exports = function (app) {
         }
     );
 
-    app.post('/register', isAdmin, function (req, res) {
-        var body = req.body;
-        User.register({
-            username: body.username,
-            url: body.url,
-            email: body.email
-        }, body.password, function (err, user) {
+    app.post('/register', function (req, res) {
+        register(req.body, function (err, user) {
             if (err) {
                 res.send(500, err);
             }
@@ -156,7 +158,6 @@ module.exports = function (app) {
                 broadcastUserlist(req);
                 res.send({user: user.sanitize()});
             }
-
         });
     });
 
