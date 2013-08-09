@@ -1,3 +1,4 @@
+/*global angular*/
 (function () {
     'use strict';
 
@@ -7,46 +8,47 @@
         socket.emit('admin:ready');
     });
 
-    admin.controller('AdminAddUserCtrl', function ($scope, Restangular, User, socket) {
-        $scope.mismatchedPasswords = false;
-        $scope.missingRequiredFields = true;
-        $scope.newUser = {};
+    admin.controller('AdminAddUserCtrl',
+        function ($scope, Restangular, User, socket) {
+            $scope.mismatchedPasswords = false;
+            $scope.missingRequiredFields = true;
+            $scope.newUser = {};
 
-        $scope.addUser = function () {
-            var newUser, register;
-            delete $scope.addedUser;
-            delete $scope.registrationError;
-            if ($scope.addUserForm.$valid) {
-                $scope.missingRequiredFields = false;
-                if ($scope.newUser.password1 !== $scope.newUser.password2) {
-                    $scope.mismatchedPasswords = true;
-                    delete $scope.newUser.password;
-                } else {
-                    $scope.mismatchedPasswords = false;
-                    $scope.newUser.password = $scope.newUser.password1;
-                    newUser = new User($scope.newUser);
-                    newUser.password = newUser.password1;
-                    delete newUser.password1;
-                    delete newUser.password2;
-                    socket.emit('admin:register', newUser);
+            $scope.addUser = function () {
+                var newUser, register;
+                delete $scope.addedUser;
+                delete $scope.registrationError;
+                if ($scope.addUserForm.$valid) {
+                    $scope.missingRequiredFields = false;
+                    if ($scope.newUser.password1 !== $scope.newUser.password2) {
+                        $scope.mismatchedPasswords = true;
+                        delete $scope.newUser.password;
+                    } else {
+                        $scope.mismatchedPasswords = false;
+                        $scope.newUser.password = $scope.newUser.password1;
+                        newUser = new User($scope.newUser);
+                        newUser.password = newUser.password1;
+                        delete newUser.password1;
+                        delete newUser.password2;
+                        socket.emit('admin:register', newUser);
+                    }
                 }
-            }
-            else {
-                $scope.missingRequiredFields = true;
-            }
+                else {
+                    $scope.missingRequiredFields = true;
+                }
 
-        };
+            };
 
-        socket.on('admin:registrationSuccessful', function (user) {
-            delete $scope.newUser;
-            $scope.addedUser = user.username;
+            socket.on('admin:registrationSuccessful', function (user) {
+                delete $scope.newUser;
+                $scope.addedUser = user.username;
+            });
+
+            socket.on('admin:registrationFailure', function (err) {
+                console.log(err);
+                $scope.registrationError = err;
+            });
         });
-
-        socket.on('admin:registrationFailure', function (err) {
-            console.log(err);
-            $scope.registrationError = err;
-        });
-    });
 
     admin.controller('AdminUserListCtrl', function ($scope, socket, $timeout) {
 

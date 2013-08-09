@@ -1,4 +1,4 @@
-/*global angular*/
+/*global angular, io*/
 (function () {
     'use strict';
     angular.module('socket.io', []).factory('socket', function ($rootScope) {

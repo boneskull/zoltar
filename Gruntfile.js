@@ -1,5 +1,8 @@
+'use strict';
+
 module.exports = function (grunt) {
 
+    //noinspection JSHint,JSHint
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
@@ -17,28 +20,21 @@ module.exports = function (grunt) {
                     'public/javascripts/support/socket.io.js',
                     'public/javascripts/zoltar/**/*.js'
                 ],
-                dest: 'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.js'
+                dest: 'public/javascripts/dist/<%= pkg.name %>-' +
+                    '<%= pkg.version %>.js'
             }
         },
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today' +
+                    '("dd-mm-yyyy") %> */\n'
             },
             dist: {
                 files: {
+                    /*jshint maxlength:false*/
                     'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.min.js': ['public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.js']
                 }
             }
-        },
-        jshint: {
-            options: {
-                globals: {
-                    angular: true,
-                    $: true
-                },
-                expr: false
-            },
-            all: ['Gruntfile.js', 'public/javascripts/zoltar/**/*.js', 'test/spec/*.js', 'server.js', 'models/*.js', 'routes/*.js', 'config.js', 'routing.js']
         },
         karma: {
             unit: {
@@ -50,7 +46,7 @@ module.exports = function (grunt) {
                 files: ['public/javascripts/zoltar/**/*.js',
                     'public/javascripts/support/**/*.js',
                     '!public/javascripts/dist/*.js'],
-                tasks: ['jshint', 'concat']
+                tasks: ['concat']
             },
             tests: {
                 files: 'test/spec/*.js',
@@ -82,12 +78,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
 
-    grunt.registerTask('test', ['jshint', 'karma']);
+    grunt.registerTask('test', ['karma']);
     grunt.registerTask('build', ['concat', 'uglify']);
 
     grunt.registerTask('default', ['build', 'test']);

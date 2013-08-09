@@ -1,7 +1,9 @@
+/*global angular*/
 (function () {
     'use strict';
 
-    angular.module('zoltar.common.controllers').controller('LoginCtrl', function ($scope, Restangular, User, $timeout) {
+    angular.module('zoltar.common.controllers').controller('LoginCtrl',
+        function ($scope, Restangular, User, $timeout) {
 
         $scope.credentials = {};
 

@@ -1,15 +1,12 @@
-/**
- * Module dependencies.
- */
+'use strict';
 
 var express = require('express.io'),
     config = require('./config'),
     mongoose = require('mongoose'),
     MongoStore = require('connect-mongo')(express),
-    http = require('http'),
     passport = require('passport'),
-    xsrf = require('./support/xsrf'),
-    protectJSON = require('./support/protectJSON'),
+    xsrf = require('./utils/xsrf'),
+    protectJSON = require('./utils/protectJSON'),
     LocalStrategy = require('passport-local').Strategy,
     app, User, server, io,
     path = require('path');
@@ -31,7 +28,7 @@ app.set('view engine', 'ejs');
 
 mongoose.connect(config.dbUrl);
 
-//app.use(protectJSON);
+app.use(protectJSON);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -47,6 +44,7 @@ app.use(express.session({
             console.log(err || 'connect-mongodb setup ok');
         })
 }));
+
 // Store the session in the (secret) cookie
 app.use(express.methodOverride());
 app.use(passport.initialize());
@@ -67,7 +65,11 @@ app.configure('production', function () {
 
 User.findOne({username: 'admin'}, function (err, user) {
     if (!user) {
-        User.register(new User({username: 'admin', admin: true, email: 'chiller@badwing.com'}), 'p00p00', function (err, user) {
+        User.register(new User({
+                username: 'admin',
+                admin: true,
+                email: 'chiller@badwing.com'}
+        ), 'p00p00', function (err, user) {
             console.log(user);
 
         });

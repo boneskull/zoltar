@@ -1,5 +1,7 @@
+'use strict';
 // JSON vulnerability protection
-// we prepend the data with ")]},\n", which will be stripped by $http in AngularJS
+// we prepend the data with ")]},\n", which will be stripped by $http
+// in AngularJS
 module.exports = function (req, res, next) {
     var _send = res.send;
     res.send = function (body) {
@@ -7,7 +9,8 @@ module.exports = function (req, res, next) {
         if (contentType && contentType.indexOf('application/json') !== -1) {
             if (2 === arguments.length) {
                 // res.send(body, status) backwards compat
-                if ('number' !== typeof body && 'number' === typeof arguments[1]) {
+                if ('number' !== typeof body && 'number' ===
+                    typeof arguments[1]) {
                     this.statusCode = arguments[1];
                 } else {
                     this.statusCode = body;

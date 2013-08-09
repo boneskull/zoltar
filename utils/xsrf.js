@@ -1,3 +1,5 @@
+'use strict';
+
 var crypto = require('crypto');
 
 function uid(len) {
@@ -8,7 +10,8 @@ function uid(len) {
         .replace(/\+/g, '_');
 }
 
-// The xsrf middleware provide AngularJS style XSRF-TOKEN provision and validation
+// The xsrf middleware provide AngularJS style XSRF-TOKEN provision and
+// validation
 // Add it to your server configuration after the session middleware:
 //   app.use(xsrf);
 //  
@@ -23,11 +26,14 @@ module.exports = function (req, res, next) {
     // Ignore if it is just a read-only request
     switch (req.method) {
         case 'GET':
+            /* falls through */
         case 'HEAD':
+            /* falls through */
         case 'OPTIONS':
             break;
         default:
-            // Check the token in the request against the one stored in the session
+            // Check the token in the request against the one stored in the
+            // session
             if (requestToken !== token) {
                 return res.send(403);
             }

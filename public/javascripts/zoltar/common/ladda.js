@@ -1,3 +1,4 @@
+/*global angular*/
 (function () {
     'use strict';
 
@@ -37,7 +38,7 @@
             restrict: 'E',
             replace: true,
             transclude: true,
-            template: '<button data-spinner-size="30" class="button ladda-button" style="overflow: visible;" data-style="zoom-in"><span class="ladda-label" ng-transclude></span></button>'
+            templateUrl: '/partials/ladda.html'
         };
     });
 })();

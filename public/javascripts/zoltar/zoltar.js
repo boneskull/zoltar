@@ -1,6 +1,7 @@
+/*global angular*/
 (function () {
-
     'use strict';
+
     var zoltar = angular.module('zoltar', [
         'zoltar.admin',
         'zoltar.common',
@@ -15,15 +16,18 @@
         partialPath: '/partials/'
     });
 
-    zoltar.config(function ($locationProvider, $routeProvider, zoltarConstants) {
+    zoltar.config(function ($locationProvider, $routeProvider,
+        zoltarConstants) {
         var partialPath = zoltarConstants.partialPath;
 
         $locationProvider.html5Mode(true);
 
-        $routeProvider.when('/admin', {
-            templateUrl: partialPath + 'admin.html',
-            controller: 'AdminCtrl'
-        }).otherwise({
+        $routeProvider
+            .when('/admin', {
+                templateUrl: partialPath + 'admin.html',
+                controller: 'AdminCtrl'
+            })
+            .otherwise({
                 templateUrl: 'main'
             });
 

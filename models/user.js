@@ -1,7 +1,10 @@
+'use strict';
+
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     passportLocalMongoose = require('passport-local-mongoose'),
-    sanitize = require('../plugins/sanitize');
+    sanitize = require('../plugins/sanitize'),
+    check = require('validator').check;
 
 var User = new Schema({
     username: {
@@ -9,7 +12,8 @@ var User = new Schema({
         require: true,
         index: {
             unique: true
-        }
+        },
+        trim: true
     },
     admin: {
         type: Boolean,
@@ -21,9 +25,12 @@ var User = new Schema({
         index: {
             unique: true
         },
-        validate: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+        trim: true,
+        validate: function (value) {
+            return check(value).isEmail();
+        }
     },
-    created: {
+    createdon: {
         type: Date,
         default: Date.now(),
         required: true
