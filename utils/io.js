@@ -3,6 +3,11 @@
 var Q = require('q'),
     User = require('../models/user');
 
+/**
+ * 
+ * @param app
+ * @returns {{ifAdminSocket: Function, broadcastUserlist: Function}}
+ */
 module.exports = function (app) {
     return {
         ifAdminSocket: function ifAdminSocket(req) {

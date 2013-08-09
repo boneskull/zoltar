@@ -6,12 +6,12 @@
 
     var models = angular.module('zoltar.common.models');
 
-    models.factory('User', function () {
+    models.factory('Org', function () {
 
-        var User = function (o) {
+        var Org = function (o) {
             angular.extend(this, o);
         };
 
-        return User;
+        return Org;
     });
 })();

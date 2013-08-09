@@ -2,5 +2,5 @@
 (function () {
     'use strict';
 
-    angular.module('zoltar.common.models', ['zoltar.common.models.user']);
+    angular.module('zoltar.common.models', []);
 })();

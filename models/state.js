@@ -3,12 +3,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-
 var State = new Schema({
-    abbr: {
-        type: String,
-        required: true
-    },
+    _id: String,
     name: {
         type: String,
         required: true

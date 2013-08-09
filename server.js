@@ -62,20 +62,7 @@ app.configure('production', function () {
     app.use(express.errorHandler());
 });
 
-
-User.findOne({username: 'admin'}, function (err, user) {
-    if (!user) {
-        User.register(new User({
-                username: 'admin',
-                admin: true,
-                email: 'chiller@badwing.com'}
-        ), 'p00p00', function (err, user) {
-            console.log(user);
-
-        });
-    }
-});
-
+require('./bootstrap')();
 
 app.http().io();
 require('./routing')(app);
