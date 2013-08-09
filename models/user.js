@@ -4,40 +4,27 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     passportLocalMongoose = require('passport-local-mongoose'),
     sanitize = require('../plugins/sanitize'),
-    check = require('validator').check;
+    check = require('validator').check,
+    generator = require('mongoose-gen'),
+    fs = require('fs'),
+    User, data;
 
-var User = new Schema({
-    username: {
-        type: String,
-        require: true,
-        index: {
-            unique: true
-        },
-        trim: true
-    },
-    admin: {
-        type: Boolean,
-        default: false
-    },
-    email: {
-        type: String,
-        required: true,
-        index: {
-            unique: true
-        },
-        trim: true,
-        validate: function (value) {
-            return check(value).isEmail();
-        }
-    },
-    createdon: {
-        type: Date,
-        default: Date.now(),
-        required: true
-    },
-    url: String
+generator.setConnection(mongoose);
+generator.setDefault('now', function () {
+    return Date.now();
 });
 
+generator.setDefault('false', function () {
+    return false;
+});
+
+generator.setValidator('email', function (str) {
+    return check(str).isEmail();
+});
+
+data = fs.readFileSync('public/models/user.json');
+
+User = new Schema(generator._convert(JSON.parse(data)));
 
 User.plugin(passportLocalMongoose, {});
 User.plugin(sanitize, {accept: ['username', 'email', 'admin', 'created']});

@@ -1,0 +1,28 @@
+{
+    "username": {
+        "type": "String",
+        "require": true,
+        "index": {
+            "unique": true
+        },
+        "trim": true
+    },
+    "admin": {
+        "type": "Boolean",
+        "default": "false"
+    },
+    "email": {
+        "type": "String",
+        "required": true,
+        "index": {
+            "unique": true
+        },
+        "trim": true
+    },
+    "createdon": {
+        "type": "Date",
+        "required": true,
+        "default": "now"
+    },
+    "url": "String"
+}

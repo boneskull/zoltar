@@ -45,7 +45,6 @@ app.use(express.session({
         })
 }));
 
-// Store the session in the (secret) cookie
 app.use(express.methodOverride());
 app.use(passport.initialize());
 app.use(passport.session());

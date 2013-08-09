@@ -18,6 +18,7 @@ module.exports = function (grunt) {
                     'public/javascripts/support/underscore.js',
                     'public/javascripts/support/restangular.js',
                     'public/javascripts/support/socket.io.js',
+                    'public/javascripts/support/validator.min.js',
                     'public/javascripts/zoltar/**/*.js'
                 ],
                 dest: 'public/javascripts/dist/<%= pkg.name %>-' +

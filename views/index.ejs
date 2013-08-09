@@ -26,8 +26,12 @@
     <script src="/javascripts/dist/<%= name %>-<%= version %>.min.js"></script>
     <% } %>
 
+    <script type="text/javascript">
+        angular.module('zoltar.common.services').constant('zoltarSchemas', <%-schemas%>);
+    </script>
     <% if (user) { %>
     <script type="text/javascript">
+
         angular.module('zoltar').value('currentUser', <%-user %>);
     </script>
     <% } else { %>

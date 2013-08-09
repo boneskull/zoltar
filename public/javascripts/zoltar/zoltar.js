@@ -16,8 +16,7 @@
         partialPath: '/partials/'
     });
 
-    zoltar.config(function ($locationProvider, $routeProvider,
-        zoltarConstants) {
+    zoltar.config(function ($locationProvider, $routeProvider, zoltarConstants) {
         var partialPath = zoltarConstants.partialPath;
 
         $locationProvider.html5Mode(true);
@@ -32,5 +31,4 @@
             });
 
     });
-
 })();
