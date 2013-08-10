@@ -2,7 +2,7 @@
 <!--[if IE 8]>
 <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="en" ng-app="zoltar"> <!--<![endif]-->
+<html class="no-js" lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
 
@@ -27,16 +27,16 @@
     <% } %>
 
     <script type="text/javascript">
-        angular.module('zoltar.common.services').constant('zoltarSchemas', <%-schemas%>);
+        window.schemaFiles = <%-schemaFiles%>;
     </script>
+
     <% if (user) { %>
     <script type="text/javascript">
-
-        angular.module('zoltar').value('currentUser', <%-user %>);
+            angular.module('zoltar').value('currentUser', <%-user %>);
     </script>
     <% } else { %>
     <script type="text/javascript">
-        angular.module('zoltar').value('currentUser', null);
+            angular.module('zoltar').value('currentUser', null);
     </script>
     <% } %>
 </head>
@@ -152,7 +152,7 @@
 <ng-view></ng-view>
 <ng-include src="'footer'"></ng-include>
 
-<reveal id="login" class="small">
+<reveal id="login" class="small" ng-cloak>
     <h2>Login</h2>
 
     <form name="loginForm" ng-controller="LoginCtrl">
@@ -193,5 +193,9 @@
     </form>
 </reveal>
 
+<script type="text/ng-template" id="ladda">
+    <button data-spinner-size="30" class="button ladda-button" style="overflow: visible;" data-style="zoom-in"><span class="ladda-label" ng-transclude></span></button>
+
+</script>
 </body>
 </html>

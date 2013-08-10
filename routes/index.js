@@ -7,23 +7,17 @@ module.exports = function (req, res) {
 
     var schemaFiles = [
         {
-            path: 'public/models/user.json',
+            path: '/models/user.json',
             name: 'User'
         }
     ];
-    var schemas = {};
-
-    var i = schemaFiles.length;
-    while(i--) {
-        schemas[schemaFiles[i].name] = JSON.parse(fs.readFileSync(schemaFiles[i].path));
-    }
 
     var data = {
         version: config.appVersion,
         name: config.appName,
         development: config.development,
         user: req.user && req.user.sanitize(true),
-        schemas: JSON.stringify(schemas)
+        schemaFiles: JSON.stringify(schemaFiles)
     };
 
     res.render('index', data);

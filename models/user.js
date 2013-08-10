@@ -27,6 +27,6 @@ data = fs.readFileSync('public/models/user.json');
 User = new Schema(generator._convert(JSON.parse(data)));
 
 User.plugin(passportLocalMongoose, {});
-User.plugin(sanitize, {accept: ['username', 'email', 'admin', 'created']});
+User.plugin(sanitize, {accept: ['username', 'email', 'admin', 'createdon']});
 
 module.exports = mongoose.model('User', User);

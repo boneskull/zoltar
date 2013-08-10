@@ -50,73 +50,76 @@
             });
         });
 
-    admin.controller('AdminUserListCtrl', function ($scope, socket, $timeout) {
+    admin.controller('AdminUserListCtrl',
+        function ($scope, socket, $timeout, User) {
 
-        $scope.toggles = {
-            editMode: false
-        };
+            $scope.toggles = {
+                editMode: false
+            };
 
-        $scope.setOrder = function (field) {
-            if ($scope.order === field) {
-                $scope.order = '-' + field;
-            }
-            else if ($scope.order === '-' + field) {
-                $scope.order = field;
-            }
-            else {
-                $scope.order = field;
-            }
-        };
+            $scope.setOrder = function (field) {
+                if ($scope.order === field) {
+                    $scope.order = '-' + field;
+                }
+                else if ($scope.order === '-' + field) {
+                    $scope.order = field;
+                }
+                else {
+                    $scope.order = field;
+                }
+            };
 
-        socket.on('admin:userlist', function (userlist) {
-            $scope.userlist = userlist;
+            socket.on('admin:userlist', function (userlist) {
+                $scope.userlist = userlist.map(function (user) {
+                    return new User(user);
+                });
+            });
+
+            socket.on('admin:deleteUserSuccess', function () {
+                $scope.deleteProgress = 1;
+                $timeout(function () {
+                    $scope.deleteProgress = false;
+                    $scope.cancelDelete();
+                }, 200);
+            });
+
+            socket.on('admin:deleteUserFailure', function (err) {
+                $scope.deleteProgress = 1;
+                $scope.deleteFailure = err;
+                $timeout(function () {
+                    $scope.deleteProgress = false;
+                }, 200);
+            });
+
+
+            $scope.confirmDelete = function (user) {
+                $scope.deleteUser = user;
+            };
+
+            $scope.cancelDelete = function () {
+                $scope.$emit('close:confirmDelete');
+            };
+
+            $scope.onCloseConfirmDelete = function () {
+                delete $scope.deleteUser;
+            };
+
+            $scope.delete = function () {
+                $scope.deleteProgress = 0;
+                socket.emit('admin:deleteUser', $scope.deleteUser);
+            };
+
+            $scope.view = function (user) {
+                $scope.viewUser = user;
+            };
+
+            $scope.edit = function (user) {
+                $scope.toggles.editMode = true;
+                $scope.viewUser = user;
+                $scope.editUser = angular.copy(user);
+            };
+
         });
-
-        socket.on('admin:deleteUserSuccess', function () {
-            $scope.deleteProgress = 1;
-            $timeout(function () {
-                $scope.deleteProgress = false;
-                $scope.cancelDelete();
-            }, 200);
-        });
-
-        socket.on('admin:deleteUserFailure', function (err) {
-            $scope.deleteProgress = 1;
-            $scope.deleteFailure = err;
-            $timeout(function () {
-                $scope.deleteProgress = false;
-            }, 200);
-        });
-
-
-        $scope.confirmDelete = function (user) {
-            $scope.deleteUser = user;
-        };
-
-        $scope.cancelDelete = function () {
-            $scope.$emit('close:confirmDelete');
-        };
-
-        $scope.onCloseConfirmDelete = function () {
-            delete $scope.deleteUser;
-        };
-
-        $scope.delete = function () {
-            $scope.deleteProgress = 0;
-            socket.emit('admin:deleteUser', $scope.deleteUser);
-        };
-
-        $scope.view = function (user) {
-            $scope.viewUser = user;
-        };
-
-        $scope.edit = function (user) {
-            $scope.toggles.editMode = true;
-            $scope.viewUser = user;
-            $scope.editUser = angular.copy(user);
-        };
-
-    });
 
     admin.controller('AdminEditUserCtrl', function ($scope, socket, $timeout) {
 

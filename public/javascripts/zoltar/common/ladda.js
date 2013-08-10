@@ -38,7 +38,7 @@
             restrict: 'E',
             replace: true,
             transclude: true,
-            templateUrl: '/partials/ladda.html'
+            templateUrl: 'ladda'
         };
     });
 })();

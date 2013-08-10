@@ -4,6 +4,5 @@
 
     angular.module('zoltar.common', [
         'zoltar.common.directives',
-        'zoltar.common.controllers',
-        'zoltar.common.services']);
+        'zoltar.common.controllers']);
 })();
