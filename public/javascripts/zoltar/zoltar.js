@@ -2,6 +2,12 @@
 (function () {
     'use strict';
 
+    if (!String.prototype.trim) {
+        String.prototype.trim = function () {
+            return this.replace(/^\s+|\s+$/g, "");
+        };
+    }
+
     var zoltar = angular.module('zoltar', [
         'zoltar.admin',
         'zoltar.common',
@@ -30,6 +36,12 @@
             validators = {
                 email: function (str) {
                     return validator.check(str).isEmail();
+                },
+                phone: function (str) {
+                    return /^1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?(\d*))?$/.test(str);
+                },
+                ein: function (str) {
+                    return /^\d{2}-\d{7}$/.test(str);
                 }
             },
             assert = function assert(exp) {
@@ -48,7 +60,6 @@
             .otherwise({
                 templateUrl: 'main'
             });
-
 
         angular.forEach(zoltarSchemas, function (schema, name) {
             var model = function (o) {
@@ -80,6 +91,15 @@
                                 case 'Date':
                                     assert(new Date(value).getTime() > 0);
                                     break;
+                                case 'String':
+                                    if (angular.isDefined(definition.enum)) {
+                                        assert(definition.enum.indexOf(value) >=
+                                            0);
+                                    }
+                                    if (!!definition.trim) {
+                                        value = value.trim();
+                                    }
+                                /* falls through */
                                 default:
                                     assert(Object.prototype.toString.call(value) ===
                                         '[object ' + type + ']');

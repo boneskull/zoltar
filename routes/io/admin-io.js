@@ -11,6 +11,7 @@ module.exports = function (app) {
     return {
         ready: function (req) {
             io.broadcastUserlist(req);
+            io.broadcastOrglist(req);
         },
         register: function (req) {
             User.register({

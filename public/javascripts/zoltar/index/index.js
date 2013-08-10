@@ -14,6 +14,8 @@
             $scope.user = user;
         });
 
+
+
     });
 
     index.controller('NavCtrl', function ($scope, Restangular, $location) {

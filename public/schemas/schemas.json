@@ -1,0 +1,10 @@
+[
+    {
+        "path": "/schemas/user.json",
+        "name": "User"
+    },
+    {
+        "path": "/schemas/org.json",
+        "name": "Org"
+    }
+]

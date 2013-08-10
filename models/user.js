@@ -22,7 +22,7 @@ generator.setValidator('email', function (str) {
     return check(str).isEmail();
 });
 
-data = fs.readFileSync('public/models/user.json');
+data = fs.readFileSync('public/schemas/user.json');
 
 User = new Schema(generator._convert(JSON.parse(data)));
 

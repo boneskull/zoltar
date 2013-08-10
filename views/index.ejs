@@ -26,10 +26,6 @@
     <script src="/javascripts/dist/<%= name %>-<%= version %>.min.js"></script>
     <% } %>
 
-    <script type="text/javascript">
-        window.schemaFiles = <%-schemaFiles%>;
-    </script>
-
     <% if (user) { %>
     <script type="text/javascript">
             angular.module('zoltar').value('currentUser', <%-user %>);

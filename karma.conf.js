@@ -1,6 +1,6 @@
 // Karma configuration
 
-var config = require(process.env.PWD + '/config.js');
+var support = require(process.env.PWD + '/support.json');
 
 // base path, that will be used to resolve files and exclude
 basePath = '';
@@ -8,14 +8,15 @@ basePath = '';
 // list of files / patterns to load in the browser
 files = [
     JASMINE,
-    JASMINE_ADAPTER,
-    'public/javascripts/support/angular-mocks.js',
-    'public/javascripts/dist/' + config.appName + '-' + config.appVersion + '.js',
-    'test/spec/**/*.js'
-];
+    JASMINE_ADAPTER
+].concat(support).concat([
+        'public/test/support/angular-mocks.js',
+        'public/javascripts/zoltar/*.js',
+        'public/test/spec/**/*.spec.js'
+    ]);
 
 // list of files to exclude
-exclude = [];
+exclude = ['public/javascripts/dist/*.js'];
 
 // test results reporter to use
 // possible values: dots || progress || growl
@@ -35,7 +36,7 @@ colors = true;
 logLevel = LOG_INFO;
 
 // enable / disable watching file and executing tests whenever any file changes
-autoWatch = false;
+autoWatch = true;
 
 // Start these browsers, currently available:
 // - Chrome

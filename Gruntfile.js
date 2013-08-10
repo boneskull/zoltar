@@ -7,20 +7,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             dist: {
-                src: [
-                    'public/javascripts/support/es5-sham.min.js',
-                    'public/javascripts/support/angular.js',
-                    'public/javascripts/support/zepto.js',
-                    'public/javascripts/support/foundation.min.js',
-                    'public/javascripts/support/custom.modernizr.js',
-                    'public/javascripts/support/spin.min.js',
-                    'public/javascripts/support/ladda.min.js',
-                    'public/javascripts/support/underscore.js',
-                    'public/javascripts/support/restangular.js',
-                    'public/javascripts/support/socket.io.js',
-                    'public/javascripts/support/validator.min.js',
-                    'public/javascripts/zoltar/**/*.js'
-                ],
+                src: grunt.file.readJSON('support.json'),
                 dest: 'public/javascripts/dist/<%= pkg.name %>-' +
                     '<%= pkg.version %>.js'
             }

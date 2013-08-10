@@ -53,22 +53,6 @@
     admin.controller('AdminUserListCtrl',
         function ($scope, socket, $timeout, User) {
 
-            $scope.toggles = {
-                editMode: false
-            };
-
-            $scope.setOrder = function (field) {
-                if ($scope.order === field) {
-                    $scope.order = '-' + field;
-                }
-                else if ($scope.order === '-' + field) {
-                    $scope.order = field;
-                }
-                else {
-                    $scope.order = field;
-                }
-            };
-
             socket.on('admin:userlist', function (userlist) {
                 $scope.userlist = userlist.map(function (user) {
                     return new User(user);
@@ -91,7 +75,6 @@
                 }, 200);
             });
 
-
             $scope.confirmDelete = function (user) {
                 $scope.deleteUser = user;
             };
@@ -110,6 +93,7 @@
             };
 
             $scope.view = function (user) {
+                $scope.toggles.editMode = false;
                 $scope.viewUser = user;
             };
 
@@ -117,6 +101,22 @@
                 $scope.toggles.editMode = true;
                 $scope.viewUser = user;
                 $scope.editUser = angular.copy(user);
+            };
+
+            $scope.toggles = {
+                editMode: false
+            };
+
+            $scope.setOrder = function (field) {
+                if ($scope.order === field) {
+                    $scope.order = '-' + field;
+                }
+                else if ($scope.order === '-' + field) {
+                    $scope.order = field;
+                }
+                else {
+                    $scope.order = field;
+                }
             };
 
         });
@@ -160,13 +160,26 @@
         };
 
         $scope.cancelEdit = function () {
-            $scope.toggles.editMode = false;
             $scope.$emit('close:viewUser');
         };
 
         $scope.onCloseViewUser = function () {
+            $scope.toggles.editMode = false;
             delete $scope.viewUser;
         };
+    });
+
+    admin.controller('AdminOrgListCtrl', function ($scope, socket) {
+
+        socket.on('admin:orglist', function (orglist) {
+            $scope.orglist = orglist.map(function (org) {
+                return new Org(org);
+            });
+        });
+    });
+
+    admin.controller('AdminAddOrgCtrl', function($scope) {
+
     });
 
 })();

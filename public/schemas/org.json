@@ -1,0 +1,37 @@
+{
+    "name": {
+        "type": "String",
+        "required": true,
+        "trim": true
+    },
+    "ein": {
+        "type": "String",
+        "validate": "ein",
+        "trim": true
+    },
+    "contactName": {
+        "type": "String",
+        "trim": true
+    },
+    "state": {
+        "type": "String",
+        "ref": "State"
+    },
+    "contactEmail": {
+        "type": "String",
+        "index": {
+            "unique": true
+        },
+        "validate": "email",
+        "trim": true
+    },
+    "contactPhone": {
+        "type": "String",
+        "trim": true,
+        "validate": "phone"
+    },
+    "preferredContactMethod": {
+        "type": "String",
+        "enum": ["contactPhone", "contactEmail"]
+    }
+}

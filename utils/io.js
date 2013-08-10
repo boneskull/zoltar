@@ -1,10 +1,11 @@
 'use strict';
 
 var Q = require('q'),
-    User = require('../models/user');
+    User = require('../models/user'),
+    Org = require('../models/org');
 
 /**
- * 
+ *
  * @param app
  * @returns {{ifAdminSocket: Function, broadcastUserlist: Function}}
  */
@@ -29,6 +30,15 @@ module.exports = function (app) {
                         users.map(function (user) {
                             return user.sanitize();
                         }));
+                });
+        },
+        broadcastOrglist: function broadcastOrglist(req) {
+            this.ifAdminSocket(req)
+                .then(function () {
+                    return Org.find({}).exec();
+                })
+                .then(function (orgs) {
+                    app.io.broadcast('admin:orglist', orgs);
                 });
         }
     };
