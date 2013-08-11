@@ -2,9 +2,20 @@
 (function () {
     'use strict';
 
-    var reveal = angular.module('zoltar.common.directives.reveal', []);
+    var directives = angular.module('zoltarCommonDirectives');
 
-    reveal.directive('reveal', function () {
+    /**
+     * @ngdoc directive
+     * @name zoltarCommonDirectives.directive.reveal
+     * @element ELEMENT
+     * @param {string=} onClosed Expression to apply when modal is closed
+     * @description
+     * Generates markup
+     * for a Foundation Reveal modal.  Attaches a close
+     * event to the scope, and optionally accepts an onClosed expression
+     * attribute that will execute when the modal is completely closed.
+     */
+    directives.directive('reveal', function () {
         return {
             restrict: 'E',
             transclude: true,

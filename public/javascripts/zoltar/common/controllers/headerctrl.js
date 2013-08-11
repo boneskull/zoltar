@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    angular.module('zoltar.common.controllers').controller('HeaderCtrl',
+    angular.module('zoltarCommonControllers').controller('HeaderCtrl',
         function ($scope, $location) {
 
             $scope.path = function () {

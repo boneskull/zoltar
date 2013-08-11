@@ -2,5 +2,5 @@
 (function () {
     'use strict';
 
-    angular.module('zoltar.common.controllers', []);
+    angular.module('zoltarCommonControllers', []);
 })();

@@ -12,6 +12,7 @@ module.exports = function (app) {
         ready: function (req) {
             io.broadcastUserlist(req);
             io.broadcastOrglist(req);
+            req.io.join('admin');
         },
         register: function (req) {
             User.register({

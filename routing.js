@@ -17,11 +17,13 @@ module.exports = function (app) {
 
     app.get('/', require('./routes/index'));
 
-    app.get('/admin', isAdmin, function (req, res) {
-        require('./routes/admin')(req, res);
-    });
+    app.get('/admin', isAdmin, require('./routes/admin'));
 
     app.io.route('admin', require('./routes/io/admin-io')(app));
+
+    app.io.route('user', require('./routes/io/user-io')(app));
+
+    app.io.route('visitor', require('./routes/io/visitor-io')(app));
 
     app.post('/register', function (req, res) {
         User.register({

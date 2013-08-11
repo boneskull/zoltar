@@ -5,12 +5,24 @@ var Q = require('q'),
     Org = require('../models/org');
 
 /**
- *
- * @param app
- * @returns {{ifAdminSocket: Function, broadcastUserlist: Function}}
+ * @doc module
+ * @description
+ * Provides common functionality for express.io routes.
+ * @param {Object} app Application object
+ * @returns {Object} Utilities
  */
 module.exports = function (app) {
     return {
+
+        /**
+         * @doc function
+         * @name utils.io:ifAdminSocket
+         * @description
+         * If the request socket's session has a user in it that happens to NOT
+         * be an admin, reject the promise.
+         * @param {Object} req Request
+         * @returns {Object} Promise
+         */
         ifAdminSocket: function ifAdminSocket(req) {
             return User.findOne({
                 username: req.session.passport.user
@@ -20,13 +32,21 @@ module.exports = function (app) {
                     }
                 });
         },
+
+        /**
+         * @doc function
+         * @name utils.io:broadcastUserlist
+         * @param {Object} req Request
+         * @description
+         * Broadcasts the userlist to all connected sockets.
+         */
         broadcastUserlist: function broadcastUserlist(req) {
             this.ifAdminSocket(req)
                 .then(function () {
                     return User.find({}).exec();
                 })
                 .then(function (users) {
-                    app.io.broadcast('admin:userlist',
+                    app.io.room('admin').broadcast('admin:userlist',
                         users.map(function (user) {
                             return user.sanitize();
                         }));
@@ -38,7 +58,7 @@ module.exports = function (app) {
                     return Org.find({}).exec();
                 })
                 .then(function (orgs) {
-                    app.io.broadcast('admin:orglist', orgs);
+                    app.io.room('admin').broadcast('admin:orglist', orgs);
                 });
         }
     };

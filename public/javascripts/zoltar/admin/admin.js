@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    var admin = angular.module('zoltar.admin', []);
+    var admin = angular.module('zoltarAdmin', []);
 
     admin.controller('AdminCtrl', function ($scope, socket) {
         socket.emit('admin:ready');

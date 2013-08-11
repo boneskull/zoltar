@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    angular.module('zoltar.common', [
-        'zoltar.common.directives',
-        'zoltar.common.controllers']);
+    angular.module('zoltarCommon', [
+        'zoltarCommonDirectives',
+        'zoltarCommonControllers']);
 })();

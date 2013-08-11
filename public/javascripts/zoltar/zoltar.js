@@ -9,13 +9,13 @@
     }
 
     var zoltar = angular.module('zoltar', [
-        'zoltar.admin',
-        'zoltar.common',
-        'zoltar.index',
+        'zoltarAdmin',
+        'zoltarCommon',
+        'zoltarIndex',
         'foundation',
         'ladda',
         'restangular',
-        'socket.io'
+        'socketIO'
     ]);
 
     zoltar.constant('zoltarConstants', {
