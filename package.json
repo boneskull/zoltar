@@ -13,7 +13,8 @@
     "karma-jasmine": "*",
     "karma-osx-reporter": "*",
     "karma-chrome-launcher": "*",
-    "grunt-docular": "~0.1.1"
+    "grunt-docular": "~0.1.1",
+    "karma-coverage": "~0.1.0"
   },
   "private": true,
   "scripts": {

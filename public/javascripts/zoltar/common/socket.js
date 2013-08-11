@@ -24,7 +24,8 @@
              * Sets a listener on an event and executes `callback`.
              */
             this.on = function on(eventName, callback) {
-                this._socket.on(eventName, function () {
+                var socket = this._socket;
+                socket.on(eventName, function () {
                     var args = arguments;
                     $rootScope.$apply(function () {
                         callback.apply(socket, args);
@@ -43,7 +44,8 @@
              * Emits an event
              */
             this.emit = function emit(eventName, data, callback) {
-                this._socket.emit(eventName, data, function () {
+                var socket = this._socket;
+                socket.emit(eventName, data, function () {
                     var args = arguments;
                     $rootScope.$apply(function () {
                         if (callback) {

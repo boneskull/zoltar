@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     passportLocalMongoose = require('passport-local-mongoose'),
-    sanitize = require('../plugins/sanitize'),
+    sanitize = require('../utils/sanitize'),
     check = require('validator').check,
     generator = require('mongoose-gen'),
     fs = require('fs'),
