@@ -11,7 +11,7 @@
 </header>
 
 <div class="row-fluid">
-    <div ng-controller="AdminAddUserCtrl" class="span6 well">
+    <div ng-controller="AdminAddUserCtrl" class="span6 well" style="min-height: 575px;">
         <fieldset>
             <legend><i class="icon-plus"></i> Add a User</legend>
             <form name="addUserForm" novalidate="novalidate"
@@ -96,7 +96,7 @@
 
         </fieldset>
     </div>
-    <div ng-controller="AdminUserListCtrl" class="span6 well">
+    <div ng-controller="AdminUserListCtrl" class="span6 well" style="min-height: 575px;">
         <fieldset>
             <legend><i class="icon-group"></i> Users
             </legend>
@@ -130,7 +130,7 @@
                             doing it wrong.
                         </td>
                     </tr>
-                    <tr ng-repeat="user in userlist|orderBy:order">
+                    <tr ng-repeat="user in userlist.slice(begin, end)|orderBy:order">
                         <td>
                             <a ng-click="view(user)">{{
                                                      user.username
@@ -151,6 +151,8 @@
                         </td>
                     </tr>
                 </table>
+                    <pagination boundary-links="true" num-pages="noOfPages" current-page="currentPage" class="text-center pagination-small" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+
             </div>
 
         </fieldset>

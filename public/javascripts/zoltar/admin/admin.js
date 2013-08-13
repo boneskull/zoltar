@@ -78,10 +78,24 @@
     admin.controller('AdminUserListCtrl',
         function ($scope, socket, $timeout, User) {
 
+            var PAGE_LENGTH = 10;
+
+            $scope.$watch('currentPage', function (newval) {
+                if ($scope.userlist) {
+                    $scope.begin = (newval - 1) * PAGE_LENGTH;
+                    $scope.end = $scope.begin + PAGE_LENGTH;
+                }
+            });
+
             socket.on('admin:userlist', function (userlist) {
                 $scope.userlist = userlist.map(function (user) {
                     return new User(user);
                 });
+
+                $scope.noOfPages =
+                    Math.ceil($scope.userlist.length / PAGE_LENGTH);
+                $scope.currentPage = $scope.currentPage || 1;
+
             });
 
             socket.on('admin:deleteUserSuccess', function () {

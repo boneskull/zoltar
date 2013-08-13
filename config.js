@@ -10,22 +10,10 @@ module.exports.appName = packageJson.name;
 module.exports.appVersion = packageJson.version;
 module.exports.development = 'development' === app.get('env');
 module.exports.dbUrl = (function () {
-    var mongo, generateMongoURL, env;
+    var mongo, generateMongoURL;
 
-    if (process.env.VCAP_SERVICES) {
-        env = JSON.parse(process.env.VCAP_SERVICES);
-        mongo = env['mongodb-1.8'][0].credentials;
-    }
-    else {
-        mongo = {
-            "hostname": "localhost",
-            "port": 27017,
-            "username": "",
-            "password": "",
-            "name": "",
-            "db": "db"
-        };
-    }
+    mongo = require('./credentials.json');
+
     generateMongoURL = function (obj) {
         obj.hostname = (obj.hostname || 'localhost');
         obj.port = (obj.port || 27017);
