@@ -1,37 +1,60 @@
 {
-    "name": {
-        "type": "String",
-        "required": true,
-        "trim": true
+    "metadata": {
+        "order": [
+            "name",
+            "state",
+            "ein",
+            "contactName",
+            "contactEmail",
+            "contactPhone",
+            "preferredContactMethod"
+        ]
     },
-    "ein": {
-        "type": "String",
-        "validate": "ein",
-        "trim": true
-    },
-    "contactName": {
-        "type": "String",
-        "trim": true
-    },
-    "state": {
-        "type": "String",
-        "ref": "State"
-    },
-    "contactEmail": {
-        "type": "String",
-        "index": {
-            "unique": true
+    "schema": {
+        "name": {
+            "type": "String",
+            "required": true,
+            "trim": true,
+            "title": "Org Name"
         },
-        "validate": "email",
-        "trim": true
-    },
-    "contactPhone": {
-        "type": "String",
-        "trim": true,
-        "validate": "phone"
-    },
-    "preferredContactMethod": {
-        "type": "String",
-        "enum": ["contactPhone", "contactEmail"]
+        "ein": {
+            "type": "String",
+            "validate": "ein",
+            "trim": true,
+            "title": "EIN"
+        },
+        "contactName": {
+            "type": "String",
+            "trim": true,
+            "title": "Contact Name"
+        },
+        "state": {
+            "type": "String",
+            "ref": "State",
+            "title": "State"
+        },
+        "contactEmail": {
+            "title": "Contact Email",
+            "type": "String",
+            "index": {
+                "unique": true
+            },
+            "validate": "email",
+            "trim": true
+        },
+        "contactPhone": {
+            "title": "Contact Phone",
+            "type": "String",
+            "trim": true,
+            "validate": "tel"
+        },
+        "preferredContactMethod": {
+            "title": "Preferred Contact Method",
+            "type": "String",
+            "enum": ["Phone", "Email"],
+            "default": "email",
+            "required": true
+        }
     }
+
 }

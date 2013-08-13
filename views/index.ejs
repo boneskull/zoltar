@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if IE 8]>
-<html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
 
@@ -10,14 +7,12 @@
     <meta name="viewport" content="width=device-width"/>
 
     <title>altrui.st: tech volunteer clearinghouse</title>
-    <link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Wire+One'
+          rel='stylesheet' type='text/css'/>
 
-
-    <link rel="stylesheet" href="/stylesheets/lib/normalize.css"/>
-    <link rel="stylesheet" href="/stylesheets/lib/foundation.min.css"/>
-    <link rel="stylesheet" href="/stylesheets/lib/general_foundicons.css"/>
-    <link rel="stylesheet" href="/stylesheets/lib/ladda-themeless.min.css"/>
+    <link rel="stylesheet" href="/stylesheets/normalize.css"/>
+    <link rel="stylesheet" href="/stylesheets/ladda-themeless.min.css"/>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
     <link rel="stylesheet" href="/stylesheets/style.css"/>
 
     <% if (development) { %>
@@ -28,37 +23,46 @@
 
     <% if (user) { %>
     <script type="text/javascript">
-            angular.module('zoltar').value('currentUser', <%-user %>);
+        angular.module('zoltar').value('currentUser', <%-user %>);
     </script>
     <% } else { %>
     <script type="text/javascript">
-            angular.module('zoltar').value('currentUser', null);
+        angular.module('zoltar').value('currentUser', null);
     </script>
     <% } %>
 </head>
 <body ng-controller="ZoltarCtrl">
 
 <script type="text/ng-template" id="header">
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a data-target=".navbar-responsive-collapse"
+                   data-toggle="collapse" class="btn btn-navbar"><span
+                        class="icon-bar"></span><span
+                        class="icon-bar"></span><span
+                        class="icon-bar"></span></a> <a href="/" class="brand">altrui.st</a>
 
-    <div class="row" ng-show="user">
-        <div>logged in as {{ user.username }}</div>
-    </div>
-    <div class="row" ng-controller="NavCtrl">
-        <div class="large-3 columns">
-            <h1>altrui.st</h1>
+                <div class="nav-collapse collapse navbar-responsive-collapse">
+                    <ul class="nav pull-right">
+                        <li ng-show="!user">
+                            <a ng-click="openLoginDialog()" href="#">Login</a>
+                        </li>
+                        <li ng-show="user">
+                            <a ng-click="logout()" href="#">Logout</a>
+                        </li>
+                        <li ng-show="user.admin && path() !== '/admin'">
+                            <a href="/admin">Admin</a>
+                        </li>
+                        <li ng-show="path() === '/admin'">
+                            <a href="/">Main</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
-        <div class="large-9 columns">
-            <ul class="button-group right">
-                <li ng-show="!user"><a data-reveal-id="login" class="button">Login</a></li>
-                <li ng-show="user"><a class="button" ng-click="logout()">Logout</a></li>
-                <li ng-show="user.admin && path() !== '/admin'">
-                    <a class="button" href="/admin">Admin</a>
-                </li>
-                <li ng-show="path() === '/admin'">
-                    <a class="button" href="/">Main</a>
-                </li>
-            </ul>
-        </div>
+
     </div>
 </script>
 
@@ -66,20 +70,15 @@
 
     <!-- Footer -->
 
-    <footer class="row">
-        <div class="large-12 columns">
+    <footer class="row-fluid">
+        <div class="span12">
             <hr/>
-            <div class="row">
-                <div class="large-6 columns">
-                    <p>&copy; Copyright no one at all. Go to town.</p>
-                </div>
-                <div class="large-6 columns">
-                    <ul class="inline-list right">
-                        <li><a href="#">Link 1</a></li>
-                        <li><a href="#">Link 2</a></li>
-                        <li><a href="#">Link 3</a></li>
-                        <li><a href="#">Link 4</a></li>
-                    </ul>
+            <div class="row-fluid">
+                <div class="large-50">
+                    <p>&copy; Copyright 2013 <a href="http://badwing.com"
+                                                target="_blank">Christopher
+                                                                Hiller.</a> All
+                              rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -87,35 +86,42 @@
 </script>
 
 <script type="text/ng-template" id="main">
-    <div class="row">
-        <hr>
-        <div class="large-12 columns wire-one">
-            Matching tech talent with great volunteer opportunities.
-        </div>
+
+    <hr>
+    <div class="hero-unit">
+        <h1 class="wire-one">Matching tech talent with great volunteer
+                             opportunities.</h1>
     </div>
+
     <!-- Second Band (Image Left with Text) -->
 
-    <div class="row">
+    <div class="row-fluid">
         <hr>
-        <div class="large-4 columns">
+        <div class="span5">
             <img src="http://placehold.it/400x300&text=[img]">
         </div>
-        <div class="large-8 columns">
+        <div class="span7">
             <h4>This is a content section.</h4>
 
-            <div class="row">
-                <div class="large-6 columns">
-                    <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit.
-                        Aute in
-                        reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs
-                        reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+            <div class="row-fluid">
+                <div class="span6">
+                    <p>Bacon ipsum dolor sit amet nulla ham qui sint
+                       exercitation eiusmod commodo, chuck duis velit.
+                       Aute in
+                       reprehenderit, dolore aliqua non est magna in labore pig
+                       pork biltong. Eiusmod swine spare ribs
+                       reprehenderit culpa. Boudin aliqua adipisicing rump
+                       corned beef.</p>
                 </div>
-                <div class="large-6 columns">
-                    <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball
-                        irure
-                        bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola
-                        enim
-                        jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
+                <div class="span6">
+                    <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork
+                       chop in. Swine short ribs meatball
+                       irure
+                       bacon nulla pork belly cupidatat meatloaf cow. Nulla
+                       corned beef sunt ball tip, qui bresaola
+                       enim
+                       jowl. Capicola short ribs minim salami nulla nostrud
+                       pastrami.</p>
                 </div>
             </div>
         </div>
@@ -124,73 +130,104 @@
 
     <!-- Third Band (Image Right with Text) -->
 
-    <div class="row">
-        <div class="large-8 columns">
+    <div class="row-fluid">
+        <div class="span-7">
             <h4>This is a content section.</h4>
 
-            <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
-                reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs
-                reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+            <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation
+               eiusmod commodo, chuck duis velit. Aute in
+               reprehenderit, dolore aliqua non est magna in labore pig pork
+               biltong. Eiusmod swine spare ribs
+               reprehenderit culpa. Boudin aliqua adipisicing rump corned
+               beef.</p>
 
-            <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon
-                nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl.
-                Capicola
-                short ribs minim salami nulla nostrud pastrami.</p>
+            <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop
+               in. Swine short ribs meatball irure bacon
+               nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt
+               ball tip, qui bresaola enim jowl.
+               Capicola
+               short ribs minim salami nulla nostrud pastrami.</p>
 
         </div>
-        <div class="large-4 columns">
+        <div class="span-5">
             <img src="http://placehold.it/400x300&text=[img]">
         </div>
     </div>
 </script>
 
 <ng-include src="'header'" ng-controller="HeaderCtrl"></ng-include>
-<ng-view></ng-view>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+
+
+            <ng-view></ng-view>
+
+
+        </div>
+    </div>
+</div>
 <ng-include src="'footer'"></ng-include>
 
-<reveal id="login" class="small" ng-cloak>
-    <h2>Login</h2>
+<script type="text/ng-template" id="login">
+    <div class="modal-header"><h4>Login</h4></div>
+    <div class="modal-body">
+        <form name="loginForm" class="ink-form">
 
-    <form name="loginForm" ng-controller="LoginCtrl">
-        <div class="row">
-            <div class="large-6 columns">
-                <label for="username">Username:</label>
+            <div class="row-fluid">
+                <div class="span6">
+                    <label for="username">Username:</label>
+                </div>
+                <div class="span6">
+                    <input type="text" tabindex="1" ng-required="true"
+                           ng-model="credentials.username"
+                           id="username"/>
+                </div>
             </div>
-            <div class="large-6 columns">
-                <input type="text" tabindex="1" ng-required="true" ng-model="credentials.username" id="username"/>
+            <div class="row-fluid">
+                <div class="span6">
+                    <label for="password">Password:</label>
+                </div>
+                <div class="span6">
+                    <input type="password" tabindex="2"
+                           ng-required="true"
+                           ng-model="credentials.password"
+                           id="password"/>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label for="password">Password:</label>
+            <div class="row-fluid">
+                <div class="span6">
+                    <a class="btn"
+                       ng-click="forgot()">Forgot?</a>
+                </div>
+                <div class="span6">
+                    <ladda-button ladda="loginProgress" tabindex="3"
+                                  class="btn"
+                                  ng-class="{disabled: !credentials.username || !credentials.password}"
+                                  ng-click="login()">Login
+                    </ladda-button>
+
+                </div>
             </div>
-            <div class="large-6 columns">
-                <input type="password" tabindex="2" ng-required="true" ng-model="credentials.password" id="password"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <a ng-click="forgot()">Forgot?</a>
-            </div>
-            <div class="large-6 columns">
-                <ladda-button ladda="loginProgress" tabindex="3"
-                              ng-class="{disabled: !credentials.username || !credentials.password}"
-                              ng-click="login()">Login
-                </ladda-button>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div ng-show="failedLogin" class="ink alert error"
+                         ng-animate="{show: 'fade-show', hide: 'fade-hide'}">
+                        <button class="ink-dismiss">&times;</button>
+
+                        Invalid username or password.
+                    </div>
+                </div>
 
             </div>
-        </div>
-        <div class="row">
-            <div class="alert-box radius alert" ng-show="failedLogin"
-                 ng-animate="{show: 'fade-show', hide: 'fade-hide'}">
-                Invalid username or password.
-            </div>
-        </div>
-    </form>
-</reveal>
+        </form>
+    </div>
+</script>
 
 <script type="text/ng-template" id="ladda">
-    <button data-spinner-size="30" class="button ladda-button" style="overflow: visible;" data-style="zoom-in"><span class="ladda-label" ng-transclude></span></button>
+    <a data-spinner-size="30" class="ink-button ladda-button"
+       style="overflow: visible;" data-style="zoom-in"><span
+            class="ladda-label" ng-transclude></span></a>
 
 </script>
 </body>

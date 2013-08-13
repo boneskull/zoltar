@@ -14,7 +14,8 @@
     "karma-osx-reporter": "*",
     "karma-chrome-launcher": "*",
     "grunt-docular": "~0.1.1",
-    "karma-coverage": "~0.1.0"
+    "karma-coverage": "~0.1.0",
+    "grunt-ngmin": "0.0.3"
   },
   "private": true,
   "scripts": {

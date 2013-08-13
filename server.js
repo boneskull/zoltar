@@ -50,7 +50,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(xsrf);
 app.use(app.router);
-app.use(require('less-middleware')({ src: __dirname + '/public' }));
+app.use(require('less-middleware')({
+    src:__dirname + '/public',
+    prefix: 'stylesheets',
+    compress: true,
+    debug: true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.configure('development', function () {

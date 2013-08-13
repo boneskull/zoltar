@@ -25,6 +25,12 @@
              */
             $scope.credentials = {};
 
+            console.log('loginctrl');
+            console.log($scope);
+            $scope.forgot = function () {
+                alert('oh noes');
+            };
+
             /**
              * @ngdoc method
              * @name zoltarCommonControllers.controller:LoginCtrl#login
@@ -34,6 +40,7 @@
              * user from {@link zoltarCommonControllers.controller:LoginCtrl#credentials `credentials`}.
              */
             $scope.login = function () {
+                console.log($scope);
                 var user, login;
                 if (!$scope.loginForm.$valid) {
                     return;

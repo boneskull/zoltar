@@ -62,6 +62,7 @@ module.exports = function (grunt) {
                 options: {
                     file: 'server.js',
                     watchedExtensions: ['js'],
+                    ignoredFiles: ['node_modules/**'],
                     debug: true
                 }
             }
@@ -86,7 +87,6 @@ module.exports = function (grunt) {
                             title: 'Common Functionality',
                             showSource: true,
                             scripts: [
-                                'public/javascripts/zoltar/common/directives/reveal.js',
                                 'public/javascripts/zoltar/common/controllers/loginctrl.js',
                                 'public/javascripts/zoltar/common/socket.js'
                             ]

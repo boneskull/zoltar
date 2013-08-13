@@ -12,10 +12,11 @@
         'zoltarAdmin',
         'zoltarCommon',
         'zoltarIndex',
-        'foundation',
         'ladda',
+        'ui.bootstrap',
         'restangular',
-        'socketIO'
+        'socketIO',
+        'schemaForm'
     ]);
 
     zoltar.constant('zoltarConstants', {
@@ -23,7 +24,7 @@
     });
 
     zoltar.config(function ($locationProvider, $routeProvider, $provide,
-        zoltarSchemas, zoltarConstants) {
+        zoltarSchemas, zoltarConstants, $dialogProvider) {
         var partialPath = zoltarConstants.partialPath,
             defaults = {
                 now: function () {
@@ -31,6 +32,9 @@
                 },
                 'false': function () {
                     return false;
+                },
+                email: function () {
+                    return 'Email';
                 }
             },
             validators = {
@@ -52,6 +56,8 @@
 
         $locationProvider.html5Mode(true);
 
+        $dialogProvider.options({dialogFade: true});
+
         $routeProvider
             .when('/admin', {
                 templateUrl: partialPath + 'admin.html',
@@ -61,9 +67,10 @@
                 templateUrl: 'main'
             });
 
-        angular.forEach(zoltarSchemas, function (schema, name) {
+        angular.forEach(zoltarSchemas, function (data, name) {
             var model = function (o) {
-                this.$schema = schema;
+                this.$schema = data.schema;
+                this.$metadata = data.metadata;
                 this.$name = name;
                 this.$defineProperties();
                 angular.extend(this, o);
@@ -71,6 +78,14 @@
 
             model.prototype.toString = function () {
                 return angular.toJson(this);
+            };
+
+            model.getSchema = function () {
+                return data.schema;
+            };
+
+            model.getMetadata = function () {
+                return data.metadata;
             };
 
             model.prototype.$defineProperties = function () {

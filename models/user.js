@@ -24,7 +24,7 @@ generator.setValidator('email', function (str) {
 
 data = fs.readFileSync('public/schemas/user.json');
 
-User = new Schema(generator._convert(JSON.parse(data)));
+User = new Schema(generator._convert(JSON.parse(data).schema));
 
 User.plugin(passportLocalMongoose, {});
 User.plugin(sanitize, {accept: ['username', 'email', 'admin', 'createdon']});

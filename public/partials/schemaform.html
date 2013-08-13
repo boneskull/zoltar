@@ -1,0 +1,34 @@
+<form name="{{ formName }}" data-abide class="custom" novalidate="novalidate">
+    <fieldset>
+        <legend ng-show="legend">{{ legend }}</legend>
+        <div ng-repeat="item in schema" class="column-group">
+            <div class="large-3">
+                <label for="{{ formName }}_{{ item.field }}">{{ item.def.title
+                                                             }}</label>
+            </div>
+            <div class="large-9">
+                <ng-switch on="item.def.type">
+                    <span ng-switch-when="String">
+                    <span ng-if="item.def.enum">
+                        <select id="{{ formName }}_{{ item.field }}"
+                                ng-model="model[item.field]"
+                                ng-options="val for val in item.def.enum">
+                        </select>
+                    </span>
+                        <span ng-if="!item.def.enum">
+                    <input ng-required="item.def.required"
+                           type="{{ item.def.$type }}"
+                           pattern="{{ item.def.$pattern }}"
+                           ng-model="model[item.field]"
+                           id="{{ formName }}_{{ item.field }}"/>
+                    </span>
+                    </span>
+                    <input ng-required="item.def.required" ng-switch-when="Date"
+                           type="date"
+                           ng-model="model[item.field]"
+                           id="{{ formName }}_{{ item.field }}">
+                </ng-switch>
+            </div>
+        </div>
+    </fieldset>
+</form>

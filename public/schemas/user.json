@@ -1,28 +1,30 @@
 {
-    "username": {
-        "type": "String",
-        "require": true,
-        "index": {
-            "unique": true
+    "schema": {
+        "username": {
+            "type": "String",
+            "require": true,
+            "index": {
+                "unique": true
+            },
+            "trim": true
         },
-        "trim": true
-    },
-    "admin": {
-        "type": "Boolean",
-        "default": "false"
-    },
-    "email": {
-        "type": "String",
-        "required": true,
-        "index": {
-            "unique": true
+        "admin": {
+            "type": "Boolean",
+            "default": "false"
         },
-        "trim": true
-    },
-    "createdon": {
-        "type": "Date",
-        "required": true,
-        "default": "now"
-    },
-    "url": "String"
+        "email": {
+            "type": "String",
+            "required": true,
+            "index": {
+                "unique": true
+            },
+            "trim": true
+        },
+        "createdon": {
+            "type": "Date",
+            "required": true,
+            "default": "now"
+        },
+        "url": "String"
+    }
 }
