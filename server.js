@@ -26,6 +26,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+console.log(process.env.MONGOLAB_URI);
 mongoose.connect(process.env.MONGOLAB_URI ||
         'mongodb://localhost/db');
 
@@ -71,7 +72,7 @@ require('./bootstrap')();
 
 app.http().io();
 require('./routing')(app);
-app.listen(process.env.PORT || 3000, function () {
+app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
 

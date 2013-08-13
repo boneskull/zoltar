@@ -5,6 +5,7 @@
     var admin = angular.module('zoltarAdmin', []);
 
     admin.controller('AdminCtrl', function ($scope, socket) {
+
         socket.emit('admin:ready');
         $scope.selected = {};
 
