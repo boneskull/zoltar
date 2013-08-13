@@ -19,7 +19,7 @@
     });
 
     admin.controller('AdminAddUserCtrl',
-        function ($scope, Restangular, User, socket) {
+        function ($scope, Restangular, User, socket, $timeout) {
             $scope.mismatchedPasswords = false;
             $scope.missingRequiredFields = true;
 
@@ -27,6 +27,7 @@
                 var newUser, register;
                 delete $scope.addedUser;
                 delete $scope.registrationError;
+                $scope.addUserProgress = 0;
                 if ($scope.addUserForm.$valid) {
                     $scope.missingRequiredFields = false;
                     if ($scope.selected.newUser.password1 !==
@@ -51,13 +52,25 @@
             };
 
             socket.on('admin:registrationSuccessful', function (user) {
+
+                $scope.addUserProgress = 1;
+                $timeout(function () {
+                    console.log('false prog');
+                    $scope.addUserProgress = false;
+                }, 200);
+
                 delete $scope.selected.newUser;
 
                 $scope.addedUser = user.username;
             });
 
             socket.on('admin:registrationFailure', function (err) {
-                console.log(err);
+                $scope.addUserProgress = 1;
+                $timeout(function () {
+
+                    $scope.addUserProgress = false;
+                }, 200);
+
                 $scope.registrationError = err;
             });
         });

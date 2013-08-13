@@ -12,7 +12,7 @@
      * @requires socketIO.service:socket
      */
     angular.module('zoltarCommonControllers').controller('LoginCtrl',
-        function ($scope, Restangular, User, $timeout, socket) {
+        function ($scope, Restangular, User, $timeout, socket, dialog, $rootScope) {
 
             /**
              * @ngdoc object
@@ -25,8 +25,6 @@
              */
             $scope.credentials = {};
 
-            console.log('loginctrl');
-            console.log($scope);
             $scope.forgot = function () {
                 alert('oh noes');
             };
@@ -40,7 +38,6 @@
              * user from {@link zoltarCommonControllers.controller:LoginCtrl#credentials `credentials`}.
              */
             $scope.login = function () {
-                console.log($scope);
                 var user, login;
                 if (!$scope.loginForm.$valid) {
                     return;
@@ -58,19 +55,18 @@
                     })
                     .then(function (res) {
                         $scope.failedLogin = false;
-                        $scope.$emit('close:login');
-                        $scope.$emit('setUser', res.user);
+                        $rootScope.$broadcast('setUser', res.user);
                         $timeout(function () {
                             $scope.loginProgress = false;
+                            dialog.close();
+                            $scope.credentials = {};
                         }, 200);
-                        $scope.credentials = {};
                         socket.emit('user:ready');
                     }, function () {
                         $scope.failedLogin = true;
                         $timeout(function () {
                             $scope.loginProgress = false;
                         }, 200);
-                        $scope.credentials = {};
                     });
             };
 

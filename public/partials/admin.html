@@ -1,95 +1,107 @@
-<div>
-<h3>ADMIN CONSOLE</h3>
+<div class="row-fluid">
+<div class="span12">
 
-<div class="column-group">
-    <div ng-controller="AdminAddUserCtrl" class="large-50">
+<header>
+    <div class="row-fluid">
+        <div class="span12">
+            <h3>Admin Console</h3>
+        </div>
+
+    </div>
+</header>
+
+<div class="row-fluid">
+    <div ng-controller="AdminAddUserCtrl" class="span6 well">
         <fieldset>
-            <legend><i class="foundicon-plus"></i> Add a User</legend>
-            <form name="addUserForm" novalidate="novalidate">
-                <div class="column-group">
-                    <div class="large-20">
-                        <label for="username">Username:</label>
-                    </div>
-                    <div class="large-80">
-                        <input type="text" required ng-model="selected.newUser.username"
+            <legend><i class="icon-plus"></i> Add a User</legend>
+            <form name="addUserForm" novalidate="novalidate"
+                  class="form-horizontal" ng-submit="addUser()">
+                <div class="control-group">
+                    <label class="control-label"
+                           for="username">Username:</label>
+
+                    <div class="controls">
+                        <input type="text" required
+                               ng-model="selected.newUser.username"
                                id="username"/>
                     </div>
                 </div>
-                <div class="column-group">
-                    <div class="large-20">
-                        <label for="email">Email:</label>
-                    </div>
-                    <div class="large-80">
-                        <input type="email" required ng-model="selected.newUser.email"
+                <div class="control-group">
+                    <label for="email" class="control-label">Email:</label>
+
+                    <div class="controls">
+                        <input type="email" required
+                               ng-model="selected.newUser.email"
                                id="email"/>
                     </div>
                 </div>
-                <div class="column-group">
-                    <div class="large-20">
-                        <label for="url">URL:</label>
-                    </div>
-                    <div class="large-80">
-                        <input type="text" ng-model="selected.newUser.url" id="url"/>
+                <div class="control-group">
+                    <label class="control-label" for="url">URL:</label>
+
+                    <div class="controls">
+                        <input type="text" ng-model="selected.newUser.url"
+                               id="url"/>
                     </div>
                 </div>
-                <div class="column-group">
-                    <div class="large-20">
-                        <label for="password1">Password:</label>
-                    </div>
-                    <div class="large-80">
+                <div class="control-group">
+
+                    <label class="control-label"
+                           for="password1">Password:</label>
+
+                    <div class="controls">
                         <input type="password" required
                                ng-model="selected.newUser.password1"
                                id="password1"/>
                     </div>
                 </div>
-                <div class="column-group">
-                    <div class="large-20">
-                        <label for="password2">Again:</label>
-                    </div>
-                    <div class="large-80">
+                <div class="control-group">
+
+                    <label class="control-label" for="password2">Again:</label>
+
+                    <div class="controls">
                         <input type="password" required
                                ng-model="selected.newUser.password2"
                                id="password2"/>
                     </div>
                 </div>
-                <div class="column-group">
-                    <div class="large-20">
-
-                    </div>
-                    <div class="large-80">
-                        <div class="column-group">
-                            <div class="large-60">
-                                <div class="alert-box radius"
-                                     ng-show="addedUser">
-                                    Successfully added user <em>{{
-                                                                addedUser
-                                                                }}</em>.
-                                </div>
-                                <div class="alert-box radius alert"
-                                     ng-show="mismatchedPasswords">
-                                    Mismatched passwords!
-                                </div>
-                                <div class="alert-box radius alert"
-                                     ng-show="registrationError">
-                                    {{ registrationError }}
-                                </div>
-                            </div>
-                            <div class="large-40">
-                                <button ng-click="addUser()">Add User
-                                </button>
-                            </div>
-                        </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <ladda-button ladda="addUserProgress">Add User
+                        </ladda-button>
                     </div>
                 </div>
             </form>
+            <div class="row-fluid"
+                 ng-show="addedUser || mismatchedPasswords || registrationError">
+                <div class="span12">
+
+                    <div class="alert"
+                         ng-show="addedUser">
+                        Successfully added user <em>{{
+                                                    addedUser
+                                                    }}</em>.
+                    </div>
+                    <div class="alert alert-error"
+                         ng-show="mismatchedPasswords">
+                        Mismatched passwords!
+                    </div>
+                    <div class="alert alert-error"
+                         ng-show="registrationError">
+                        {{ registrationError }}
+                    </div>
+
+
+                </div>
+            </div>
+
         </fieldset>
     </div>
-    <div ng-controller="AdminUserListCtrl" class="large-50">
+    <div ng-controller="AdminUserListCtrl" class="span6 well">
         <fieldset>
-            <legend><i class="foundicon-address-book"></i> Users
+            <legend><i class="icon-group"></i> Users
             </legend>
-            <div class="column-group">
-                <table class="ink-table large-100">
+            <div class="row-fluid">
+                <table class="table span12">
                     <tr>
                         <th><a ng-click="setOrder('username')">Username</a>
                             <span ng-show="order === 'username'">&uarr;</span><span
@@ -109,7 +121,7 @@
                     </tr>
                     <tr ng-show="!userlist">
                         <td colspan="4" class="text-center">
-                            <img src="/images/ajax-loader.gif"/>
+                            <progress percent="100" class="progress progress-striped active"></progress>
                         </td>
                     </tr>
                     <tr ng-show="userlist && !userlist.length">
@@ -120,25 +132,22 @@
                     </tr>
                     <tr ng-repeat="user in userlist|orderBy:order">
                         <td>
-                            <a data-reveal-id="viewUser" ng-click="view(user)">{{
-                                                                               user.username
-                                                                               }}</a>
+                            <a ng-click="view(user)">{{
+                                                     user.username
+                                                     }}</a>
                         </td>
                         <td>
-                            <a data-reveal-id="viewUser" ng-click="view(user)">{{
-                                                                               user.email
-                                                                               }}</a>
+                            <a ng-click="view(user)">{{
+                                                     user.email
+                                                     }}</a>
                         </td>
                         <td>{{ user.createdon|date }}</td>
                         <td>
-                            <a ng-click="edit(user)" data-reveal-id="viewUser"
-                               title="Edit {{ user.username }}"><i
-                                    class="foundicon-settings"></i></a> <span
+                            <a ng-click="edit(user)"
+                               title="Edit {{ user.username }}"></a> <span
                                 ng-show="!user.admin"><a
                                 ng-click="confirmDelete(user)"
-                                title="delete {{ user.username }}"
-                                data-reveal-id="confirmDelete"><i
-                                class="foundicon-remove"></i></a></span>
+                                title="delete {{ user.username }}"></a></span>
                         </td>
                     </tr>
                 </table>
@@ -148,18 +157,18 @@
 
     </div>
 </div>
-<div class="column-group">
-    <div ng-controller="AdminOrgListCtrl" class="large-50">
+<div class="row-fluid">
+    <div ng-controller="AdminOrgListCtrl" class="span6">
         <fieldset>
-            <legend><i class="foundicon-globe"></i> Orgs
+            <legend> Orgs
             </legend>
-            <div class="column-group">
-                <div class="large-100">
+            <div class="row-fluid">
+                <div class="span12">
                     <a data-reveal-id="addOrg">Add Org</a>
                 </div>
             </div>
-            <div class="column-group">
-                <table class="ink-table large-100">
+            <div class="row-fluid">
+                <table class="ink-table span12">
                     <tr>
                         <th><a ng-click="setOrder('name')">Name</a>
                             <span ng-show="order === 'name'">&uarr;</span><span
@@ -179,7 +188,7 @@
                     </tr>
                     <tr ng-show="!orglist">
                         <td colspan="4" class="text-center">
-                            <img src="/images/ajax-loader.gif"/>
+                             <progress percent="100" class="progress progress-striped active"></progress>
                         </td>
                     </tr>
                     <tr ng-show="orglist && !orglist.length">
@@ -196,14 +205,15 @@
                         </td>
                         <td>{{ org.contactEmail }}</td>
                         <td>
-                            <a ng-click="edit(user)" data-reveal-id="viewUser"
+                            <a ng-click="edit(user)"
                                title="edit {{ user.username }}"><i
-                                    class="foundicon-settings"></i></a> <span
-                                ng-show="!user.admin"><a
-                                ng-click="confirmDelete(user)"
-                                title="delete {{ user.username }}"
-                                data-reveal-id="confirmDelete"><i
-                                class="foundicon-remove"></i></a></span>
+                                    class="icon-edit"></i></a>
+                            <span ng-show="!user.admin">
+                                <a ng-click="confirmDelete(user)"
+                                   title="delete {{ user.username }}"
+                                   data-reveal-id="confirmDelete"><i
+                                        class="icon-remove"></i></a>
+                            </span>
                         </td>
                     </tr>
                 </table>
@@ -218,18 +228,18 @@
         on-closed="onCloseConfirmDelete()">
     <h4>Delete user "{{ selected.deleteUser.username }}"?</h4>
 
-    <div class="column-group">
-        <div class="large-100"><p>Are you sure you want
-                                         to delete user "{{
-                                         selected.deleteUser.username
-                                         }}"
-                                         ({{ selected.deleteUser.email
-                                         }})?</p>
+    <div class="row-fluid">
+        <div class="span12"><p>Are you sure you want
+                               to delete user "{{
+                               selected.deleteUser.username
+                               }}"
+                               ({{ selected.deleteUser.email
+                               }})?</p>
         </div>
     </div>
 
-    <div class="column-group">
-        <div class="large-100">
+    <div class="row-fluid">
+        <div class="span12">
             <button class="ink-button" ng-click="cancelDeleteUser()">
                 No!
             </button>
@@ -250,25 +260,25 @@
         <fieldset>
             <legend>{{ selected.viewUser.username }}</legend>
             <form name="editUserForm">
-                <div class="column-group">
-                    <div class="large-20">
+                <div class="row-fluid">
+                    <div class="span3">
                         <label for="editUserForm-email">Email:</label>
                     </div>
-                    <div class="large-80">
+                    <div class="span9">
                         <strong ng-hide="toggles.userEditMode"><a
                                 ng-href="mailto:{{ selected.viewUser.email}}">{{
-                                                                     selected.viewUser.email
-                                                                     }}</a></strong>
+                                                                              selected.viewUser.email
+                                                                              }}</a></strong>
                         <input id="editUserForm-email" type="email" required
                                ng-show="toggles.userEditMode"
                                ng-model="selected.editUser.email"/>
                     </div>
                 </div>
-                <div class="column-group" ng-show="selected.viewUser.url">
-                    <div class="large-20">
+                <div class="row-fluid" ng-show="selected.viewUser.url">
+                    <div class="span3">
                         <label for="editUserForm-url">URL:</label>
                     </div>
-                    <div class="large-80">
+                    <div class="span9">
                         <strong ng-hide="toggles.userEditMode"><a
                                 ng-href="{{ selected.viewUser.url }}"
                                 target="_blank">{{
@@ -279,12 +289,12 @@
                                ng-model="selected.editUser.url"/>
                     </div>
                 </div>
-                <div class="column-group"
+                <div class="row-fluid"
                      ng-show="selected.viewUser.admin || toggles.userEditMode">
-                    <div class="large-20">
+                    <div class="span3">
                         <label for="editUserForm-admin">Admin:</label>
                     </div>
-                    <div class="large-80">
+                    <div class="span9">
                         <span ng-hide="toggles.userEditMode">YES</span>
                         <select id="editUserForm-admin"
                                 ng-show="toggles.userEditMode"
@@ -294,26 +304,26 @@
                         </select>
                     </div>
                 </div>
-                <div class="column-group" ng-show="toggles.userEditMode">
-                    <div class="large-20">
+                <div class="row-fluid" ng-show="toggles.userEditMode">
+                    <div class="span3">
                         <label for="editUserForm-password1">New PW:</label>
                     </div>
-                    <div class="large-80">
+                    <div class="span9">
                         <input id="editUserForm-password1" type="password"
                                ng-model="selected.editUser.password1"/>
                     </div>
                 </div>
-                <div class="column-group" ng-show="toggles.userEditMode">
-                    <div class="large-20">
+                <div class="row-fluid" ng-show="toggles.userEditMode">
+                    <div class="span3">
                         <label for="editUserForm-password2">Again:</label>
                     </div>
-                    <div class="large-80">
+                    <div class="span9">
                         <input id="editUserForm-password2" type="password"
                                ng-model="selected.editUser.password2"/>
                     </div>
                 </div>
-                <div class="column-group">
-                    <div class="large-100">
+                <div class="row-fluid">
+                    <div class="span12">
                         <a class="ink-button" ng-hide="toggles.userEditMode"
                            ng-click="toggles.userEditMode = true">Modify</a>
                         <a class="ink-button" ng-show="toggles.userEditMode"
@@ -324,7 +334,7 @@
                         </ladda-button>
                     </div>
                 </div>
-                <div class="alert-box alert" ng-show="saveUserFailure">
+                <div class="alert alert" ng-show="saveUserFailure">
                     {{ saveUserFailure }}
                 </div>
             </form>
@@ -337,8 +347,10 @@
     <div ng-controller="AdminAddOrgCtrl">
         <h4>Add Organization</h4>
 
-        <schema-form form-name="addOrgForm" model="newOrg" schema-name="Org"></schema-form>
+        <schema-form form-name="addOrgForm" model="newOrg"
+                     schema-name="Org"></schema-form>
         <a class="close-reveal-modal">&#215;</a>
     </div>
 </reveal>
+</div>
 </div>

@@ -10,7 +10,7 @@
      * @todo Stop using callbacks.
      */
     angular.module('socketIO', []).service('socket',
-        function ($rootScope, $window) {
+        function ($rootScope, $window, $log) {
 
             this._socket = $window.io.connect();
 
@@ -27,6 +27,7 @@
                 var socket = this._socket;
                 socket.on(eventName, function () {
                     var args = arguments;
+                    $log.log('socket: received ' + eventName);
                     $rootScope.$apply(function () {
                         callback.apply(socket, args);
                     });
@@ -47,6 +48,7 @@
                 var socket = this._socket;
                 socket.emit(eventName, data, function () {
                     var args = arguments;
+                    $log.log('socket: sent ' + eventName);
                     $rootScope.$apply(function () {
                         if (callback) {
                             callback.apply(socket, args);
