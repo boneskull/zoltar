@@ -26,9 +26,14 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-console.log(process.env.MONGOLAB_URI);
+
 mongoose.connect(process.env.MONGOLAB_URI ||
-        'mongodb://localhost/db');
+    'mongodb://localhost/db');
+
+// this is dumb, but I'm not sure how to detect if we don't have sockets available
+if (process.env.MONGOLAB_URI) {
+    express.io.set('transports', ['xhr-polling']);
+}
 
 app.use(protectJSON);
 app.use(express.favicon());
@@ -53,7 +58,7 @@ app.use(passport.session());
 app.use(xsrf);
 app.use(app.router);
 app.use(require('less-middleware')({
-    src:__dirname + '/public',
+    src: __dirname + '/public',
     prefix: 'stylesheets',
     compress: true,
     debug: true
