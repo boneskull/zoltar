@@ -1,60 +1,62 @@
 /*global angular*/
 (function () {
-    'use strict';
+  'use strict';
 
-    /**
-     * @ngdoc service
-     * @name socketIO.service:socket
-     * @description
-     * Provides wrapper around socket.io.
-     * @todo Stop using callbacks.
-     */
-    angular.module('socketIO', []).service('socket',
-        function ($rootScope, $window, $log) {
+  /**
+   * @ngdoc service
+   * @name socketIO.service:socket
+   * @description
+   * Provides wrapper around socket.io.
+   * @todo Stop using callbacks.
+   */
+  angular.module('socketIO', []).service('socket',
+      function ($rootScope, $window, $log) {
 
-            this._socket = $window.io.connect();
+        this._socket = $window.io.connect();
 
-            /**
-             * @ngdoc method
-             * @name socketIO.service:socket#on
-             * @methodOf socketIO.service:socket
-             * @param {string} eventName Event name to listen on
-             * @param {function} callback CB to execute
-             * @description
-             * Sets a listener on an event and executes `callback`.
-             */
-            this.on = function on(eventName, callback) {
-                var socket = this._socket;
-                socket.on(eventName, function () {
-                    var args = arguments;
-                    $log.log('socket: received ' + eventName);
-                    $rootScope.$apply(function () {
-                        callback.apply(socket, args);
-                    });
-                });
-            };
+        /**
+         * @ngdoc method
+         * @name socketIO.service:socket#on
+         * @methodOf socketIO.service:socket
+         * @param {string} eventName Event name to listen on
+         * @param {function} callback CB to execute
+         * @description
+         * Sets a listener on an event and executes `callback`.
+         */
+        this.on = function on(eventName, callback) {
+          var socket = this._socket;
+          socket.on(eventName, function () {
+            var args = arguments;
+            $log.log('socket: received ' + eventName);
+            $rootScope.$apply(function () {
+              callback.apply(socket, args);
+            });
+          });
+        };
 
-            /**
-             * @ngdoc method
-             * @name socketIO.service:socket#emit
-             * @methodOf socketIO.service:socket
-             * @param {string} eventName Event name to emit
-             * @param {*} data Optional data to pass
-             * @param {function=} callback Callback to execute when complete
-             * @description
-             * Emits an event
-             */
-            this.emit = function emit(eventName, data, callback) {
-                var socket = this._socket;
-                socket.emit(eventName, data, function () {
-                    var args = arguments;
-                    $log.log('socket: sent ' + eventName);
-                    $rootScope.$apply(function () {
-                        if (callback) {
-                            callback.apply(socket, args);
-                        }
-                    });
-                });
-            };
-        });
+        /**
+         * @ngdoc method
+         * @name socketIO.service:socket#emit
+         * @methodOf socketIO.service:socket
+         * @param {string} eventName Event name to emit
+         * @param {*} data Optional data to pass
+         * @param {function=} callback Callback to execute when complete
+         * @description
+         * Emits an event
+         */
+        this.emit = function emit(eventName, data, callback) {
+          var socket = this._socket;
+          // strip internals
+          data = angular.fromJson(angular.toJson(data));
+          socket.emit(eventName, data, function () {
+            var args = arguments;
+            $log.log('socket: sent ' + eventName);
+            $rootScope.$apply(function () {
+              if (callback) {
+                callback.apply(socket, args);
+              }
+            });
+          });
+        };
+      });
 })();

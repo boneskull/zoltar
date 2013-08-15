@@ -30,6 +30,7 @@ module.exports = function (app) {
                     if (!user.admin) {
                         return Q.reject();
                     }
+                    return user;
                 });
         },
 

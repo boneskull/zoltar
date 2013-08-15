@@ -1,18 +1,19 @@
-<form name="{{ formName }}" data-abide class="custom" novalidate="novalidate">
+<ng-form name="schemaForm" id="form_{{ formName }}" class="form-horizontal" novalidate="novalidate">
     <fieldset>
         <legend ng-show="legend">{{ legend }}</legend>
-        <div ng-repeat="item in schema" class="column-group">
-            <div class="large-3">
-                <label for="{{ formName }}_{{ item.field }}">{{ item.def.title
-                                                             }}</label>
-            </div>
-            <div class="large-9">
+        <div class="control-group" ng-repeat="item in schema">
+            <label class="control-label" for="{{ formName }}_{{ item.field }}">{{
+                                                                               item.def.title
+                                                                               }}</label>
+
+            <div class="controls">
                 <ng-switch on="item.def.type">
                     <span ng-switch-when="String">
                     <span ng-if="item.def.enum">
                         <select id="{{ formName }}_{{ item.field }}"
                                 ng-model="model[item.field]"
-                                ng-options="val for val in item.def.enum">
+                                ng-options="val for val in item.def.enum"
+                            ng-disabled="readOnly">
                         </select>
                     </span>
                         <span ng-if="!item.def.enum">
@@ -20,10 +21,14 @@
                            type="{{ item.def.$type }}"
                            pattern="{{ item.def.$pattern }}"
                            ng-model="model[item.field]"
+                           ng-disabled="readOnly"
+                           placeholder="{{ item.def.title }}"
                            id="{{ formName }}_{{ item.field }}"/>
                     </span>
                     </span>
+                    <input ng-switch-when="Boolean" type="checkbox" ng-model="model[item.field]" id="{{ formName }}_{{item.field}}" ng-disabled="readOnly"/>
                     <input ng-required="item.def.required" ng-switch-when="Date"
+                           ng-disabled="readOnly"
                            type="date"
                            ng-model="model[item.field]"
                            id="{{ formName }}_{{ item.field }}">
@@ -31,4 +36,4 @@
             </div>
         </div>
     </fieldset>
-</form>
+</ng-form>

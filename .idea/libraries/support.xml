@@ -1,0 +1,28 @@
+<component name="libraryTable">
+  <library name="support" type="javaScript">
+    <properties>
+      <option name="frameworkName" value="Modernizr" />
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/public/javascripts/support/zepto.js" />
+        <item url="file://$PROJECT_DIR$/public/javascripts/support/custom.modernizr.js" />
+        <item url="file://$PROJECT_DIR$/public/javascripts/support/angular.js" />
+        <item url="file://$PROJECT_DIR$/public/javascripts/support/socket.io.js" />
+        <item url="file://$PROJECT_DIR$/public/javascripts/support/restangular.js" />
+        <item url="file://$PROJECT_DIR$/public/javascripts/support/underscore.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/public/javascripts/support/es5-sham.min.js" />
+      <root url="file://$PROJECT_DIR$/public/javascripts/support/spin.min.js" />
+      <root url="file://$PROJECT_DIR$/public/javascripts/support/ladda.min.js" />
+      <root url="file://$PROJECT_DIR$/public/javascripts/support/zepto.js" />
+      <root url="file://$PROJECT_DIR$/public/javascripts/support/custom.modernizr.js" />
+      <root url="file://$PROJECT_DIR$/public/javascripts/support/angular.js" />
+      <root url="file://$PROJECT_DIR$/public/javascripts/support/foundation.min.js" />
+      <root url="file://$PROJECT_DIR$/public/javascripts/support/restangular.js" />
+      <root url="file://$PROJECT_DIR$/public/javascripts/support/socket.io.js" />
+      <root url="file://$PROJECT_DIR$/public/javascripts/support/underscore.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

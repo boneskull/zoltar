@@ -27,13 +27,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 
-mongoose.connect(process.env.MONGOLAB_URI ||
+mongoose.connect(process.env.DB_URI ||
     'mongodb://localhost/db');
-
-// this is dumb, but I'm not sure how to detect if we don't have sockets available
-if (process.env.MONGOLAB_URI) {
-    app.io.set('transports', ['xhr-polling']);
-}
 
 app.use(protectJSON);
 app.use(express.favicon());

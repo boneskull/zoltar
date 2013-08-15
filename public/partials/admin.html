@@ -2,357 +2,358 @@
 <div class="span12">
 
 <header>
-    <div class="row-fluid">
-        <div class="span12">
-            <h3>Admin Console</h3>
-        </div>
-
+  <div class="row-fluid">
+    <div class="span12">
+      <h3>Admin Console</h3>
     </div>
+
+  </div>
 </header>
 
 <div class="row-fluid">
-    <div ng-controller="AdminAddUserCtrl" class="span6 well" style="min-height: 575px;">
-        <fieldset>
-            <legend><i class="icon-plus"></i> Add a User</legend>
-            <form name="addUserForm" novalidate="novalidate"
-                  class="form-horizontal" ng-submit="addUser()">
-                <div class="control-group">
-                    <label class="control-label"
-                           for="username">Username:</label>
+<div class="span6">
+  <div class="row-fluid">
+    <div ng-controller="AdminAddUserCtrl" class="span12 well">
+      <fieldset>
+        <legend><i class="icon-plus"></i> Add a User</legend>
+        <form name="addUserForm" novalidate="novalidate"
+              class="form-horizontal" ng-submit="addUser()">
+          <div class="control-group">
+            <label class="control-label"
+                   for="username">Username:</label>
 
-                    <div class="controls">
-                        <input type="text" autofocus required
-                               ng-model="selected.newUser.username"
-                               id="username"/>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label for="email" class="control-label">Email:</label>
+            <div class="controls">
+              <input type="text" autofocus="autofocus"
+                     required
+                     ng-model="selected.newUser.username"
+                     id="username"/>
+            </div>
+          </div>
+          <div class="control-group">
+            <label for="email"
+                   class="control-label">Email:</label>
 
-                    <div class="controls">
-                        <input type="email" required
-                               ng-model="selected.newUser.email"
-                               id="email"/>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="url">URL:</label>
+            <div class="controls">
+              <input type="email" required
+                     ng-model="selected.newUser.email"
+                     id="email"/>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="url">URL:</label>
 
-                    <div class="controls">
-                        <input type="text" ng-model="selected.newUser.url"
-                               id="url"/>
-                    </div>
-                </div>
-                <div class="control-group">
+            <div class="controls">
+              <input type="text"
+                     ng-model="selected.newUser.url"
+                     id="url"/>
+            </div>
+          </div>
+          <div class="control-group">
 
-                    <label class="control-label"
-                           for="password1">Password:</label>
+            <label class="control-label"
+                   for="password1">Password:</label>
 
-                    <div class="controls">
-                        <input type="password" required
-                               ng-model="selected.newUser.password1"
-                               id="password1"/>
-                    </div>
-                </div>
-                <div class="control-group">
+            <div class="controls">
+              <input type="password" required
+                     ng-model="selected.newUser.password1"
+                     id="password1"/>
+            </div>
+          </div>
+          <div class="control-group">
 
-                    <label class="control-label" for="password2">Again:</label>
+            <label class="control-label"
+                   for="password2">Again:</label>
 
-                    <div class="controls">
-                        <input type="password" required
-                               ng-model="selected.newUser.password2"
-                               id="password2"/>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <ladda-button ladda="addUserProgress">Add User
-                        </ladda-button>
-                    </div>
-                </div>
-            </form>
-            <div class="row-fluid"
-                 ng-show="addedUser || mismatchedPasswords || registrationError">
-                <div class="span12">
+            <div class="controls">
+              <input type="password" required
+                     ng-model="selected.newUser.password2"
+                     id="password2"/>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <ladda-button ladda="addUserProgress">Add User
+              </ladda-button>
+            </div>
+          </div>
+        </form>
+        <div class="row-fluid"
+             ng-show="addedUser || mismatchedPasswords || registrationError">
+          <div class="span12">
 
-                    <div class="alert"
-                         ng-show="addedUser">
-                        Successfully added user <em>{{
-                                                    addedUser
-                                                    }}</em>.
-                    </div>
-                    <div class="alert alert-error"
-                         ng-show="mismatchedPasswords">
-                        Mismatched passwords!
-                    </div>
-                    <div class="alert alert-error"
-                         ng-show="registrationError">
-                        {{ registrationError }}
-                    </div>
-
-
-                </div>
+            <div class="alert"
+                 ng-show="addedUser">
+              Successfully added user <em>{{
+                                          addedUser
+                                          }}</em>.
+            </div>
+            <div class="alert alert-error"
+                 ng-show="mismatchedPasswords">
+              Mismatched passwords!
+            </div>
+            <div class="alert alert-error"
+                 ng-show="registrationError">
+              {{ registrationError }}
             </div>
 
-        </fieldset>
+
+          </div>
+        </div>
+
+      </fieldset>
     </div>
-    <div ng-controller="AdminUserListCtrl" class="span6 well" style="min-height: 575px;">
-        <fieldset>
-            <legend><i class="icon-group"></i> Users
-            </legend>
-            <div class="row-fluid">
-                <table class="table span12">
-                    <tr>
-                        <th><a ng-click="setOrder('username')">Username</a>
-                            <span ng-show="order === 'username'">&uarr;</span><span
-                                    ng-show="order === '-username'">&darr;</span>
-                        </th>
-                        <th>
-                            <a ng-click="setOrder('email')">Email</a><span
-                                ng-show="order === 'email'">&uarr;</span><span
-                                ng-show="order === '-email'">&darr;</span>
-                        </th>
-                        <th>
-                            <a ng-click="setOrder('createdon')">Registered</a><span
-                                ng-show="order === 'createdon'">&uarr;</span><span
-                                ng-show="order === '-createdon'">&darr;</span>
-                        </th>
-                        <th>Actions</th>
-                    </tr>
-                    <tr ng-show="!userlist">
-                        <td colspan="4" class="text-center">
-                            <progress percent="100" class="progress progress-striped active"></progress>
-                        </td>
-                    </tr>
-                    <tr ng-show="userlist && !userlist.length">
-                        <td colspan="4">
-                            No users. There should be at least YOU here. You're
-                            doing it wrong.
-                        </td>
-                    </tr>
-                    <tr ng-repeat="user in userlist.slice(begin, end)|orderBy:order">
-                        <td>
-                            <a ng-click="view(user)">{{
+
+  </div>
+  <div class="row-fluid">
+    <div ng-controller="AdminOrgListCtrl" class="span12 well">
+      <fieldset>
+        <legend> Orgs
+        </legend>
+        <div class="row-fluid">
+          <div class="span12 text-right">
+            <a ng-click="openAddOrgDialog()">Add Org</a>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="center span12">
+            <table class="table">
+              <tr>
+                <th><a ng-click="setOrder('name')">Name</a>
+                  <span ng-show="order === 'name'">&uarr;</span><span
+                      ng-show="order === '-name'">&darr;</span>
+                </th>
+                <th>
+                  <a ng-click="setOrder('state')">State</a><span
+                    ng-show="order === 'state'">&uarr;</span><span
+                    ng-show="order === '-state'">&darr;</span>
+                </th>
+                <th>
+                  <a ng-click="setOrder('contactEmail')">Email</a><span
+                    ng-show="order === 'contactEmail'">&uarr;</span><span
+                    ng-show="order === '-contactEmail'">&darr;</span>
+                </th>
+                <th>Actions</th>
+              </tr>
+              <tr ng-show="!orglist">
+                <td colspan="4" class="text-center">
+                  <progress percent="100"
+                            class="progress progress-striped active"></progress>
+                </td>
+              </tr>
+              <tr ng-show="orglist && !orglist.length">
+                <td colspan="4" class="center">
+                  No orgs.
+                </td>
+              </tr>
+              <tr ng-repeat="org in orglist|orderBy:order">
+                <td>
+                  {{ org.name }}
+                </td>
+                <td>
+                  {{ org.state }}
+                </td>
+                <td>{{ org.contactEmail }}</td>
+                <td>
+                  <a ng-click="edit(user)"
+                     title="edit {{ user.username }}">
+                    <i class="icon-edit"></i>
+                  </a>
+
+                  <a ng-hide="user.admin"
+                     ng-click="openConfirmDeleteUserDialog(user)"
+                     title="delete {{ user.username }}">
+                    <i class="icon-remove"></i>
+                  </a>
+
+                </td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+
+      </fieldset>
+
+
+    </div>
+
+  </div>
+</div>
+<div ng-controller="AdminUserListCtrl" class="span6 well">
+  <fieldset>
+    <legend><i class="icon-group"></i> Users
+    </legend>
+    <div class="row-fluid">
+      <div class="center span12">
+        <table class="table">
+          <tr>
+            <th><a ng-click="setOrder('username')">Username</a>
+              <span ng-show="order === 'username'"><i class="icon-sort-by-alphabet"></i></span><span
+                  ng-show="order === '-username'"><i class="icon-sort-by-alphabet-alt"></i></span>
+            </th>
+            <th>
+              <a ng-click="setOrder('email')">Email</a><span
+                ng-show="order === 'email'"><i class="icon-sort-by-alphabet"></i></span><span
+                ng-show="order === '-email'"><i class="icon-sort-by-alphabet-alt"></i></span>
+            </th>
+            <th>
+              <a ng-click="setOrder('createdon')">Registered</a><span
+                ng-show="order === 'createdon'"><i class="icon-sort-by-alphabet"></i></span><span
+                ng-show="order === '-createdon'"><i class="icon-sort-by-alphabet-alt"></i></span>
+            </th>
+            <th>Actions</th>
+          </tr>
+          <tr ng-show="!userlist">
+            <td colspan="4" class="center">
+              <progress percent="100"
+                        class="progress progress-striped active"></progress>
+            </td>
+          </tr>
+          <tr ng-show="userlist && !userlist.length">
+            <td colspan="4">
+              No users. There should be at least YOU here.
+              You're
+              doing it wrong.
+            </td>
+          </tr>
+          <tr ng-repeat="user in userlist.slice(begin, end)|orderBy:order">
+            <td>
+              <a ng-click="openViewUserDialog(user)">{{
                                                      user.username
                                                      }}</a>
-                        </td>
-                        <td>
-                            <a ng-click="view(user)">{{
-                                                     user.email
-                                                     }}</a>
-                        </td>
-                        <td>{{ user.createdon|date }}</td>
-                        <td>
-                            <a ng-click="edit(user)"
-                               title="Edit {{ user.username }}"></a> <span
-                                ng-show="!user.admin"><a
-                                ng-click="confirmDelete(user)"
-                                title="delete {{ user.username }}"></a></span>
-                        </td>
-                    </tr>
-                </table>
-                    <pagination boundary-links="true" num-pages="noOfPages" current-page="currentPage" class="text-center pagination-small" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+            </td>
+            <td>
+              <a ng-href="mailto:{{ user.email }}"><i
+                  class="icon-envelope-alt"></i> {{
+                                                 user.email
+                                                 }}</a>
+            </td>
+            <td>{{ user.createdon|date }}</td>
+            <td>
+              <a ng-click="openEditUserDialog(user)"
+                 title="Edit {{ user.username }}"><i
+                  class="icon-edit"></i></a> <a
+                ng-hide="user.admin"
+                ng-click="openConfirmDeleteUserDialog(user)"
+                title="delete {{ user.username }}"><i
+                class="icon-remove"></i></a>
+            </td>
+          </tr>
+        </table>
+      </div>
 
-            </div>
-
-        </fieldset>
+      <pagination boundary-links="true" num-pages="noOfPages"
+                  current-page="currentPage"
+                  class="text-center pagination-small"
+                  previous-text="&lsaquo;" next-text="&rsaquo;"
+                  first-text="&laquo;"
+                  last-text="&raquo;"></pagination>
 
     </div>
+
+  </fieldset>
+
+</div>
 </div>
 <div class="row-fluid">
-    <div ng-controller="AdminOrgListCtrl" class="span6">
-        <fieldset>
-            <legend> Orgs
-            </legend>
-            <div class="row-fluid">
-                <div class="span12">
-                    <a data-reveal-id="addOrg">Add Org</a>
-                </div>
-            </div>
-            <div class="row-fluid">
-                <table class="ink-table span12">
-                    <tr>
-                        <th><a ng-click="setOrder('name')">Name</a>
-                            <span ng-show="order === 'name'">&uarr;</span><span
-                                    ng-show="order === '-name'">&darr;</span>
-                        </th>
-                        <th>
-                            <a ng-click="setOrder('state')">State</a><span
-                                ng-show="order === 'state'">&uarr;</span><span
-                                ng-show="order === '-state'">&darr;</span>
-                        </th>
-                        <th>
-                            <a ng-click="setOrder('contactEmail')">Email</a><span
-                                ng-show="order === 'contactEmail'">&uarr;</span><span
-                                ng-show="order === '-contactEmail'">&darr;</span>
-                        </th>
-                        <th>Actions</th>
-                    </tr>
-                    <tr ng-show="!orglist">
-                        <td colspan="4" class="text-center">
-                             <progress percent="100" class="progress progress-striped active"></progress>
-                        </td>
-                    </tr>
-                    <tr ng-show="orglist && !orglist.length">
-                        <td colspan="4" class="text-center">
-                            No orgs.
-                        </td>
-                    </tr>
-                    <tr ng-repeat="org in orglist|orderBy:order">
-                        <td>
-                            {{ org.name }}
-                        </td>
-                        <td>
-                            {{ org.state }}
-                        </td>
-                        <td>{{ org.contactEmail }}</td>
-                        <td>
-                            <a ng-click="edit(user)"
-                               title="edit {{ user.username }}"><i
-                                    class="icon-edit"></i></a>
-                            <span ng-show="!user.admin">
-                                <a ng-click="confirmDelete(user)"
-                                   title="delete {{ user.username }}"
-                                   data-reveal-id="confirmDelete"><i
-                                        class="icon-remove"></i></a>
-                            </span>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-
-        </fieldset>
-
-
-    </div>
 </div>
-<reveal id="confirmDelete" class="small"
-        on-closed="onCloseConfirmDelete()">
-    <h4>Delete user "{{ selected.deleteUser.username }}"?</h4>
+<script type="text/ng-template" id="confirmDelete">
+  <div class="modal-header"><h4>Delete user "{{ selected.deleteUser.username
+                                }}"?</h4></div>
 
+  <div class="modal-body">
     <div class="row-fluid">
-        <div class="span12"><p>Are you sure you want
-                               to delete user "{{
-                               selected.deleteUser.username
-                               }}"
-                               ({{ selected.deleteUser.email
-                               }})?</p>
-        </div>
+      <div class="span12"><p>Are you sure you want
+                             to delete user "{{
+                             selected.deleteUser.username
+                             }}"
+                             ({{ selected.deleteUser.email
+                             }})?</p>
+      </div>
     </div>
-
+  </div>
+  <div class="modal-footer">
     <div class="row-fluid">
-        <div class="span12">
-            <button class="ink-button" ng-click="cancelDeleteUser()">
-                No!
-            </button>
-            <ladda-button ladda="deleteProgress" class="ink-button"
-                          ng-click="delete(selected.deleteUser)">
-                KILL
-            </ladda-button>
+      <div class="span12">
+        <button ng-click="cancelDeleteUser()" class="btn">
+          n/m
+        </button>
+        <ladda-button ladda="deleteProgress" class="btn-danger"
+                      ng-click="delete(selected.deleteUser)">
+          KILL
+        </ladda-button>
 
-        </div>
+      </div>
     </div>
-    <a class="close-reveal-modal">&#215;</a>
-</reveal>
+  </div>
+</script>
 
-<reveal id="viewUser" class="medium" on-closed="onCloseViewUser()">
-    <div ng-controller="AdminEditUserCtrl">
-        <h4 ng-show="toggles.userEditMode">Edit User</h4>
-        <h4 ng-hide="toggles.userEditMode">View User</h4>
-        <fieldset>
-            <legend>{{ selected.viewUser.username }}</legend>
-            <form name="editUserForm">
-                <div class="row-fluid">
-                    <div class="span3">
-                        <label for="editUserForm-email">Email:</label>
-                    </div>
-                    <div class="span9">
-                        <strong ng-hide="toggles.userEditMode"><a
-                                ng-href="mailto:{{ selected.viewUser.email}}">{{
-                                                                              selected.viewUser.email
-                                                                              }}</a></strong>
-                        <input id="editUserForm-email" type="email" required
-                               ng-show="toggles.userEditMode"
-                               ng-model="selected.editUser.email"/>
-                    </div>
-                </div>
-                <div class="row-fluid" ng-show="selected.viewUser.url">
-                    <div class="span3">
-                        <label for="editUserForm-url">URL:</label>
-                    </div>
-                    <div class="span9">
-                        <strong ng-hide="toggles.userEditMode"><a
-                                ng-href="{{ selected.viewUser.url }}"
-                                target="_blank">{{
-                                                selected.viewUser.url
-                                                }}</a></strong>
-                        <input id="editUserForm-url" type="text"
-                               ng-show="toggles.userEditMode"
-                               ng-model="selected.editUser.url"/>
-                    </div>
-                </div>
-                <div class="row-fluid"
-                     ng-show="selected.viewUser.admin || toggles.userEditMode">
-                    <div class="span3">
-                        <label for="editUserForm-admin">Admin:</label>
-                    </div>
-                    <div class="span9">
-                        <span ng-hide="toggles.userEditMode">YES</span>
-                        <select id="editUserForm-admin"
-                                ng-show="toggles.userEditMode"
-                                ng-model="selected.editUser.admin">
-                            <option value="true">YES</option>
-                            <option value="false">NO</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row-fluid" ng-show="toggles.userEditMode">
-                    <div class="span3">
-                        <label for="editUserForm-password1">New PW:</label>
-                    </div>
-                    <div class="span9">
-                        <input id="editUserForm-password1" type="password"
-                               ng-model="selected.editUser.password1"/>
-                    </div>
-                </div>
-                <div class="row-fluid" ng-show="toggles.userEditMode">
-                    <div class="span3">
-                        <label for="editUserForm-password2">Again:</label>
-                    </div>
-                    <div class="span9">
-                        <input id="editUserForm-password2" type="password"
-                               ng-model="selected.editUser.password2"/>
-                    </div>
-                </div>
-                <div class="row-fluid">
-                    <div class="span12">
-                        <a class="ink-button" ng-hide="toggles.userEditMode"
-                           ng-click="toggles.userEditMode = true">Modify</a>
-                        <a class="ink-button" ng-show="toggles.userEditMode"
-                           ng-click="cancelEdit()">Cancel</a>
-                        <ladda-button ladda="saveProgress"
-                                      ng-show="toggles.userEditMode"
-                                      ng-click="save(selected.editUser)">Save
-                        </ladda-button>
-                    </div>
-                </div>
-                <div class="alert alert" ng-show="saveUserFailure">
-                    {{ saveUserFailure }}
-                </div>
-            </form>
-        </fieldset>
-
-        <a class="close-reveal-modal">&#215;</a>
+<script type="text/ng-template" id="viewUser">
+  <div class="modal-header">
+    <h4 ng-show="toggles.userEditMode">Edit User</h4>
+    <h4 ng-hide="toggles.userEditMode">View User</h4>
+  </div>
+  <div class="modal-body">
+    <div ng-show="toggles.userEditMode">
+      <schema-form form-name="editUserForm"
+                   model="selected.editUser"
+                   schema-name="User">
+      </schema-form>
     </div>
-</reveal>
-<reveal id="addOrg" class="medium">
-    <div ng-controller="AdminAddOrgCtrl">
-        <h4>Add Organization</h4>
-
-        <schema-form form-name="addOrgForm" model="newOrg"
-                     schema-name="Org"></schema-form>
-        <a class="close-reveal-modal">&#215;</a>
+    <div ng-hide="toggles.userEditMode">
+      <schema-form form-name="viewUserForm"
+                   model="selected.viewUser"
+                   schema-name="User" read-only="true">
+      </schema-form>
     </div>
-</reveal>
+
+
+  </div>
+  <div class="modal-footer" ng-show="toggles.userEditMode">
+    <div class="row-fluid">
+      <div class="span12">
+        <button ng-click="cancelEditUser()" class="btn">
+          Cancel
+        </button>
+        <ladda-button ladda="editUserProgress"
+                      class="btn-primary"
+                      ng-click="saveUser(selected.editUser)">
+          Save
+        </ladda-button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" ng-hide="toggles.userEditMode">
+    <div class="row-fluid">
+      <div class="span12">
+        <button ng-click="toggles.userEditMode = true" class="btn">
+          Edit
+        </button>
+        <button ng-click="cancelEditUser()" class="btn btn-primary">
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/ng-template" id="addOrg">
+  <div class="modal-header">
+    <h4>Add Organization</h4>
+  </div>
+  <div class="modal-body">
+    <schema-form form-name="addOrgForm" model="newOrg"
+                 schema-name="Org"></schema-form>
+  </div>
+  <div class="modal-footer">
+    <button ng-click="cancelAddOrg()" class="btn">
+      Cancel
+    </button>
+    <ladda-button ladda="addOrgProgress"
+                  class="btn-primary"
+                  ng-click="addOrg(newOrg)">
+      Save
+    </ladda-button>
+  </div>
+</script>
 </div>
 </div>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{Node.js Globals, Node.js v0.10.15 Core Modules, node_modules}" />
+    <file url="file://$PROJECT_DIR$/models" libraries="{Node.js Globals, Node.js v0.10.15 Core Modules, node_modules}" />
+    <file url="file://$PROJECT_DIR$/public" libraries="{HTML5 / EcmaScript 5, support}" />
+    <file url="file://$PROJECT_DIR$/public/test" libraries="{Node.js Globals, Node.js v0.10.15 Core Modules, node_modules, test-support}" />
+    <file url="file://$PROJECT_DIR$/routes" libraries="{Node.js Globals, Node.js v0.10.15 Core Modules, node_modules}" />
+    <file url="PROJECT" libraries="{node_modules, support, test-support}" />
+    <excludedPredefinedLibrary name="HTML" />
+  </component>
+</project>
+

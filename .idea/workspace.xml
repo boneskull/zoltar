@@ -1,0 +1,1078 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="Project Files" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2e8361cb-fdd8-4fb4-8607-6b6624b18662" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLinters/jshint.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/node_modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/other.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/test_support.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/testrunner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/zoltar.iml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Procfile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/npm-shrinkwrap.json" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/io/admin-io.js" afterPath="$PROJECT_DIR$/routes/io/admin-io.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/partials/admin.html" afterPath="$PROJECT_DIR$/public/partials/admin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/admin/admin.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/admin/admin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/bootstrap.min.css" afterPath="$PROJECT_DIR$/public/stylesheets/bootstrap.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.ejs" afterPath="$PROJECT_DIR$/views/index.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/io.js" afterPath="$PROJECT_DIR$/utils/io.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/common/ladda.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/common/ladda.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/login.js" afterPath="$PROJECT_DIR$/routes/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/partials/schemaform.html" afterPath="$PROJECT_DIR$/public/partials/schemaform.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/common/directives/schemaform.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/common/directives/schemaform.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/common/socket.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/common/socket.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.less" afterPath="$PROJECT_DIR$/public/stylesheets/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/schemas/user.json" afterPath="$PROJECT_DIR$/public/schemas/user.json" />
+    </list>
+    <ignored path="zoltar.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="/index.ejs" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376365394612" ignored="false" />
+    <file path="/Dummy.txt" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376535140360" ignored="false" />
+    <file path="/Gruntfile.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376535686112" ignored="false" />
+    <file path="/globals.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375590604365" ignored="false" />
+    <file path="/index.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376200330479" ignored="false" />
+    <file path="/mongosetup.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375648464619" ignored="false" />
+    <file path="$PROJECT_DIR$/../angular-app/client/gruntFile.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375648846144" ignored="false" />
+    <file path="/app.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375649014202" ignored="false" />
+    <file path="/config.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376084780578" ignored="false" />
+    <file path="/server.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376422398195" ignored="false" />
+    <file path="/user.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376073013056" ignored="false" />
+    <file path="/*.regexp" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376522037420" ignored="false" />
+    <file path="/routes.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375652062106" ignored="false" />
+    <file path="/login.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376537240033" ignored="false" />
+    <file path="/karma.conf.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376188611909" ignored="false" />
+    <file path="$PROJECT_DIR$/public/javascripts/dist/zoltar-0.0.0.min.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375678661170" ignored="false" />
+    <file path="$PROJECT_DIR$/public/javascripts/dist/zoltar-0.0.0.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375684611738" ignored="false" />
+    <file path="/reveal.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375917035839" ignored="false" />
+    <file path="/loginctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376366145953" ignored="false" />
+    <file path="/zoltar.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376277059319" ignored="false" />
+    <file path="/ladda.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375854939238" ignored="false" />
+    <file path="/package.json" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376189992160" ignored="false" />
+    <file path="/style.css" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375683511469" ignored="false" />
+    <file path="/logout.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376200015561" ignored="false" />
+    <file path="/routing.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376200640775" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/styles/tableview.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375730740653" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/report.less" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375726822265" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/report.css" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375727008792" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/partials/custom-report-edit.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375728979422" ignored="false" />
+    <file path="/custom-report-edit.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375727045645" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/controllers/customreportctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375727601380" ignored="false" />
+    <file path="/customreportctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375727074343" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/styles/config.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375730583825" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/controllers/configctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375730360418" ignored="false" />
+    <file path="/configctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376089990953" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/services/classes/table.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375739898433" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/User.py" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375730220882" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/services/userprefs.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375730663601" ignored="false" />
+    <file path="/userprefs.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376522554522" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/controllers/reportctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375730369647" ignored="false" />
+    <file path="/tableview.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376515535275" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/nstyles" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375739930285" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/report.py" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375740869293" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/services/whiteboard.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375740547407" ignored="false" />
+    <file path="/whiteboard.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375738921251" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/services/report.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375731168795" ignored="false" />
+    <file path="/report.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375731146643" ignored="false" />
+    <file path="/report.py" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376088321585" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/services/classes/pinnedobject.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375740381617" ignored="false" />
+    <file path="/pinnedobject.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375739861049" ignored="false" />
+    <file path="/table.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376514882392" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/services/config.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375739948440" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/services/persistence.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375740597345" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/partials/pinned-item-summary.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375740951365" ignored="false" />
+    <file path="/pinned-item-summary.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375740938180" ignored="false" />
+    <file path="/sanitize.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375763722612" ignored="false" />
+    <file path="/admin.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376549969017" ignored="false" />
+    <file path="/headerctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376365839740" ignored="false" />
+    <file path="/admin.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376550218940" ignored="false" />
+    <file path="/socket.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376550042316" ignored="false" />
+    <file path="/a.dummy" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376517212579" ignored="false" />
+    <file path="/style.less" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376549413330" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/demo/aqr/lib/textual/v1/static/reporting.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375914832226" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/stylelib.py" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375899597347" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/demo/aqr/lib/textual/v1/static/reporting.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375902111791" ignored="false" />
+    <file path="/reporting.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375901988837" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/styles/tableview.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376515639994" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/static/modules/dec-aq.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375915225728" ignored="false" />
+    <file path="/dec-aq.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375914823401" ignored="false" />
+    <file path="/admin-io.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376550463364" ignored="false" />
+    <file path="/job.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376025488326" ignored="false" />
+    <file path="/org.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376109882043" ignored="false" />
+    <file path="/telephone.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376026941812" ignored="false" />
+    <file path="/a.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376550144423" ignored="false" />
+    <file path="/state.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376028190139" ignored="false" />
+    <file path="/io.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376199352507" ignored="false" />
+    <file path="/main.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376031432018" ignored="false" />
+    <file path="/xsrf.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376031467238" ignored="false" />
+    <file path="/a.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376550140688" ignored="false" />
+    <file path="/bootstrap.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376034079224" ignored="false" />
+    <file path="/angular-mongoose-gen.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376080460693" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/bannercreatorctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376084660308" ignored="false" />
+    <file path="/bannercreatorctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376084495401" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/nstyles" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376523983467" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/report.py" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376517320189" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/services/config.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376088279687" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/.idea/workspace.xml" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376099591889" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/styles/split.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376090168902" ignored="false" />
+    <file path="/split.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376084838525" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/splitctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376084876346" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/services/classes/banner.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376085054815" ignored="false" />
+    <file path="/banner.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376085054411" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/report.less" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376516594743" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/reportctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376516671620" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/services/tablesetconfig.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376523958830" ignored="false" />
+    <file path="/tablesetconfig.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376087810011" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/reportconfig.py" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376088415768" ignored="false" />
+    <file path="/reportconfig.py" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376088408414" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/services/report.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376088601045" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/partials/table-set.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376089335149" ignored="false" />
+    <file path="/table-set.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376089228983" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/tablesetctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376090012394" ignored="false" />
+    <file path="/tablesetctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376089266018" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/styles/config.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376523983467" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/configctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376467078860" ignored="false" />
+    <file path="/config.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376521296272" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/partials/custom-report-edit.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376526287821" ignored="false" />
+    <file path="/preinit.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376291550821" ignored="false" />
+    <file path="/index.spec.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376200851968" ignored="false" />
+    <file path="$PROJECT_DIR$/../docular/lib/scripts/Doc.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376199595389" ignored="false" />
+    <file path="/user-io.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376200730283" ignored="false" />
+    <file path="/schemaform.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376549910720" ignored="false" />
+    <file path="/schemaform.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376549550302" ignored="false" />
+    <file path="/org.json" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376261191006" ignored="false" />
+    <file path="/foundation.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376276021205" ignored="false" />
+    <file path="/ink.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376331074078" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/whiteboarddialogctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376431105727" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/partials/whiteboard-dialog.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376431105727" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/whiteboardctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376431105727" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/partials/pinned-item.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376432034211" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/partials/whiteboard.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376435190325" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/misc.py" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376432448111" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/customreportctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376435193884" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/directives/tableview.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376435609174" ignored="false" />
+    <file path="/reportctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376467581794" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/nstyles" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376467740341" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/partials/report-pinned-item.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376467797226" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/services/classes/table.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376515302637" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/demo/report/tables/lib/thingy2/v1/styles.xml" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376515024490" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/demo/report/tables/lib/thingy/v1/meta.xml" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376515702402" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/demo/report/tables/lib/thingy2/v1/meta.xml" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376515061106" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/tableviewctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376515580634" ignored="false" />
+    <file path="/tableviewctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376515568562" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/partials/report-list.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376523774421" ignored="false" />
+    <file path="/report-list.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376521425510" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/services/userprefs.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376522584352" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/services/bannerconfig.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376523944433" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/ajax.py" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376524166093" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/static/modules/dec-timing.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376524369769" ignored="false" />
+    <file path="/dec-timing.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376524367327" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/rep-app.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376524587692" ignored="false" />
+    <file path="/rep-app.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376524500980" ignored="false" />
+    <file path="/user.json" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376549506876" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="false" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="zoltar" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.48580787">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="schemaform.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/partials/schemaform.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="25" column="58" selection-start="1456" selection-end="1456" vertical-scroll-proportion="-5.844156">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="socket.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/common/socket.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="48" column="28" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="admin-io.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/routes/io/admin-io.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="134" column="37" selection-start="4081" selection-end="4081" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="io.js" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/utils/io.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="38" column="43" selection-start="1074" selection-end="1074" vertical-scroll-proportion="0.40350878">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="admin.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/partials/admin.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="341" column="8" selection-start="11127" selection-end="11127" vertical-scroll-proportion="-5.038961">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="admin.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/admin/admin.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="245" column="11" selection-start="6718" selection-end="6718" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="org.js" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/models/org.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="18" column="0" selection-start="471" selection-end="471" vertical-scroll-proportion="0.33333334">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="user.json" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/schemas/user.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="24" column="6" selection-start="441" selection-end="441" vertical-scroll-proportion="-16.615385">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="org.json" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/schemas/org.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="39" column="30" selection-start="933" selection-end="933" vertical-scroll-proportion="-19.76923">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Gruntfile.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="69" column="0" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="breeze" />
+      </map>
+    </option>
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/public/javascripts/zoltar/index/index.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/zoltar/common/controllers/loginctrl.js" />
+        <option value="$PROJECT_DIR$/utils/io.js" />
+        <option value="$PROJECT_DIR$/routes/login.js" />
+        <option value="$PROJECT_DIR$/Gruntfile.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/zoltar/common/ladda.js" />
+        <option value="$PROJECT_DIR$/public/stylesheets/style.less" />
+        <option value="$PROJECT_DIR$/public/schemas/user.json" />
+        <option value="$PROJECT_DIR$/public/partials/schemaform.html" />
+        <option value="$PROJECT_DIR$/public/javascripts/zoltar/common/directives/schemaform.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/zoltar/common/socket.js" />
+        <option value="$PROJECT_DIR$/public/partials/admin.html" />
+        <option value="$PROJECT_DIR$/routes/io/admin-io.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/zoltar/admin/admin.js" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
+    <option name="width" value="1920" />
+    <option name="height" value="1174" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>CSS</id>
+          </State>
+          <State>
+            <id>Code quality toolsJavaScript</id>
+          </State>
+          <State>
+            <id>Code style issuesJavaScript</id>
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>JSValidateJSDoc</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alert" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stylesheets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="schemas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="options.lastSelected" value="preferences.sourceCode.JavaScript" />
+    <property name="recentsLimit" value="5" />
+    <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
+    <property name="JavaScriptLanguageLevel" value="JS_1_8_5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test/support/angular-mocks.js" />
+    <property name="JavaScriptPreferStrict" value="true" />
+    <property name="GoToClass.includeJavaFiles" value="true" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="FullScreen" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <PyConsoleSettings />
+    </option>
+    <option name="myDjangoConsoleState">
+      <PyConsoleSettings />
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/stylesheets" />
+      <recent name="$PROJECT_DIR$/public/stylesheets/support" />
+      <recent name="$PROJECT_DIR$/public/stylesheets/less" />
+      <recent name="$PROJECT_DIR$/utils" />
+      <recent name="$PROJECT_DIR$/public/schemas" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.client debug">
+    <configuration default="true" type="NodeunitConfigurationType" factoryName="Nodeunit">
+      <setting name="nodePath" value="/usr/local/bin/node" />
+      <envs />
+      <setting name="passParentEnvVars" value="true" />
+      <setting name="nodeunitModuleDir" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="testType" value="JS_FILE" />
+      <setting name="jsFile" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
+      <node-js-remote-debug />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="zoltar" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="zoltar" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Remote" singleton="true">
+      <JSRemoteDebuggerConfigurationSettings>
+        <option name="engineId" value="chrome" />
+        <option name="fileUrl" value="" />
+      </JSRemoteDebuggerConfigurationSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
+      <method />
+    </configuration>
+    <configuration default="false" name="client debug" type="JavascriptDebugSession" factoryName="Remote" singleton="true">
+      <JSRemoteDebuggerConfigurationSettings>
+        <option name="engineId" value="chrome" />
+        <option name="fileUrl" value="http://localhost:3000" />
+      </JSRemoteDebuggerConfigurationSettings>
+      <RunnerSettings RunnerId="JavascriptDebugRunner" />
+      <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="server debug" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug" singleton="true">
+      <node-js-remote-debug />
+      <RunnerSettings RunnerId="NodeJS.debug" />
+      <ConfigurationWrapper RunnerId="NodeJS.debug" />
+      <method />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.client debug" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js Remote Debug.server debug" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
+    <option name="ACTIVE_ACTIONS" value="SHOW_CLASSES,ALPHA_COMPARATOR" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2e8361cb-fdd8-4fb4-8607-6b6624b18662" name="Default" comment="" />
+      <created>1375585156656</created>
+      <updated>1375585156656</updated>
+    </task>
+    <task id="LOCAL-00001" summary="now with authentication">
+      <created>1375684548490</created>
+      <updated>1375684548490</updated>
+    </task>
+    <task id="LOCAL-00002" summary="cleaning up bad formatting">
+      <created>1375684588731</created>
+      <updated>1375684588731</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fixing package.json, using node-dev instead of supervisor">
+      <created>1375732977477</created>
+      <updated>1375732977477</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fiddling with package.json mode">
+      <created>1375732993157</created>
+      <updated>1375732993157</updated>
+    </task>
+    <task id="LOCAL-00005" summary="admin console.  maybe that sanitize is a nice little piece of route middleware">
+      <created>1375766813599</created>
+      <updated>1375766813599</updated>
+    </task>
+    <task id="LOCAL-00006" summary="real time stuff">
+      <created>1375897333609</created>
+      <updated>1375897333610</updated>
+    </task>
+    <task id="LOCAL-00007" summary="spinner in user list; fixing a callback">
+      <created>1375916243155</created>
+      <updated>1375916243155</updated>
+    </task>
+    <task id="LOCAL-00008" summary="broadcasting userlist. fixing stupid reformatting issue.">
+      <created>1375916648595</created>
+      <updated>1375916648595</updated>
+    </task>
+    <task id="LOCAL-00009" summary="improvements to reveal directive">
+      <created>1375917330278</created>
+      <updated>1375917330278</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fixing url field">
+      <created>1375917820853</created>
+      <updated>1375917820853</updated>
+    </task>
+    <task id="LOCAL-00011" summary="chaining some promises. view/edit mode, sort of">
+      <created>1375931806876</created>
+      <updated>1375931806876</updated>
+    </task>
+    <task id="LOCAL-00012" summary="error handling mainly">
+      <created>1375932812958</created>
+      <updated>1375932812958</updated>
+    </task>
+    <task id="LOCAL-00013" summary="icons and refactoring stuff into its own controller for edit/view dialog. added created date field to user model. added password setting ability">
+      <created>1375935189720</created>
+      <updated>1375935189720</updated>
+    </task>
+    <task id="LOCAL-00014" summary="lots of cleanup mainly">
+      <created>1376032427926</created>
+      <updated>1376032427926</updated>
+    </task>
+    <task id="LOCAL-00015" summary="bootstrapping state data">
+      <created>1376035665071</created>
+      <updated>1376035665071</updated>
+    </task>
+    <task id="LOCAL-00016" summary="boostrapping schema data on server/client with mongoose-gen">
+      <created>1376080628783</created>
+      <updated>1376080628783</updated>
+    </task>
+    <task id="LOCAL-00017" summary="decruft">
+      <created>1376080653074</created>
+      <updated>1376080653074</updated>
+    </task>
+    <task id="LOCAL-00018" summary="doing object validation using es5-sham.  preloading schema objects over http instead of bootstrapping them">
+      <created>1376107111910</created>
+      <updated>1376107111910</updated>
+    </task>
+    <task id="LOCAL-00019" summary="clientside testing begins">
+      <created>1376164664310</created>
+      <updated>1376164664310</updated>
+    </task>
+    <task id="LOCAL-00020" summary="getting docular sort of working">
+      <created>1376202414378</created>
+      <updated>1376202414378</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fixing broken socket">
+      <created>1376254524249</created>
+      <updated>1376254524249</updated>
+    </task>
+    <task id="LOCAL-00022" summary="oh god bootstrap">
+      <created>1376362887346</created>
+      <updated>1376362887346</updated>
+    </task>
+    <task id="LOCAL-00023" summary="moar bootstrap">
+      <created>1376372861769</created>
+      <updated>1376372861769</updated>
+    </task>
+    <task id="LOCAL-00024" summary="procfile for heroku">
+      <created>1376377959340</created>
+      <updated>1376377959340</updated>
+    </task>
+    <task id="LOCAL-00025" summary="port problem?">
+      <created>1376378178715</created>
+      <updated>1376378178715</updated>
+    </task>
+    <task id="LOCAL-00026" summary="trying to fix busted db connection among other things">
+      <created>1376378958169</created>
+      <updated>1376378958169</updated>
+    </task>
+    <task id="LOCAL-00027" summary="long polling for heroku/appfog/whatever">
+      <created>1376380421882</created>
+      <updated>1376380421882</updated>
+    </task>
+    <task id="LOCAL-00028" summary="trying app.io instead of express.io">
+      <created>1376380695451</created>
+      <updated>1376380695451</updated>
+    </task>
+    <task id="LOCAL-00029" summary="wtf heroku">
+      <created>1376380969956</created>
+      <updated>1376380969956</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="22" width="1920" height="1174" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09280303" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922202" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16221985" sideWeight="0.83017075" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15048026" sideWeight="0.58349144" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16982922" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.22675522" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922202" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3285985" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23244782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39943075" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" value="wtf heroku" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+    <MESSAGE value="admin console.  maybe that sanitize is a nice little piece of route middleware" />
+    <MESSAGE value="real time stuff" />
+    <MESSAGE value="spinner in user list; fixing a callback" />
+    <MESSAGE value="broadcasting userlist. fixing stupid reformatting issue." />
+    <MESSAGE value="improvements to reveal directive" />
+    <MESSAGE value="fixing url field" />
+    <MESSAGE value="chaining some promises. view/edit mode, sort of" />
+    <MESSAGE value="error handling mainly" />
+    <MESSAGE value="icons and refactoring stuff into its own controller for edit/view dialog. added created date field to user model. added password setting ability" />
+    <MESSAGE value="lots of cleanup mainly" />
+    <MESSAGE value="bootstrapping state data" />
+    <MESSAGE value="boostrapping schema data on server/client with mongoose-gen" />
+    <MESSAGE value="decruft" />
+    <MESSAGE value="doing object validation using es5-sham.  preloading schema objects over http instead of bootstrapping them" />
+    <MESSAGE value="clientside testing begins" />
+    <MESSAGE value="getting docular sort of working" />
+    <MESSAGE value="fixing broken socket" />
+    <MESSAGE value="oh god bootstrap" />
+    <MESSAGE value="moar bootstrap" />
+    <MESSAGE value="procfile for heroku" />
+    <MESSAGE value="port problem?" />
+    <MESSAGE value="trying to fix busted db connection among other things" />
+    <MESSAGE value="long polling for heroku/appfog/whatever" />
+    <MESSAGE value="trying app.io instead of express.io" />
+    <MESSAGE value="wtf heroku" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="25" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="20" selection-start="1508" selection-end="1508" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/zoltar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="22" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/common/ladda.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="24" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="12" selection-start="605" selection-end="605" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/common/directives/schemaform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="51" selection-start="2326" selection-end="2326" vertical-scroll-proportion="-18.411764">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/common/socket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="28" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/partials/schemaform.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="58" selection-start="1456" selection-end="1456" vertical-scroll-proportion="-5.844156">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/partials/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="341" column="8" selection-start="11127" selection-end="11127" vertical-scroll-proportion="-5.038961">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/io/admin-io.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="134" column="37" selection-start="4081" selection-end="4081" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="0" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/schemas/org.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="30" selection-start="933" selection-end="933" vertical-scroll-proportion="-19.76923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/schemas/user.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="6" selection-start="441" selection-end="441" vertical-scroll-proportion="-16.615385">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/io.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="43" selection-start="1074" selection-end="1074" vertical-scroll-proportion="0.40350878">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/admin/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="245" column="11" selection-start="6718" selection-end="6718" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/org.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="471" selection-end="471" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
