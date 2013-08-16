@@ -125,7 +125,8 @@ module.exports = function (app) {
           state: req.data.state,
           contactEmail: req.data.contactEmail,
           contactPhone: req.data.contactPhone,
-          preferredContactMethod: req.data.preferredContactMethod
+          preferredContactMethod: req.data.preferredContactMethod,
+          users: req.data.users
         }), dfrd = Q.defer();
         org.save(function (err) {
           if (err) {

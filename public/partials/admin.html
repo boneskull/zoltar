@@ -15,8 +15,13 @@
   <div class="row-fluid">
     <div ng-controller="AdminAddUserCtrl" class="span12 well">
       <fieldset>
-        <legend><i class="icon-plus"></i> Add a User  <a ng-click="toggles.collapseAddUser = !toggles.collapseAddUser"><i class="icon-caret-down" ng-hide="toggles.collapseAddUser"></i><i class="icon-caret-up" ng-show="toggles.collapseAddUser"></i></a></legend>
-        <form name="addUserForm" novalidate="novalidate" collapse="toggles.collapseAddUser"
+        <legend><i class="icon-plus"></i> Add a User <a
+            ng-click="toggles.collapseAddUser = !toggles.collapseAddUser"><i
+            class="icon-caret-down" ng-hide="toggles.collapseAddUser"></i><i
+            class="icon-caret-up" ng-show="toggles.collapseAddUser"></i></a>
+        </legend>
+        <form name="addUserForm" novalidate="novalidate"
+              collapse="toggles.collapseAddUser"
               class="form-horizontal" ng-submit="addUser()">
           <div class="control-group">
             <label class="control-label"
@@ -107,30 +112,35 @@
   <div class="row-fluid">
     <div ng-controller="AdminOrgListCtrl" class="span12 well">
       <fieldset>
-        <legend> Orgs
+        <legend> Organizations <a
+            ng-click="toggles.collapseOrgList = !toggles.collapseOrgList"><i
+            class="icon-caret-down" ng-hide="toggles.collapseOrgList"></i><i
+            class="icon-caret-up" ng-show="toggles.collapseOrgList"></i></a>
         </legend>
-        <div class="row-fluid">
-          <div class="span12 text-right">
-            <a ng-click="openAddOrgDialog()">Add Org</a>
+        <div class="row-fluid" collapse="toggles.collapseOrgList">
+          <div class="row-fluid">
+            <div class="span12 text-right">
+              <a ng-click="openAddOrgDialog()">Add Org</a>
+            </div>
           </div>
-        </div>
-        <div class="row-fluid">
           <div class="center span12">
             <table class="table">
               <tr>
                 <th><a ng-click="setOrder('name')">Name</a>
-                  <span ng-show="order === 'name'">&uarr;</span><span
-                      ng-show="order === '-name'">&darr;</span>
+                  <span ng-show="order === 'name'"><i
+                  class="icon-sort-by-alphabet"></i></span><span
+                      ng-show="order === '-name'"><i
+                  class="icon-sort-by-alphabet-alt"></i></span>
                 </th>
                 <th>
                   <a ng-click="setOrder('state')">State</a><span
-                    ng-show="order === 'state'">&uarr;</span><span
-                    ng-show="order === '-state'">&darr;</span>
+                    ng-show="order === 'state'"><i
+                  class="icon-sort-by-alphabet"></i></span><span
+                    ng-show="order === '-state'"><i
+                  class="icon-sort-by-alphabet-alt"></i></span>
                 </th>
                 <th>
-                  <a ng-click="setOrder('contactEmail')">Email</a><span
-                    ng-show="order === 'contactEmail'">&uarr;</span><span
-                    ng-show="order === '-contactEmail'">&darr;</span>
+                  Users
                 </th>
                 <th>Actions</th>
               </tr>
@@ -152,7 +162,7 @@
                 <td>
                   {{ org.state }}
                 </td>
-                <td>{{ org.contactEmail }}</td>
+                <td>{{ org.users.length }}</td>
                 <td>
                   <a ng-click="edit(user)"
                      title="edit {{ user.username }}">
@@ -181,25 +191,34 @@
 </div>
 <div ng-controller="AdminUserListCtrl" class="span6 well">
   <fieldset>
-    <legend><i class="icon-group"></i> Users
+    <legend><i class="icon-group"></i> Users <a
+        ng-click="toggles.collapseUserList = !toggles.collapseUserList"><i
+        class="icon-caret-down" ng-hide="toggles.collapseUserList"></i><i
+        class="icon-caret-up" ng-show="toggles.collapseUserList"></i></a>
     </legend>
-    <div class="row-fluid">
+    <div class="row-fluid" collapse="toggles.collapseUserList">
       <div class="center span12">
         <table class="table">
           <tr>
             <th><a ng-click="setOrder('username')">Username</a>
-              <span ng-show="order === 'username'"><i class="icon-sort-by-alphabet"></i></span><span
-                  ng-show="order === '-username'"><i class="icon-sort-by-alphabet-alt"></i></span>
+              <span ng-show="order === 'username'"><i
+                  class="icon-sort-by-alphabet"></i></span><span
+                  ng-show="order === '-username'"><i
+                  class="icon-sort-by-alphabet-alt"></i></span>
             </th>
             <th>
               <a ng-click="setOrder('email')">Email</a><span
-                ng-show="order === 'email'"><i class="icon-sort-by-alphabet"></i></span><span
-                ng-show="order === '-email'"><i class="icon-sort-by-alphabet-alt"></i></span>
+                ng-show="order === 'email'"><i
+                class="icon-sort-by-alphabet"></i></span><span
+                ng-show="order === '-email'"><i
+                class="icon-sort-by-alphabet-alt"></i></span>
             </th>
             <th>
               <a ng-click="setOrder('createdon')">Registered</a><span
-                ng-show="order === 'createdon'"><i class="icon-sort-by-alphabet"></i></span><span
-                ng-show="order === '-createdon'"><i class="icon-sort-by-alphabet-alt"></i></span>
+                ng-show="order === 'createdon'"><i
+                class="icon-sort-by-alphabet"></i></span><span
+                ng-show="order === '-createdon'"><i
+                class="icon-sort-by-alphabet-alt"></i></span>
             </th>
             <th>Actions</th>
           </tr>

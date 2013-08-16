@@ -10,15 +10,15 @@ var mongoose = require('mongoose'),
 generator.setConnection(mongoose);
 
 generator.setValidator('email', function (str) {
-    return check(str).isEmail();
+    return !str || check(str).isEmail();
 });
 
 generator.setValidator('tel', function(str) {
-    return /^1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?(\d*))?$/.test(str);
+    return !str || /^1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?(\d*))?$/.test(str);
 });
 
 generator.setValidator('ein', function(str) {
-    return /^\d{2}-\d{7}$/.test(str);
+    return /^\d{2}-?\d{7}$/.test(str);
 });
 
 generator.setDefault('email', function() {

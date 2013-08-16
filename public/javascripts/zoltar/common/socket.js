@@ -48,6 +48,8 @@
           var socket = this._socket;
           // strip internals
           data = angular.fromJson(angular.toJson(data));
+          console.log('sending:');
+          console.log(data);
           socket.emit(eventName, data, function () {
             var args = arguments;
             $log.log('socket: sent ' + eventName);

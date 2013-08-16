@@ -27,6 +27,14 @@ module.exports = function (app) {
 
   });
 
+  app.get('/users', isAdmin, function (req, res) {
+    User.find({}).exec().then(function (users) {
+      res.send(users.map(function (user) {
+        return user.sanitize();
+      }));
+    })
+  });
+
   app.io.route('admin', require('./routes/io/admin-io')(app));
 
   app.io.route('user', require('./routes/io/user-io')(app));

@@ -42,6 +42,10 @@
       "email",
       "url",
       "admin"
-    ]
+    ],
+     "lookup": {
+      "key": "_id",
+      "value": "username"
+    }
   }
 }

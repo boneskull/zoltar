@@ -7,7 +7,8 @@
       "contactName",
       "contactEmail",
       "contactPhone",
-      "preferredContactMethod"
+      "preferredContactMethod",
+      "users"
     ],
     "placeholders": {
       "ein": "00-0000000",
@@ -28,7 +29,10 @@
       "validate": "ein",
       "required": true,
       "trim": true,
-      "title": "EIN"
+      "title": "EIN",
+      "index": {
+        "unique": true
+      }
     },
     "contactName": {
       "type": "String",
@@ -44,9 +48,6 @@
     "contactEmail": {
       "title": "Contact Email",
       "type": "String",
-      "index": {
-        "unique": true
-      },
       "validate": "email",
       "trim": true
     },
@@ -62,7 +63,15 @@
       "enum": ["Phone", "Email"],
       "default": "email",
       "required": true
-    }
+    },
+    "users": [
+      {
+        "type": "ObjectId",
+        "ref": "User",
+        "title": "Users"
+      }
+    ]
+
   }
 
 }

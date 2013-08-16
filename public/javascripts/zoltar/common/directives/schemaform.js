@@ -28,96 +28,109 @@
 
   var schemaForm = angular.module('schemaForm', []);
 
-  var schemaFormDirective = function schemaFormDirective($injector,
-      Restangular) {
-    return {
-      restrict: 'E',
-      scope: {
-        legend: '=',
-        formName: '@',
-        schemaName: '@',
-        model: '=',
-        readOnly: '='
-      },
-      replace: true,
-      templateUrl: '/partials/schemaform.html',
-      link: function postLink(scope, element, attrs) {
-        var model = $injector.get(scope.schemaName),
-            schema = model.getSchema(),
-            metadata = model.getMetadata(),
-            orderedSchema = [], ref, resource;
+  var schemaFormDirective = function schemaFormDirective($injector, Restangular) {
+        return {
+          restrict: 'E',
+          scope: {
+            legend: '=',
+            formName: '@',
+            schemaName: '@',
+            model: '=',
+            readOnly: '='
+          },
+          replace: true,
+          templateUrl: '/partials/schemaform.html',
+          link: function postLink(scope, element, attrs) {
+            var model = $injector.get(scope.schemaName),
+                schema = model.getSchema(),
+                metadata = model.getMetadata(),
+                orderedSchema = [], Ref, resource;
 
-        scope.refData = {};
-        scope.refSchema = {};
-        scope.refMetadata = {};
-        angular.forEach(schema, function (def, field) {
-          // correct the schema for form FIELD: TYPE
-          // when we really want FIELD: {type: TYPE}
-          if (angular.isString(def)) {
-            schema[field] = {
-              type: def
-            };
-          }
+            scope.refData = {};
+            scope.refSchema = {};
+            scope.refMetadata = {};
+            angular.forEach(schema, function (def, field) {
 
-          // set the placeholder
-          if (metadata.placeholders[field]) {
-            def.$placeholder = metadata.placeholders[field]
-          } else {
-            def.$placeholder = def.title ? def.title : field;
-          }
 
-          if (!def.ref) {
-            // handle native fields
-            def.$type = 'text';
-            if (angular.isDefined(def.validate)) {
-              if (types.indexOf(def.validate) === -1) {
-                // TODO: use this for validation
-                def.$pattern = def.validate;
+              // correct the schema for form FIELD: TYPE
+              // when we really want FIELD: {type: TYPE}
+              if (angular.isString(def)) {
+                schema[field] = {
+                  type: def
+                };
+              }
+
+              if (angular.isArray(def)) {
+                def = def[0];
+                def.$multiple = true;
               } else {
-                def.$type = def.validate;
+                def.$multiple = false;
+              }
+
+              // set the placeholder
+              if (metadata.placeholders[field]) {
+                def.$placeholder = metadata.placeholders[field]
+              } else {
+                def.$placeholder = def.title ? def.title : field;
+              }
+
+              if (!def.ref) {
+                // handle native fields
+                def.$type = 'text';
+                if (angular.isDefined(def.validate)) {
+                  if (types.indexOf(def.validate) === -1) {
+                    // TODO: use this for validation
+                    def.$pattern = def.validate;
+                  } else {
+                    def.$type = def.validate;
+                  }
+                }
+              } else {
+                // handle references. gahter data from the server.
+                Ref = $injector.get(def.ref);
+                scope.refSchema[def.ref] = Ref.getSchema();
+                scope.refMetadata[def.ref] = Ref.getMetadata();
+                resource = Restangular.all(def.ref.toLowerCase() + 's');
+                resource.getList().then(function (items) {
+                  scope.refData[def.ref] = items.map(function(item) {
+                    return new Ref(item);
+                  });
+                });
+              }
+            });
+
+            if (angular.isDefined(metadata) &&
+                angular.isDefined(metadata.order)) {
+              orderedSchema = metadata.order.map(function (field) {
+                    return {
+                      field: field,
+                      def: angular.isArray(schema[field]) ? schema[field][0] : schema[field]
+                    }
+                  }
+              )
+              ;
+            } else {
+              orderedSchema = _.map(schema, function (def, field) {
+                return {
+                  field: field,
+                  def: angular.isArray(def) ? def[0] : def
+                };
+              });
+              if (metadata.hidden) {
+                orderedSchema = orderedSchema.filter(function (prop) {
+                  return metadata.hidden.indexOf(prop.field) === -1;
+                });
               }
             }
-          } else {
-            // handle references. gahter data from the server.
-            ref = $injector.get(def.ref);
-            scope.refSchema[def.ref] = ref.getSchema();
-            scope.refMetadata[def.ref] = ref.getMetadata();
-            resource = Restangular.all(def.ref.toLowerCase() + 's');
-            resource.getList().then(function (items) {
-              scope.refData[def.ref] = items;
-            });
+
+
+            scope.schema = orderedSchema;
+
+            scope.$parent.schemaForm = scope.schemaForm;
           }
-        });
-
-        if (angular.isDefined(metadata) &&
-            angular.isDefined(metadata.order)) {
-          orderedSchema = metadata.order.map(function (field) {
-            return {
-              field: field,
-              def: schema[field]
-            }
-          });
-        } else {
-          orderedSchema = _.map(schema, function (def, field) {
-            return {
-              field: field,
-              def: def
-            };
-          });
         }
-
-        if (metadata.hidden) {
-          orderedSchema = orderedSchema.filter(function (prop) {
-            return metadata.hidden.indexOf(prop.field) === -1;
-          });
-        }
-
-        scope.schema = orderedSchema;
-
-        scope.$parent.schemaForm = scope.schemaForm;
       }
-    }
-  };
+      ;
 
   var validateDirective = function validateDirective($validator) {
     return {
@@ -130,7 +143,7 @@
             var valid = true;
             if (viewValue || attrs.required) {
               valid =
-              $validator.validate(type, $validator.format(type, viewValue));
+                  $validator.validate(type, $validator.format(type, viewValue));
             }
             ngModel.$setValidity(attrs.id, valid);
             if (valid) {
@@ -190,4 +203,5 @@
   schemaForm.directive('schemaForm', schemaFormDirective);
   schemaForm.directive('validate', validateDirective);
 
-})();
+})
+    ();

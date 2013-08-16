@@ -28,8 +28,7 @@
     $http.defaults.cache = $cacheFactory('zoltar');
   });
 
-  zoltar.config(function ($locationProvider, $routeProvider, $provide,
-      zoltarSchemas, zoltarConstants, $dialogProvider, $validatorProvider) {
+  zoltar.config(function ($locationProvider, $routeProvider, $provide, zoltarSchemas, zoltarConstants, $dialogProvider, $validatorProvider) {
 
     var partialPath = zoltarConstants.partialPath,
         defaults = {
@@ -58,7 +57,7 @@
             return /^1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?\.?\s+(\d*))?$/.test(str);
           },
           ein: function (str) {
-            return /^\d{2}-\d{7}$/.test(str);
+            return /^\d{2}-?\d{7}$/.test(str);
           }
         },
         formatters = {
@@ -124,9 +123,17 @@
       model.prototype.$defineProperties = function () {
         var model = this;
         angular.forEach(this.$schema, function (definition, field) {
-          var simpleDefinition = angular.isString(definition),
-              type = simpleDefinition ? definition :
-                     definition.type, val;
+          var simpleDefinition = angular.isString(definition), val, type,
+              arrayDefinition = angular.isArray(definition);
+          if (simpleDefinition) {
+            type = definition;
+          }
+          else {
+            if (arrayDefinition) {
+              definition = definition[0];
+            }
+            type = definition.type;
+          }
           Object.defineProperty(model, field, {
             enumerable: true,
             configurable: true,
@@ -143,10 +150,12 @@
                 case 'Date':
                   assert(new Date(value).getTime() > 0);
                   break;
+                case 'ObjectId':
+                  break;
                 case 'String':
                   if (angular.isDefined(definition.enum)) {
                     assert(definition.enum.indexOf(value) >=
-                           0);
+                        0);
                   }
                   if (!!definition.trim) {
                     value = value.trim();
@@ -154,7 +163,7 @@
                 /* falls through */
                 default:
                   assert(Object.prototype.toString.call(value) ===
-                         '[object ' + type + ']');
+                      '[object ' + type + ']');
               }
               if (!simpleDefinition &&
                   angular.isDefined(definition.validator) &&
