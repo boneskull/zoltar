@@ -11,15 +11,15 @@ var mongoose = require('mongoose'),
 
 generator.setConnection(mongoose);
 generator.setDefault('now', function () {
-    return Date.now();
+  return Date.now();
 });
 
 generator.setDefault('false', function () {
-    return false;
+  return false;
 });
 
 generator.setValidator('email', function (str) {
-    return check(str).isEmail();
+  return check(str).isEmail();
 });
 
 data = fs.readFileSync('public/schemas/user.json');

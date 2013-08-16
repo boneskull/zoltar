@@ -9,7 +9,6 @@
     'date',
     'datetime',
     'datetime-local',
-    'email',
     'file',
     'hidden',
     'image',
@@ -21,76 +20,174 @@
     'reset',
     'search',
     'submit',
-    'tel',
     'text',
     'time',
     'url',
     'week'
   ];
 
-  angular.module('schemaForm', []).directive('schemaForm',
-    function ($injector) {
-      return {
-        restrict: 'E',
-        scope: {
-          legend: '=',
-          formName: '@',
-          schemaName: '@',
-          model: '=',
-          readOnly: '='
-        },
-        replace: true,
-        templateUrl: '/partials/schemaform.html',
-        link: function postLink(scope, element, attrs) {
-          var model = $injector.get(scope.schemaName),
+  var schemaForm = angular.module('schemaForm', []);
+
+  var schemaFormDirective = function schemaFormDirective($injector,
+      Restangular) {
+    return {
+      restrict: 'E',
+      scope: {
+        legend: '=',
+        formName: '@',
+        schemaName: '@',
+        model: '=',
+        readOnly: '='
+      },
+      replace: true,
+      templateUrl: '/partials/schemaform.html',
+      link: function postLink(scope, element, attrs) {
+        var model = $injector.get(scope.schemaName),
             schema = model.getSchema(),
             metadata = model.getMetadata(),
-            orderedSchema = [];
-          angular.forEach(schema, function (def, field) {
-            // correct the schema for form FIELD: TYPE
-            // when we really want FIELD: {type: TYPE}
-            if (angular.isString(def)) {
-              schema[field] = {
-                type: def
-              };
-            }
+            orderedSchema = [], ref, resource;
+
+        scope.refData = {};
+        scope.refSchema = {};
+        scope.refMetadata = {};
+        angular.forEach(schema, function (def, field) {
+          // correct the schema for form FIELD: TYPE
+          // when we really want FIELD: {type: TYPE}
+          if (angular.isString(def)) {
+            schema[field] = {
+              type: def
+            };
+          }
+
+          // set the placeholder
+          if (metadata.placeholders[field]) {
+            def.$placeholder = metadata.placeholders[field]
+          } else {
+            def.$placeholder = def.title ? def.title : field;
+          }
+
+          if (!def.ref) {
+            // handle native fields
             def.$type = 'text';
             if (angular.isDefined(def.validate)) {
               if (types.indexOf(def.validate) === -1) {
+                // TODO: use this for validation
                 def.$pattern = def.validate;
               } else {
                 def.$type = def.validate;
               }
             }
-          });
-
-          if (angular.isDefined(metadata) &&
-            angular.isDefined(metadata.order)) {
-            orderedSchema = metadata.order.map(function (field) {
-              return {
-                field: field,
-                def: schema[field]
-              }
-            });
           } else {
-            orderedSchema = _.map(schema, function (def, field) {
-              return {
-                field: field,
-                def: def
-              };
+            // handle references. gahter data from the server.
+            ref = $injector.get(def.ref);
+            scope.refSchema[def.ref] = ref.getSchema();
+            scope.refMetadata[def.ref] = ref.getMetadata();
+            resource = Restangular.all(def.ref.toLowerCase() + 's');
+            resource.getList().then(function (items) {
+              scope.refData[def.ref] = items;
             });
           }
+        });
 
-          if (metadata.hidden) {
-            orderedSchema = orderedSchema.filter(function (prop) {
-              return metadata.hidden.indexOf(prop.field) === -1;
-            });
-          }
+        if (angular.isDefined(metadata) &&
+            angular.isDefined(metadata.order)) {
+          orderedSchema = metadata.order.map(function (field) {
+            return {
+              field: field,
+              def: schema[field]
+            }
+          });
+        } else {
+          orderedSchema = _.map(schema, function (def, field) {
+            return {
+              field: field,
+              def: def
+            };
+          });
+        }
 
-          scope.schema = orderedSchema;
+        if (metadata.hidden) {
+          orderedSchema = orderedSchema.filter(function (prop) {
+            return metadata.hidden.indexOf(prop.field) === -1;
+          });
+        }
 
-          scope.$parent.schemaForm = scope.schemaForm;
+        scope.schema = orderedSchema;
+
+        scope.$parent.schemaForm = scope.schemaForm;
+      }
+    }
+  };
+
+  var validateDirective = function validateDirective($validator) {
+    return {
+      restrict: 'A',
+      require: 'ngModel',
+      link: function (scope, element, attrs, ngModel) {
+        var type = scope.$eval(attrs.validate);
+        if (type) {
+          ngModel.$parsers.unshift(function (viewValue) {
+            var valid = true;
+            if (viewValue || attrs.required) {
+              valid =
+              $validator.validate(type, $validator.format(type, viewValue));
+            }
+            ngModel.$setValidity(attrs.id, valid);
+            if (valid) {
+              ngModel.$render();
+              return viewValue;
+            }
+          });
+          ngModel.$formatters.push(function (viewValue) {
+            return $validator.format(type, viewValue);
+          });
+          ngModel.$render = function () {
+            var formatted = $validator.format(type, ngModel.$viewValue);
+            if (angular.isDefined(formatted)) {
+              element.val(formatted);
+            }
+          };
         }
       }
-    });
+    };
+  };
+
+  var $validator = function $validator() {
+
+    this._validators = {};
+    this._formatters = {};
+
+    this.addValidator = function (name, fn) {
+      this._validators[name] = fn;
+    };
+
+    this.addFormatter = function (name, fn) {
+      this._formatters[name] = fn;
+    };
+
+    this.$get = function () {
+      var validators = this._validators,
+          formatters = this._formatters;
+      return {
+        validate: function (validator, str) {
+          if (!validators[validator]) {
+            return true;
+          }
+          return validators[validator].call(this, str);
+        },
+        format: function (formatter, str) {
+          if (!formatters[formatter]) {
+            return str;
+          }
+          return formatters[formatter].call(this, str);
+        }
+      };
+
+    };
+  };
+
+  schemaForm.provider('$validator', $validator);
+  schemaForm.directive('schemaForm', schemaFormDirective);
+  schemaForm.directive('validate', validateDirective);
+
 })();

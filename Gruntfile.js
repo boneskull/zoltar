@@ -88,7 +88,8 @@ module.exports = function (grunt) {
               showSource: true,
               scripts: [
                 'public/javascripts/zoltar/common/controllers/loginctrl.js',
-                'public/javascripts/zoltar/common/socket.js'
+                'public/javascripts/zoltar/common/socket.js',
+                'public/javascripts/zoltar/common/placeholder.js'
               ]
             }
           ]

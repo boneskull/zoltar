@@ -6,72 +6,62 @@
     <option name="CUSTOM_SCOPE_NAME" value="Project Files" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e8361cb-fdd8-4fb4-8607-6b6624b18662" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLinters/jshint.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/node_modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/other.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/test_support.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/testrunner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/zoltar.iml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Procfile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/npm-shrinkwrap.json" afterPath="" />
+    <list default="true" id="2e8361cb-fdd8-4fb4-8607-6b6624b18662" name="Default" comment="fixing massive amounts of form problems in admin console. you can make an org. needs validation and such. adding .idea setup">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/common/placeholder.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/schemas/state.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/io/admin-io.js" afterPath="$PROJECT_DIR$/routes/io/admin-io.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/partials/admin.html" afterPath="$PROJECT_DIR$/public/partials/admin.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/admin/admin.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/admin/admin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/bootstrap.min.css" afterPath="$PROJECT_DIR$/public/stylesheets/bootstrap.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/common/controllers/headerctrl.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/common/controllers/headerctrl.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.ejs" afterPath="$PROJECT_DIR$/views/index.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/index/index.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/index/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/io.js" afterPath="$PROJECT_DIR$/utils/io.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/common/ladda.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/common/ladda.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/login.js" afterPath="$PROJECT_DIR$/routes/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/common/controllers/loginctrl.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/common/controllers/loginctrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/schemas/org.json" afterPath="$PROJECT_DIR$/public/schemas/org.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routing.js" afterPath="$PROJECT_DIR$/routing.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/partials/schemaform.html" afterPath="$PROJECT_DIR$/public/partials/schemaform.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/common/directives/schemaform.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/common/directives/schemaform.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/schemas/schemas.json" afterPath="$PROJECT_DIR$/public/schemas/schemas.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/common/socket.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/common/socket.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/state.js" afterPath="$PROJECT_DIR$/models/state.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.less" afterPath="$PROJECT_DIR$/public/stylesheets/style.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/schemas/user.json" afterPath="$PROJECT_DIR$/public/schemas/user.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/user.js" afterPath="$PROJECT_DIR$/models/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/io/visitor-io.js" afterPath="$PROJECT_DIR$/routes/io/visitor-io.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/zoltar/zoltar.js" afterPath="$PROJECT_DIR$/public/javascripts/zoltar/zoltar.js" />
     </list>
     <ignored path="zoltar.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/index.ejs" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376365394612" ignored="false" />
-    <file path="/Dummy.txt" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376535140360" ignored="false" />
+    <file path="/Dummy.txt" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376677107757" ignored="false" />
     <file path="/Gruntfile.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376535686112" ignored="false" />
     <file path="/globals.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375590604365" ignored="false" />
-    <file path="/index.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376200330479" ignored="false" />
+    <file path="/index.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376604305255" ignored="false" />
     <file path="/mongosetup.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375648464619" ignored="false" />
     <file path="$PROJECT_DIR$/../angular-app/client/gruntFile.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375648846144" ignored="false" />
     <file path="/app.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375649014202" ignored="false" />
     <file path="/config.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376084780578" ignored="false" />
     <file path="/server.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376422398195" ignored="false" />
     <file path="/user.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376073013056" ignored="false" />
-    <file path="/*.regexp" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376522037420" ignored="false" />
+    <file path="/*.regexp" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376619943626" ignored="false" />
     <file path="/routes.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375652062106" ignored="false" />
-    <file path="/login.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376537240033" ignored="false" />
+    <file path="/login.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376601384606" ignored="false" />
     <file path="/karma.conf.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376188611909" ignored="false" />
     <file path="$PROJECT_DIR$/public/javascripts/dist/zoltar-0.0.0.min.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375678661170" ignored="false" />
     <file path="$PROJECT_DIR$/public/javascripts/dist/zoltar-0.0.0.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375684611738" ignored="false" />
     <file path="/reveal.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375917035839" ignored="false" />
-    <file path="/loginctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376366145953" ignored="false" />
-    <file path="/zoltar.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376277059319" ignored="false" />
+    <file path="/loginctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376602118677" ignored="false" />
+    <file path="/zoltar.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376633522684" ignored="false" />
     <file path="/ladda.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375854939238" ignored="false" />
     <file path="/package.json" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376189992160" ignored="false" />
     <file path="/style.css" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375683511469" ignored="false" />
     <file path="/logout.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376200015561" ignored="false" />
-    <file path="/routing.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376200640775" ignored="false" />
+    <file path="/routing.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376606231853" ignored="false" />
     <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/styles/tableview.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375730740653" ignored="false" />
     <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/report.less" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375726822265" ignored="false" />
     <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/report.css" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375727008792" ignored="false" />
@@ -103,12 +93,12 @@
     <file path="$PROJECT_DIR$/../m17-saved-reports/hermes/plugins/report/static/partials/pinned-item-summary.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375740951365" ignored="false" />
     <file path="/pinned-item-summary.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375740938180" ignored="false" />
     <file path="/sanitize.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375763722612" ignored="false" />
-    <file path="/admin.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376549969017" ignored="false" />
-    <file path="/headerctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376365839740" ignored="false" />
+    <file path="/admin.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376612653560" ignored="false" />
+    <file path="/headerctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376603319795" ignored="false" />
     <file path="/admin.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376550218940" ignored="false" />
     <file path="/socket.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376550042316" ignored="false" />
     <file path="/a.dummy" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376517212579" ignored="false" />
-    <file path="/style.less" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376549413330" ignored="false" />
+    <file path="/style.less" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376631527439" ignored="false" />
     <file path="$PROJECT_DIR$/../m17/demo/aqr/lib/textual/v1/static/reporting.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375914832226" ignored="false" />
     <file path="$PROJECT_DIR$/../m17/hermes/stylelib.py" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375899597347" ignored="false" />
     <file path="$PROJECT_DIR$/../m17/demo/aqr/lib/textual/v1/static/reporting.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1375902111791" ignored="false" />
@@ -120,12 +110,12 @@
     <file path="/job.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376025488326" ignored="false" />
     <file path="/org.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376109882043" ignored="false" />
     <file path="/telephone.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376026941812" ignored="false" />
-    <file path="/a.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376550144423" ignored="false" />
-    <file path="/state.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376028190139" ignored="false" />
-    <file path="/io.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376199352507" ignored="false" />
+    <file path="/a.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376632795670" ignored="false" />
+    <file path="/state.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376603862101" ignored="false" />
+    <file path="/io.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376604167998" ignored="false" />
     <file path="/main.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376031432018" ignored="false" />
     <file path="/xsrf.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376031467238" ignored="false" />
-    <file path="/a.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376550140688" ignored="false" />
+    <file path="/a.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376612205004" ignored="false" />
     <file path="/bootstrap.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376034079224" ignored="false" />
     <file path="/angular-mongoose-gen.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376080460693" ignored="false" />
     <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/bannercreatorctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376084660308" ignored="false" />
@@ -150,17 +140,17 @@
     <file path="/table-set.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376089228983" ignored="false" />
     <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/tablesetctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376090012394" ignored="false" />
     <file path="/tablesetctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376089266018" ignored="false" />
-    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/styles/config.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376523983467" ignored="false" />
-    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/configctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376467078860" ignored="false" />
-    <file path="/config.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376521296272" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/styles/config.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376599270752" ignored="false" />
+    <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/configctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376592994598" ignored="false" />
+    <file path="/config.style" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376592891890" ignored="false" />
     <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/partials/custom-report-edit.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376526287821" ignored="false" />
     <file path="/preinit.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376291550821" ignored="false" />
     <file path="/index.spec.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376200851968" ignored="false" />
     <file path="$PROJECT_DIR$/../docular/lib/scripts/Doc.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376199595389" ignored="false" />
     <file path="/user-io.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376200730283" ignored="false" />
-    <file path="/schemaform.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376549910720" ignored="false" />
-    <file path="/schemaform.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376549550302" ignored="false" />
-    <file path="/org.json" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376261191006" ignored="false" />
+    <file path="/schemaform.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376632752836" ignored="false" />
+    <file path="/schemaform.html" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376619907377" ignored="false" />
+    <file path="/org.json" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376613176987" ignored="false" />
     <file path="/foundation.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376276021205" ignored="false" />
     <file path="/ink.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376331074078" ignored="false" />
     <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/controllers/whiteboarddialogctrl.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376431105727" ignored="false" />
@@ -190,6 +180,9 @@
     <file path="$PROJECT_DIR$/../m17/hermes/plugins/report/static/rep-app.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376524587692" ignored="false" />
     <file path="/rep-app.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376524500980" ignored="false" />
     <file path="/user.json" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376549506876" ignored="false" />
+    <file path="/state.json" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376603772296" ignored="false" />
+    <file path="/visitor-io.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376604115802" ignored="false" />
+    <file path="/placeholder.js" changelist="2e8361cb-fdd8-4fb4-8607-6b6624b18662" time="1376612381064" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,110 +201,73 @@
     <favorites_list name="zoltar" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48580787">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="schemaform.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/partials/schemaform.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="25" column="58" selection-start="1456" selection-end="1456" vertical-scroll-proportion="-5.844156">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="socket.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/common/socket.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="48" column="28" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="admin-io.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/routes/io/admin-io.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="134" column="37" selection-start="4081" selection-end="4081" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="io.js" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/utils/io.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="38" column="43" selection-start="1074" selection-end="1074" vertical-scroll-proportion="0.40350878">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="admin.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/partials/admin.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="341" column="8" selection-start="11127" selection-end="11127" vertical-scroll-proportion="-5.038961">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="admin.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/admin/admin.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="245" column="11" selection-start="6718" selection-end="6718" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="org.js" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/models/org.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="18" column="0" selection-start="471" selection-end="471" vertical-scroll-proportion="0.33333334">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="user.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/schemas/user.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="24" column="6" selection-start="441" selection-end="441" vertical-scroll-proportion="-16.615385">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="org.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/schemas/org.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="39" column="30" selection-start="933" selection-end="933" vertical-scroll-proportion="-19.76923">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Gruntfile.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Gruntfile.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="69" column="0" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="schemaform.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/partials/schemaform.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="42" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.less" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/stylesheets/style.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="53" selection-start="729" selection-end="729" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="schemaform.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/common/directives/schemaform.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="111" column="13" selection-start="3060" selection-end="3060" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="org.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/schemas/org.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="41" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ejs" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="183" column="16" selection-start="6682" selection-end="6682" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zoltar.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/zoltar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="63" column="22" selection-start="1605" selection-end="1605" vertical-scroll-proportion="0.21400778">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="support.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/support.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="50" selection-start="545" selection-end="545" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -334,22 +290,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/views/index.ejs" />
-        <option value="$PROJECT_DIR$/public/javascripts/zoltar/index/index.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/zoltar/common/controllers/loginctrl.js" />
-        <option value="$PROJECT_DIR$/utils/io.js" />
-        <option value="$PROJECT_DIR$/routes/login.js" />
+        <option value="$PROJECT_DIR$/routes/io/visitor-io.js" />
+        <option value="$PROJECT_DIR$/routing.js" />
+        <option value="$PROJECT_DIR$/public/schemas/state.json" />
         <option value="$PROJECT_DIR$/Gruntfile.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/zoltar/common/ladda.js" />
-        <option value="$PROJECT_DIR$/public/stylesheets/style.less" />
-        <option value="$PROJECT_DIR$/public/schemas/user.json" />
-        <option value="$PROJECT_DIR$/public/partials/schemaform.html" />
-        <option value="$PROJECT_DIR$/public/javascripts/zoltar/common/directives/schemaform.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/zoltar/common/socket.js" />
-        <option value="$PROJECT_DIR$/public/partials/admin.html" />
-        <option value="$PROJECT_DIR$/routes/io/admin-io.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/zoltar/index/index.js" />
+        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/public/javascripts/zoltar/admin/admin.js" />
+        <option value="$PROJECT_DIR$/routes/io/admin-io.js" />
+        <option value="$PROJECT_DIR$/public/partials/schemaform.html" />
+        <option value="$PROJECT_DIR$/public/javascripts/zoltar/common/placeholder.js" />
+        <option value="$PROJECT_DIR$/public/partials/admin.html" />
+        <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/public/stylesheets/style.less" />
+        <option value="$PROJECT_DIR$/public/javascripts/zoltar/common/directives/schemaform.js" />
+        <option value="$PROJECT_DIR$/public/schemas/org.json" />
+        <option value="$PROJECT_DIR$/public/javascripts/zoltar/zoltar.js" />
       </list>
     </option>
   </component>
@@ -538,6 +494,54 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zoltar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -569,7 +573,7 @@
     <property name="JavaScriptLanguageLevel" value="JS_1_8_5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/test/support/angular-mocks.js" />
     <property name="JavaScriptPreferStrict" value="true" />
-    <property name="GoToClass.includeJavaFiles" value="true" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
@@ -814,7 +818,11 @@
       <created>1376380969956</created>
       <updated>1376380969956</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="fixing massive amounts of form problems in admin console. you can make an org. needs validation and such. adding .idea setup">
+      <created>1376550693580</created>
+      <updated>1376550693580</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -844,9 +852,9 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09280303" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922202" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16221985" sideWeight="0.83017075" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.11846318" sideWeight="0.83017075" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15048026" sideWeight="0.58349144" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15048026" sideWeight="0.83017075" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16982922" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.22675522" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -856,7 +864,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23244782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12998103" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -905,7 +913,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="wtf heroku" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing massive amounts of form problems in admin console. you can make an org. needs validation and such. adding .idea setup" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -919,7 +927,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="admin console.  maybe that sanitize is a nice little piece of route middleware" />
     <MESSAGE value="real time stuff" />
     <MESSAGE value="spinner in user list; fixing a callback" />
     <MESSAGE value="broadcasting userlist. fixing stupid reformatting issue." />
@@ -944,132 +951,115 @@
     <MESSAGE value="long polling for heroku/appfog/whatever" />
     <MESSAGE value="trying app.io instead of express.io" />
     <MESSAGE value="wtf heroku" />
+    <MESSAGE value="fixing massive amounts of form problems in admin console. you can make an org. needs validation and such. adding .idea setup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="25" />
+      <option name="time" value="26" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="20" selection-start="1508" selection-end="1508" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="2" column="21" selection-start="45" selection-end="45" vertical-scroll-proportion="-1.2307693" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.js">
+    <entry file="file://$PROJECT_DIR$/routes/logout.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/zoltar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="22" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/common/ladda.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="24" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="12" selection-start="605" selection-end="605" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/common/directives/schemaform.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="51" selection-start="2326" selection-end="2326" vertical-scroll-proportion="-18.411764">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/common/socket.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="28" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/partials/schemaform.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="58" selection-start="1456" selection-end="1456" vertical-scroll-proportion="-5.844156">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/partials/admin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="341" column="8" selection-start="11127" selection-end="11127" vertical-scroll-proportion="-5.038961">
-          <folding />
-        </state>
+        <state line="4" column="22" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/io/admin-io.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="37" selection-start="4081" selection-end="4081" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="0" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/schemas/org.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="30" selection-start="933" selection-end="933" vertical-scroll-proportion="-19.76923">
+        <state line="13" column="43" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/schemas/user.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="6" selection-start="441" selection-end="441" vertical-scroll-proportion="-16.615385">
-          <folding />
-        </state>
+        <state line="44" column="5" selection-start="743" selection-end="743" vertical-scroll-proportion="-16.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/io.js">
+    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/common/placeholder.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="43" selection-start="1074" selection-end="1074" vertical-scroll-proportion="0.40350878">
-          <folding />
-        </state>
+        <state line="21" column="0" selection-start="695" selection-end="695" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/admin/admin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="245" column="11" selection-start="6718" selection-end="6718" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state line="270" column="6" selection-start="7315" selection-end="7315" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="8" selection-start="1286" selection-end="1286" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/org.js">
+    <entry file="file://$PROJECT_DIR$/public/partials/admin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="471" selection-end="471" vertical-scroll-proportion="0.33333334">
+        <state line="25" column="32" selection-start="930" selection-end="930" vertical-scroll-proportion="-12.708333">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="23" selection-start="203" selection-end="204" vertical-scroll-proportion="-3.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/partials/schemaform.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="42" selection-start="1206" selection-end="1206" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="53" selection-start="729" selection-end="729" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/common/directives/schemaform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="111" column="13" selection-start="3060" selection-end="3060" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/schemas/org.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="41" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="183" column="16" selection-start="6682" selection-end="6682" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/support.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="50" selection-start="545" selection-end="545" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/zoltar/zoltar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="22" selection-start="1605" selection-end="1605" vertical-scroll-proportion="0.21400778">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,10 +1,14 @@
 [
-    {
-        "path": "/schemas/user.json",
-        "name": "User"
-    },
-    {
-        "path": "/schemas/org.json",
-        "name": "Org"
-    }
+  {
+    "path": "/schemas/user.json",
+    "name": "User"
+  },
+  {
+    "path": "/schemas/org.json",
+    "name": "Org"
+  },
+  {
+    "path": "/schemas/state.json",
+    "name": "State"
+  }
 ]

@@ -1,15 +1,13 @@
-'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    generator = require('mongoose-gen'),
+    fs = require('fs'),
+    State, data;
 
-var State = new Schema({
-    _id: String,
-    name: {
-        type: String,
-        required: true
-    },
-    dojMask: String
-});
+generator.setConnection(mongoose);
+data = fs.readFileSync('public/schemas/state.json');
+
+State = new Schema(generator._convert(JSON.parse(data).schema));
 
 module.exports = mongoose.model('State', State);

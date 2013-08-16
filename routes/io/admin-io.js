@@ -11,8 +11,7 @@ module.exports = function (app) {
 
   return {
     ready: function (req) {
-      io.ifAdminSocket(req).then(function (user) {
-        console.log(user);
+      io.ifAdminSocket(req).then(function () {
         req.io.join('admin');
         io.broadcastUserlist(req);
         io.broadcastOrglist(req);

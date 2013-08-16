@@ -8,8 +8,7 @@ var express = require('express.io'),
     xsrf = require('./utils/xsrf'),
     protectJSON = require('./utils/protectJSON'),
     LocalStrategy = require('passport-local').Strategy,
-    app, User, server, io,
-    path = require('path');
+    app, User, server, path = require('path');
 
 app = express();
 
@@ -37,14 +36,14 @@ app.use(express.bodyParser());
 app.use(express.cookieParser());
 
 app.use(express.session({
-    secret: config.server.cookieSecret,
-    maxAge: new Date(Date.now() + 3600000),
-    store: new MongoStore({
-            db: mongoose.connection.db
-        },
-        function (err) {
-            console.log(err || 'connect-mongodb setup ok');
-        })
+  secret: config.server.cookieSecret,
+  maxAge: new Date(Date.now() + 3600000),
+  store: new MongoStore({
+        db: mongoose.connection.db
+      },
+      function (err) {
+        console.log(err || 'connect-mongodb setup ok');
+      })
 }));
 
 app.use(express.methodOverride());
@@ -53,19 +52,19 @@ app.use(passport.session());
 app.use(xsrf);
 app.use(app.router);
 app.use(require('less-middleware')({
-    src: __dirname + '/public',
-    prefix: 'stylesheets',
-    compress: true,
-    debug: true
+  src: __dirname + '/public',
+  prefix: 'stylesheets',
+  compress: true,
+  debug: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.configure('development', function () {
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 app.configure('production', function () {
-    app.use(express.errorHandler());
+  app.use(express.errorHandler());
 });
 
 require('./bootstrap')();
@@ -73,8 +72,6 @@ require('./bootstrap')();
 app.http().io();
 require('./routing')(app);
 app.listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + app.get('port'));
 });
-
-
 

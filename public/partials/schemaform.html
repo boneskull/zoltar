@@ -1,39 +1,52 @@
-<ng-form name="schemaForm" id="form_{{ formName }}" class="form-horizontal" novalidate="novalidate">
-    <fieldset>
-        <legend ng-show="legend">{{ legend }}</legend>
-        <div class="control-group" ng-repeat="item in schema">
-            <label class="control-label" for="{{ formName }}_{{ item.field }}">{{
-                                                                               item.def.title
-                                                                               }}</label>
+<ng-form name="schemaForm" id="form_{{ formName }}" class="form-horizontal"
+         novalidate="novalidate">
+  <fieldset>
+    <legend ng-show="legend">{{ legend }}</legend>
+    <div class="control-group" ng-repeat="item in schema">
+      <label class="control-label" for="{{ formName }}_{{ item.field }}">{{
+                                                                         item.def.title
+                                                                         }}
+      <span ng-show="item.def.required" class="help-inline">*</span></label>
 
-            <div class="controls">
-                <ng-switch on="item.def.type">
+      <div class="controls">
+        <select ng-show="item.def.ref" id="{{ formName }}_{{item.field}}"
+                ng-model="model[item.field]"
+                ng-required="item.def.required"
+                ng-options="ref[refMetadata[item.def.ref].lookup.value] for ref in refData[item.def.ref]"
+                placeholder="Choose {{ item.def.$placeholder }}..."> </select>
+
+        <ng-switch on="item.def.type" ng-hide="item.def.ref">
                     <span ng-switch-when="String">
                     <span ng-if="item.def.enum">
                         <select id="{{ formName }}_{{ item.field }}"
                                 ng-model="model[item.field]"
+                                ng-required="item.def.required"
                                 ng-options="val for val in item.def.enum"
-                            ng-disabled="readOnly">
+                                ng-disabled="readOnly">
                         </select>
                     </span>
                         <span ng-if="!item.def.enum">
                     <input ng-required="item.def.required"
                            type="{{ item.def.$type }}"
-                           pattern="{{ item.def.$pattern }}"
                            ng-model="model[item.field]"
                            ng-disabled="readOnly"
-                           placeholder="{{ item.def.title }}"
+                           validate="item.def.validate"
+                           placeholder="{{ item.def.$placeholder }}"
                            id="{{ formName }}_{{ item.field }}"/>
                     </span>
                     </span>
-                    <input ng-switch-when="Boolean" type="checkbox" ng-model="model[item.field]" id="{{ formName }}_{{item.field}}" ng-disabled="readOnly"/>
-                    <input ng-required="item.def.required" ng-switch-when="Date"
-                           ng-disabled="readOnly"
-                           type="date"
-                           ng-model="model[item.field]"
-                           id="{{ formName }}_{{ item.field }}">
-                </ng-switch>
-            </div>
-        </div>
-    </fieldset>
+          <input ng-switch-when="Boolean" type="checkbox"
+                 ng-model="model[item.field]"
+                 id="{{ formName }}_{{item.field}}" ng-disabled="readOnly"/>
+          <input ng-required="item.def.required" ng-switch-when="Date"
+                 ng-disabled="readOnly"
+                 type="date"
+                 ng-model="model[item.field]"
+                 id="{{ formName }}_{{ item.field }}">
+
+        </ng-switch>
+      </div>
+    </div>
+    <small>* denotes required field</small>
+  </fieldset>
 </ng-form>

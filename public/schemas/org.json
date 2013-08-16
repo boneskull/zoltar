@@ -1,60 +1,68 @@
 {
-    "metadata": {
-        "order": [
-            "name",
-            "state",
-            "ein",
-            "contactName",
-            "contactEmail",
-            "contactPhone",
-            "preferredContactMethod"
-        ]
-    },
-    "schema": {
-        "name": {
-            "type": "String",
-            "required": true,
-            "trim": true,
-            "title": "Org Name"
-        },
-        "ein": {
-            "type": "String",
-            "validate": "ein",
-            "trim": true,
-            "title": "EIN"
-        },
-        "contactName": {
-            "type": "String",
-            "trim": true,
-            "title": "Contact Name"
-        },
-        "state": {
-            "type": "String",
-            "ref": "State",
-            "title": "State"
-        },
-        "contactEmail": {
-            "title": "Contact Email",
-            "type": "String",
-            "index": {
-                "unique": true
-            },
-            "validate": "email",
-            "trim": true
-        },
-        "contactPhone": {
-            "title": "Contact Phone",
-            "type": "String",
-            "trim": true,
-            "validate": "tel"
-        },
-        "preferredContactMethod": {
-            "title": "Preferred Contact Method",
-            "type": "String",
-            "enum": ["Phone", "Email"],
-            "default": "email",
-            "required": true
-        }
+  "metadata": {
+    "order": [
+      "name",
+      "state",
+      "ein",
+      "contactName",
+      "contactEmail",
+      "contactPhone",
+      "preferredContactMethod"
+    ],
+    "placeholders": {
+      "ein": "00-0000000",
+      "contactEmail": "bob@ross.com",
+      "contactName": "First Last",
+      "contactPhone": "(000) 000-0000 ext 000"
     }
+  },
+  "schema": {
+    "name": {
+      "type": "String",
+      "required": true,
+      "trim": true,
+      "title": "Org Name"
+    },
+    "ein": {
+      "type": "String",
+      "validate": "ein",
+      "required": true,
+      "trim": true,
+      "title": "EIN"
+    },
+    "contactName": {
+      "type": "String",
+      "trim": true,
+      "title": "Contact Name"
+    },
+    "state": {
+      "required": true,
+      "type": "String",
+      "ref": "State",
+      "title": "State"
+    },
+    "contactEmail": {
+      "title": "Contact Email",
+      "type": "String",
+      "index": {
+        "unique": true
+      },
+      "validate": "email",
+      "trim": true
+    },
+    "contactPhone": {
+      "title": "Contact Phone",
+      "type": "String",
+      "trim": true,
+      "validate": "tel"
+    },
+    "preferredContactMethod": {
+      "title": "Preferred Contact Method",
+      "type": "String",
+      "enum": ["Phone", "Email"],
+      "default": "email",
+      "required": true
+    }
+  }
 
 }

@@ -1,0 +1,23 @@
+{
+  "schema": {
+    "_id": {
+      "type": "String",
+      "required": true,
+      "trim": true,
+      "title": "Abbreviation"
+    },
+    "name": {
+      "type": "String",
+      "required": true,
+      "trim": true,
+      "title": "State"
+    }
+  },
+  "metadata": {
+    "lookup": {
+      "key": "_id",
+      "value": "name"
+    }
+  }
+
+}

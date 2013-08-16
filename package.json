@@ -1,6 +1,6 @@
 {
     "name": "zoltar",
-    "version": "0.0.0-2",
+    "version": "0.0.1",
     "devDependencies": {
         "grunt": "*",
         "grunt-contrib-concat": "*",

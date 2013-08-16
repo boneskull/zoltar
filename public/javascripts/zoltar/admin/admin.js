@@ -80,7 +80,6 @@
 
       $scope.addUserProgress = 1;
       $timeout(function () {
-        console.log('false prog');
         $scope.addUserProgress = false;
       }, 200);
 

@@ -1,9 +1,13 @@
 'use strict';
 
+
 module.exports = function (app) {
-    return {
-        'ready': function (req) {
-            req.io.join('visitor');
-        }
-    };
+
+  var io = require('../../utils/io')(app);
+
+  return {
+    'ready': function (req) {
+      req.io.join('visitor');
+    }
+  };
 };

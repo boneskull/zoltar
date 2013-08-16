@@ -15,15 +15,15 @@
   <div class="row-fluid">
     <div ng-controller="AdminAddUserCtrl" class="span12 well">
       <fieldset>
-        <legend><i class="icon-plus"></i> Add a User</legend>
-        <form name="addUserForm" novalidate="novalidate"
+        <legend><i class="icon-plus"></i> Add a User  <a ng-click="toggles.collapseAddUser = !toggles.collapseAddUser"><i class="icon-caret-down" ng-hide="toggles.collapseAddUser"></i><i class="icon-caret-up" ng-show="toggles.collapseAddUser"></i></a></legend>
+        <form name="addUserForm" novalidate="novalidate" collapse="toggles.collapseAddUser"
               class="form-horizontal" ng-submit="addUser()">
           <div class="control-group">
             <label class="control-label"
                    for="username">Username:</label>
 
             <div class="controls">
-              <input type="text" autofocus="autofocus"
+              <input type="text"
                      required
                      ng-model="selected.newUser.username"
                      id="username"/>
