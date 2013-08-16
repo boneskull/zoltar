@@ -14,8 +14,7 @@
 
   };
 
-  var AdminConfirmDeleteUserCtrl = function AdminConfirmDeleteUserCtrl($scope,
-      socket, dialog, selected, $timeout) {
+  var AdminConfirmDeleteUserCtrl = function AdminConfirmDeleteUserCtrl($scope, socket, dialog, selected, $timeout) {
     $scope.selected = selected;
     $scope.cancelDeleteUser = function () {
       dialog.close();
@@ -43,8 +42,8 @@
     });
   };
 
-  var AdminAddUserCtrl = function AdminAddUserCtrl($scope, Restangular, User,
-      socket, $timeout) {
+  var AdminAddUserCtrl = function AdminAddUserCtrl($scope, Restangular, User, socket, $timeout) {
+    $scope.selected.newUser = new User();
     $scope.mismatchedPasswords = false;
     $scope.missingRequiredFields = true;
 
@@ -53,7 +52,7 @@
       delete $scope.addedUser;
       delete $scope.registrationError;
       $scope.addUserProgress = 0;
-      if ($scope.addUserForm.$valid) {
+      if ($scope.schemaForm.$valid) {
         $scope.missingRequiredFields = false;
         if ($scope.selected.newUser.password1 !==
             $scope.selected.newUser.password2) {
@@ -63,7 +62,7 @@
           $scope.mismatchedPasswords = false;
           $scope.selected.newUser.password =
               $scope.selected.newUser.password1;
-          newUser = new User($scope.selected.newUser);
+          newUser = $scope.selected.newUser;
           newUser.password = newUser.password1;
           delete newUser.password1;
           delete newUser.password2;
@@ -72,6 +71,14 @@
       }
       else {
         $scope.missingRequiredFields = true;
+        $scope.schemaForm.$setPristine();
+        $timeout(function () {
+          $scope.schemaForm.$setDirty();
+        }, 400);
+        $scope.addUserProgress = 0;
+        $timeout(function () {
+          $scope.addUserProgress = false;
+        }, 200);
       }
 
     };
@@ -83,7 +90,7 @@
         $scope.addUserProgress = false;
       }, 200);
 
-      delete $scope.selected.newUser;
+      $scope.selected.newUser = new User();
 
       $scope.addedUser = user.username;
     });
@@ -99,8 +106,7 @@
     });
   };
 
-  var AdminUserListCtrl = function AdminUserListCtrl($scope, socket, $timeout,
-      User, $dialog) {
+  var AdminUserListCtrl = function AdminUserListCtrl($scope, socket, $timeout, User, $dialog) {
 
     var PAGE_LENGTH = 10;
 
@@ -163,23 +169,14 @@
     };
 
     $scope.setOrder = function (field) {
-      if ($scope.order === field) {
-        $scope.order = '-' + field;
-      }
-      else if ($scope.order === '-' + field) {
-        $scope.order = field;
-      }
-      else {
-        $scope.order = field;
-      }
+      $scope.order = $scope.order === field ? '-' + field : field;
     };
 
     socket.emit('admin:ready');
 
   };
 
-  var AdminEditUserCtrl = function AdminEditUserCtrl($scope, socket, $timeout,
-      dialog, selected, toggles) {
+  var AdminEditUserCtrl = function AdminEditUserCtrl($scope, socket, $timeout, dialog, selected, toggles) {
 
     $scope.toggles = toggles;
     $scope.selected = selected;
@@ -241,8 +238,7 @@
     };
   };
 
-  var AdminAddOrgCtrl = function AdminAddOrgCtrl($scope, socket, $timeout,
-      dialog, Org) {
+  var AdminAddOrgCtrl = function AdminAddOrgCtrl($scope, socket, $timeout, dialog, Org) {
 
     $scope.newOrg = new Org();
 

@@ -22,10 +22,15 @@
                   ng-required="item.def.required"
                   ng-options="ref[refMetadata[item.def.ref].lookup.value] as ref[refMetadata[item.def.ref].lookup.value] for ref in refData[item.def.ref]"
                   placeholder="Choose {{ item.def.$placeholder }}..."> </select>
-          <select ng-switch-when="false" id="{{ formName }}_{{item.field}}"
+          <select ng-switch-when="false" ng-hide="item.def.type === 'ObjectId'" id="{{ formName }}_{{item.field}}"
                   ng-model="model[item.field]"
                   ng-required="item.def.required"
                   ng-options="ref[refMetadata[item.def.ref].lookup.value] as ref[refMetadata[item.def.ref].lookup.value] for ref in refData[item.def.ref]"
+                  placeholder="Choose {{ item.def.$placeholder }}..."> </select>
+          <select ng-show="item.def.type === 'ObjectId'" ng-switch-when="false" id="{{ formName }}_{{item.field}}"
+                  ng-model="model[item.field]"
+                  ng-required="item.def.required"
+                  ng-options="ref._id as ref[refMetadata[item.def.ref].lookup.value] for ref in refData[item.def.ref]"
                   placeholder="Choose {{ item.def.$placeholder }}..."> </select>
 
         </ng-switch>
@@ -60,8 +65,10 @@
                  id="{{ formName }}_{{ item.field }}">
 
         </ng-switch>
+
       </div>
     </div>
+    <div ng-transclude></div>
     <small>* denotes required field</small>
   </fieldset>
 </ng-form>

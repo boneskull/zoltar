@@ -15,6 +15,10 @@
       "contactEmail": "bob@ross.com",
       "contactName": "First Last",
       "contactPhone": "(000) 000-0000 ext 000"
+    },
+    "lookup": {
+      "key": "_id",
+      "value": "name"
     }
   },
   "schema": {

@@ -2,6 +2,7 @@
 
 var passport = require('passport'),
     User = require('./models/user'),
+    Org = require('./models/org'),
     State = require('./models/state');
 
 module.exports = function (app) {
@@ -25,6 +26,12 @@ module.exports = function (app) {
       res.send(states);
     });
 
+  });
+
+  app.get('/orgs', isAdmin, function(req, res) {
+    Org.find({}).sort('name').exec().then(function(orgs) {
+      res.send(orgs);
+    });
   });
 
   app.get('/users', isAdmin, function (req, res) {

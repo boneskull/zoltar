@@ -2,7 +2,7 @@
   "schema": {
     "username": {
       "type": "String",
-      "require": true,
+      "required": true,
       "index": {
         "unique": true
       },
@@ -31,6 +31,11 @@
     "url": {
       "type": "String",
       "title": "URL"
+    },
+    "org": {
+      "title": "Org",
+      "type": "ObjectId",
+      "ref": "Org"
     }
   },
   "metadata": {
@@ -41,7 +46,8 @@
       "username",
       "email",
       "url",
-      "admin"
+      "admin",
+        "org"
     ],
      "lookup": {
       "key": "_id",

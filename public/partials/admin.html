@@ -14,98 +14,60 @@
 <div class="span6">
   <div class="row-fluid">
     <div ng-controller="AdminAddUserCtrl" class="span12 well">
-      <fieldset>
-        <legend><i class="icon-plus"></i> Add a User <a
-            ng-click="toggles.collapseAddUser = !toggles.collapseAddUser"><i
-            class="icon-caret-down" ng-hide="toggles.collapseAddUser"></i><i
-            class="icon-caret-up" ng-show="toggles.collapseAddUser"></i></a>
-        </legend>
-        <form name="addUserForm" novalidate="novalidate"
-              collapse="toggles.collapseAddUser"
-              class="form-horizontal" ng-submit="addUser()">
-          <div class="control-group">
-            <label class="control-label"
-                   for="username">Username:</label>
+      <schema-form form-name="AddUserForm" legend="'Add User'"
+                   model="selected.newUser" ng-submit="$parent.addUser()"
+                   schema-name="User">
+        <div class="control-group">
 
-            <div class="controls">
-              <input type="text"
-                     required
-                     ng-model="selected.newUser.username"
-                     id="username"/>
-            </div>
-          </div>
-          <div class="control-group">
-            <label for="email"
-                   class="control-label">Email:</label>
+          <label class="control-label"
+                 for="password1">Password:</label>
 
-            <div class="controls">
-              <input type="email" required
-                     ng-model="selected.newUser.email"
-                     id="email"/>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="url">URL:</label>
-
-            <div class="controls">
-              <input type="text"
-                     ng-model="selected.newUser.url"
-                     id="url"/>
-            </div>
-          </div>
-          <div class="control-group">
-
-            <label class="control-label"
-                   for="password1">Password:</label>
-
-            <div class="controls">
-              <input type="password" required
-                     ng-model="selected.newUser.password1"
-                     id="password1"/>
-            </div>
-          </div>
-          <div class="control-group">
-
-            <label class="control-label"
-                   for="password2">Again:</label>
-
-            <div class="controls">
-              <input type="password" required
-                     ng-model="selected.newUser.password2"
-                     id="password2"/>
-            </div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <ladda-button ladda="addUserProgress">Add User
-              </ladda-button>
-            </div>
-          </div>
-        </form>
-        <div class="row-fluid"
-             ng-show="addedUser || mismatchedPasswords || registrationError">
-          <div class="span12">
-
-            <div class="alert"
-                 ng-show="addedUser">
-              Successfully added user <em>{{
-                                          addedUser
-                                          }}</em>.
-            </div>
-            <div class="alert alert-error"
-                 ng-show="mismatchedPasswords">
-              Mismatched passwords!
-            </div>
-            <div class="alert alert-error"
-                 ng-show="registrationError">
-              {{ registrationError }}
-            </div>
-
-
+          <div class="controls">
+            <input type="password" required
+                   ng-model="selected.newUser.password1"
+                   id="password1"/>
           </div>
         </div>
+        <div class="control-group">
 
-      </fieldset>
+          <label class="control-label"
+                 for="password2">Again:</label>
+
+          <div class="controls">
+            <input type="password" required
+                   ng-model="selected.newUser.password2"
+                   id="password2"/>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <ladda-button ladda="addUserProgress" ng-click="$parent.addUser()">Add User
+            </ladda-button>
+          </div>
+        </div>
+      </schema-form>
+      <div class="row-fluid"
+           ng-show="addedUser || mismatchedPasswords || registrationError">
+        <div class="span12">
+
+          <div class="alert"
+               ng-show="addedUser">
+            Successfully added user <em>{{
+            addedUser
+            }}</em>.
+          </div>
+          <div class="alert alert-error"
+               ng-show="mismatchedPasswords">
+            Mismatched passwords!
+          </div>
+          <div class="alert alert-error"
+               ng-show="registrationError">
+            {{ registrationError }}
+          </div>
+
+
+        </div>
+      </div>
     </div>
 
   </div>
@@ -128,16 +90,16 @@
               <tr>
                 <th><a ng-click="setOrder('name')">Name</a>
                   <span ng-show="order === 'name'"><i
-                  class="icon-sort-by-alphabet"></i></span><span
+                      class="icon-sort-by-alphabet"></i></span><span
                       ng-show="order === '-name'"><i
-                  class="icon-sort-by-alphabet-alt"></i></span>
+                      class="icon-sort-by-alphabet-alt"></i></span>
                 </th>
                 <th>
                   <a ng-click="setOrder('state')">State</a><span
                     ng-show="order === 'state'"><i
-                  class="icon-sort-by-alphabet"></i></span><span
+                    class="icon-sort-by-alphabet"></i></span><span
                     ng-show="order === '-state'"><i
-                  class="icon-sort-by-alphabet-alt"></i></span>
+                    class="icon-sort-by-alphabet-alt"></i></span>
                 </th>
                 <th>
                   Users
@@ -238,14 +200,14 @@
           <tr ng-repeat="user in userlist.slice(begin, end)|orderBy:order">
             <td>
               <a ng-click="openViewUserDialog(user)">{{
-                                                     user.username
-                                                     }}</a>
+                user.username
+                }}</a>
             </td>
             <td>
               <a ng-href="mailto:{{ user.email }}"><i
                   class="icon-envelope-alt"></i> {{
-                                                 user.email
-                                                 }}</a>
+                user.email
+                }}</a>
             </td>
             <td>{{ user.createdon|date }}</td>
             <td>
@@ -278,16 +240,16 @@
 </div>
 <script type="text/ng-template" id="confirmDelete">
   <div class="modal-header"><h4>Delete user "{{ selected.deleteUser.username
-                                }}"?</h4></div>
+    }}"?</h4></div>
 
   <div class="modal-body">
     <div class="row-fluid">
       <div class="span12"><p>Are you sure you want
-                             to delete user "{{
-                             selected.deleteUser.username
-                             }}"
-                             ({{ selected.deleteUser.email
-                             }})?</p>
+        to delete user "{{
+        selected.deleteUser.username
+        }}"
+        ({{ selected.deleteUser.email
+        }})?</p>
       </div>
     </div>
   </div>
@@ -313,10 +275,33 @@
     <h4 ng-hide="toggles.userEditMode">View User</h4>
   </div>
   <div class="modal-body">
+
     <div ng-show="toggles.userEditMode">
       <schema-form form-name="editUserForm"
                    model="selected.editUser"
                    schema-name="User">
+        <div class="control-group">
+
+          <label class="control-label"
+                 for="password1">Password:</label>
+
+          <div class="controls">
+            <input type="password" required
+                   ng-model="selected.newUser.password1"
+                   id="password1"/>
+          </div>
+        </div>
+        <div class="control-group">
+
+          <label class="control-label"
+                 for="password2">Again:</label>
+
+          <div class="controls">
+            <input type="password" required
+                   ng-model="selected.newUser.password2"
+                   id="password2"/>
+          </div>
+        </div>
       </schema-form>
     </div>
     <div ng-hide="toggles.userEditMode">

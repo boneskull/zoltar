@@ -47,7 +47,8 @@ a {
   cursor: pointer;
 }
 
-input.ng-invalid:not(.ng-pristine), select.ng-invalid:not(.ng-pristine) {
+ng-form:not(.ng-pristine) input.ng-invalid,
+ng-form:not(.ng-pristine) select.ng-invalid {
   border: 2px solid red;
 }
 

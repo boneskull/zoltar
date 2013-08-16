@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
+    Org = require('./org'),
     passportLocalMongoose = require('passport-local-mongoose'),
     sanitize = require('../utils/sanitize'),
     check = require('validator').check,
@@ -27,6 +28,7 @@ data = fs.readFileSync('public/schemas/user.json');
 User = new Schema(generator._convert(JSON.parse(data).schema));
 
 User.plugin(passportLocalMongoose, {});
-User.plugin(sanitize, {accept: ['_id', 'username', 'email', 'admin', 'createdon']});
+User.plugin(sanitize, {accept: ['_id', 'username', 'email', 'admin', 'createdon', 'org']});
+
 
 module.exports = mongoose.model('User', User);

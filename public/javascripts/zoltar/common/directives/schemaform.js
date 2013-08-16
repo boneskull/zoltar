@@ -39,13 +39,16 @@
             readOnly: '='
           },
           replace: true,
+          transclude: true,
           templateUrl: '/partials/schemaform.html',
           link: function postLink(scope, element, attrs) {
             var model = $injector.get(scope.schemaName),
                 schema = model.getSchema(),
                 metadata = model.getMetadata(),
                 orderedSchema = [], Ref, resource;
-
+scope.alert = function() {
+  alert('hi');
+};
             scope.refData = {};
             scope.refSchema = {};
             scope.refMetadata = {};
@@ -68,7 +71,8 @@
               }
 
               // set the placeholder
-              if (metadata.placeholders[field]) {
+              if (angular.isDefined(metadata.placeholders) &&
+                  metadata.placeholders[field]) {
                 def.$placeholder = metadata.placeholders[field]
               } else {
                 def.$placeholder = def.title ? def.title : field;
@@ -92,7 +96,7 @@
                 scope.refMetadata[def.ref] = Ref.getMetadata();
                 resource = Restangular.all(def.ref.toLowerCase() + 's');
                 resource.getList().then(function (items) {
-                  scope.refData[def.ref] = items.map(function(item) {
+                  scope.refData[def.ref] = items.map(function (item) {
                     return new Ref(item);
                   });
                 });
