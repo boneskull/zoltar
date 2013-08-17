@@ -12,7 +12,7 @@
    * @requires zoltar.service:User
    * @constructor
    * @description
-   * Master controller
+   * Master controller for main page
    */
   var ZoltarCtrl = function ZoltarCtrl($scope, currentUser, User, socket) {
 

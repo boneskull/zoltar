@@ -14,58 +14,63 @@
 <div class="span6">
   <div class="row-fluid">
     <div ng-controller="AdminAddUserCtrl" class="span12 well">
-      <schema-form form-name="AddUserForm" legend="'Add User'"
-                   model="selected.newUser" ng-submit="$parent.addUser()"
-                   schema-name="User">
-        <div class="control-group">
+      <h4><i class="icon-smile"></i> Add User <a
+          ng-click="toggles.collapseAddUser = !toggles.collapseAddUser"><i
+          class="icon-caret-down" ng-hide="toggles.collapseAddUser"></i><i
+          class="icon-caret-up" ng-show="toggles.collapseAddUser"></i></a></h4>
 
-          <label class="control-label"
-                 for="password1">Password:</label>
+      <div collapse="toggles.collapseAddUser">
+        <schema-form form-name="AddUserForm"
+                     model="tmp.newUser" ng-submit="$parent.addUser()"
+                     schema-name="User">
+          <div class="control-group">
 
-          <div class="controls">
-            <input type="password" required
-                   ng-model="selected.newUser.password1"
-                   id="password1"/>
+            <label class="control-label"
+                   for="password1">Password: <span class="help-inline">*</span></label>
+
+            <div class="controls">
+              <input type="password" required
+                     ng-model="tmp.newUser.password1"
+                     id="password1"/>
+            </div>
           </div>
-        </div>
-        <div class="control-group">
+          <div class="control-group">
 
-          <label class="control-label"
-                 for="password2">Again:</label>
+            <label class="control-label"
+                   for="password2">Again: <span class="help-inline">*</span></label>
 
-          <div class="controls">
-            <input type="password" required
-                   ng-model="selected.newUser.password2"
-                   id="password2"/>
+            <div class="controls">
+              <input type="password" required
+                     ng-model="tmp.newUser.password2"
+                     id="password2"/>
+            </div>
           </div>
-        </div>
-        <div class="control-group">
-          <div class="controls">
-            <ladda-button ladda="addUserProgress" ng-click="$parent.addUser()">Add User
-            </ladda-button>
+          <div class="control-group">
+            <div class="controls">
+              <ladda-button ladda="addUserProgress" ng-click="$parent.addUser()">Add User
+              </ladda-button>
+            </div>
           </div>
-        </div>
-      </schema-form>
-      <div class="row-fluid"
-           ng-show="addedUser || mismatchedPasswords || registrationError">
-        <div class="span12">
+        </schema-form>
+        <div class="row-fluid"
+             ng-show="addedUser || mismatchedPasswords || registrationError">
+          <div class="span12">
 
-          <div class="alert"
-               ng-show="addedUser">
-            Successfully added user <em>{{
-            addedUser
-            }}</em>.
+            <div class="alert"
+                 ng-show="addedUser">
+              Successfully added user <em>{{
+              addedUser
+              }}</em>.
+            </div>
+            <div class="alert alert-error"
+                 ng-show="mismatchedPasswords">
+              Mismatched passwords!
+            </div>
+            <div class="alert alert-error"
+                 ng-show="registrationError">
+              {{ registrationError }}
+            </div>
           </div>
-          <div class="alert alert-error"
-               ng-show="mismatchedPasswords">
-            Mismatched passwords!
-          </div>
-          <div class="alert alert-error"
-               ng-show="registrationError">
-            {{ registrationError }}
-          </div>
-
-
         </div>
       </div>
     </div>
@@ -73,18 +78,14 @@
   </div>
   <div class="row-fluid">
     <div ng-controller="AdminOrgListCtrl" class="span12 well">
+      <h4 class="left"><i class="icon-globe"></i> Organizations <a
+          ng-click="toggles.collapseOrgList = !toggles.collapseOrgList"><i
+          class="icon-caret-down" ng-hide="toggles.collapseOrgList"></i><i
+          class="icon-caret-up" ng-show="toggles.collapseOrgList"></i></a></h4><a class="right"
+                                                                                  ng-click="openAddOrgDialog()">Add
+      Org</a>
       <fieldset>
-        <legend> Organizations <a
-            ng-click="toggles.collapseOrgList = !toggles.collapseOrgList"><i
-            class="icon-caret-down" ng-hide="toggles.collapseOrgList"></i><i
-            class="icon-caret-up" ng-show="toggles.collapseOrgList"></i></a>
-        </legend>
         <div class="row-fluid" collapse="toggles.collapseOrgList">
-          <div class="row-fluid">
-            <div class="span12 text-right">
-              <a ng-click="openAddOrgDialog()">Add Org</a>
-            </div>
-          </div>
           <div class="center span12">
             <table class="table">
               <tr>
@@ -146,18 +147,23 @@
 
       </fieldset>
 
+      <pagination boundary-links="true" num-pages="noOfPages"
+                  current-page="currentPage"
+                  class="text-center pagination-small"
+                  previous-text="&lsaquo;" next-text="&rsaquo;"
+                  first-text="&laquo;"
+                  last-text="&raquo;"></pagination>
 
     </div>
 
   </div>
 </div>
 <div ng-controller="AdminUserListCtrl" class="span6 well">
+  <h4><i class="icon-group"></i> Users <a
+      ng-click="toggles.collapseUserList = !toggles.collapseUserList"><i
+      class="icon-caret-down" ng-hide="toggles.collapseUserList"></i><i
+      class="icon-caret-up" ng-show="toggles.collapseUserList"></i></a></h4>
   <fieldset>
-    <legend><i class="icon-group"></i> Users <a
-        ng-click="toggles.collapseUserList = !toggles.collapseUserList"><i
-        class="icon-caret-down" ng-hide="toggles.collapseUserList"></i><i
-        class="icon-caret-up" ng-show="toggles.collapseUserList"></i></a>
-    </legend>
     <div class="row-fluid" collapse="toggles.collapseUserList">
       <div class="center span12">
         <table class="table">
@@ -239,16 +245,16 @@
 <div class="row-fluid">
 </div>
 <script type="text/ng-template" id="confirmDelete">
-  <div class="modal-header"><h4>Delete user "{{ selected.deleteUser.username
+  <div class="modal-header"><h4>Delete user "{{ tmp.deleteUser.username
     }}"?</h4></div>
 
   <div class="modal-body">
     <div class="row-fluid">
       <div class="span12"><p>Are you sure you want
         to delete user "{{
-        selected.deleteUser.username
+        tmp.deleteUser.username
         }}"
-        ({{ selected.deleteUser.email
+        ({{ tmp.deleteUser.email
         }})?</p>
       </div>
     </div>
@@ -260,7 +266,7 @@
           n/m
         </button>
         <ladda-button ladda="deleteProgress" class="btn-danger"
-                      ng-click="delete(selected.deleteUser)">
+                      ng-click="deleteUser()">
           KILL
         </ladda-button>
 
@@ -278,7 +284,7 @@
 
     <div ng-show="toggles.userEditMode">
       <schema-form form-name="editUserForm"
-                   model="selected.editUser"
+                   model="tmp.editUser"
                    schema-name="User">
         <div class="control-group">
 
@@ -287,7 +293,7 @@
 
           <div class="controls">
             <input type="password" required
-                   ng-model="selected.newUser.password1"
+                   ng-model="tmp.newUser.password1"
                    id="password1"/>
           </div>
         </div>
@@ -298,7 +304,7 @@
 
           <div class="controls">
             <input type="password" required
-                   ng-model="selected.newUser.password2"
+                   ng-model="tmp.newUser.password2"
                    id="password2"/>
           </div>
         </div>
@@ -306,7 +312,7 @@
     </div>
     <div ng-hide="toggles.userEditMode">
       <schema-form form-name="viewUserForm"
-                   model="selected.viewUser"
+                   model="tmp.viewUser"
                    schema-name="User" read-only="true">
       </schema-form>
     </div>
@@ -321,7 +327,7 @@
         </button>
         <ladda-button ladda="editUserProgress"
                       class="btn-primary"
-                      ng-click="saveUser(selected.editUser)">
+                      ng-click="saveUser(tmp.editUser)">
           Save
         </ladda-button>
       </div>

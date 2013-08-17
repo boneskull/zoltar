@@ -4,65 +4,135 @@
 
   var admin = angular.module('zoltarAdmin', []);
 
+  /**
+   * @ngdoc controller
+   * @name zoltarAdmin.controller:AdminCtrl
+   * @description
+   * Parent controller for the admin console.  Provides toggles and a place
+   * to put various temporary variables.
+   * @constructor
+   */
   var AdminCtrl = function AdminCtrl($scope) {
 
-    $scope.selected = {};
+    /**
+     * @ngdoc property
+     * @name zoltarAdmin.controller:AdminCtrl#tmp
+     * @propertyOf zoltarAdmin.controller:AdminCtrl
+     * @type {{}}
+     * @description
+     * Temporary variables go here.  User to view, edit, delete, add, etc.
+     */
+    $scope.tmp = {};
 
+    /**
+     * @ngdoc property
+     * @name zoltarAdmin.controller:AdminCtrl#toggles
+     * @propertyOf zoltarAdmin.controller:AdminCtrl
+     * @description
+     * Various view-wide toggles go in here.
+     * @type {{userEditMode: boolean}}
+     */
     $scope.toggles = {
       userEditMode: false
     };
 
   };
 
-  var AdminConfirmDeleteUserCtrl = function AdminConfirmDeleteUserCtrl($scope, socket, dialog, selected, $timeout) {
-    $scope.selected = selected;
-    $scope.cancelDeleteUser = function () {
+  /**
+   * @ngdoc controller
+   * @name zoltarAdmin.controller:AdminDeleteUserCtrl
+   * @requires socket.service:socket
+   * @requires ladda.service:delay
+   * @param {Object} dialog Dialog object from ui-bootstrap
+   * @param {Object} tmp {@link zoltarAdmin.controller:AdminCtrl#tmp object}
+   * @constructor
+   */
+  var AdminDeleteUserCtrl = function AdminDeleteUserCtrl($scope, socket, dialog,
+                                                         tmp, delay) {
+
+    $scope.tmp = tmp;
+
+    /**
+     * @ngdoc method
+     * @name zoltarAdmin.controller:AdminDeleteUserCtrl#cancelDeleteUser
+     * @methodOf zoltarAdmin.controller:AdminDeleteUserCtrl
+     * @description
+     * Closes the "confirmDelete" dialog.
+     */
+    $scope.cancelDeleteUser = function cancelDeleteUser() {
       dialog.close();
     };
 
-    $scope.delete = function () {
+    /**
+     * @ngdoc method
+     * @name zoltarAdmin.controller:AdminDeleteUserCtrl#deleteUser
+     * @methodOf zoltarAdmin.controller:AdminDeleteUserCtrl
+     * @description
+     * Emits an `admin:deleteUser` event to the socket.
+     */
+    $scope.deleteUser = function deleteUser() {
       $scope.deleteProgress = 0;
-      socket.emit('admin:deleteUser', $scope.selected.deleteUser);
+      socket.emit('admin:deleteUser', $scope.tmp.deleteUser);
     };
 
-    socket.on('admin:deleteUserSuccess', function () {
+    /**
+     * @description
+     * Handler for `admin:deleteUserSuccess` socket event.
+     */
+    var onAdminDeleteUserSuccess = function onAdminDeleteUserSuccess() {
       $scope.deleteProgress = 1;
-      $timeout(function () {
-        $scope.deleteProgress = false;
-        $scope.cancelDeleteUser();
-      }, 200);
-    });
+      delay($scope, 'deleteProgress').then($scope.cancelDeleteUser);
+    };
 
-    socket.on('admin:deleteUserFailure', function (err) {
+    /**
+     * @description
+     * Handler for `admin:deleteUserFailure` socket event.
+     * @param {string} err Error message
+     */
+    var onAdminDeleteUserFailure = function onAdminDeleteUserFailure(err) {
       $scope.deleteProgress = 1;
       $scope.deleteFailure = err;
-      $timeout(function () {
-        $scope.deleteProgress = false;
-      }, 200);
-    });
+      delay($scope, 'deleteProgress');
+    };
+
+    socket.on('admin:deleteUserSuccess', onAdminDeleteUserSuccess);
+    socket.on('admin:deleteUserFailure', onAdminDeleteUserFailure);
+
   };
 
-  var AdminAddUserCtrl = function AdminAddUserCtrl($scope, Restangular, User, socket, $timeout) {
-    $scope.selected.newUser = new User();
+  /**
+   * @ngdoc controller
+   * @name zoltarAdmin.controller:AdminAddUserCtrl
+   * @requires Restangular
+   * @requires ng.$rootScope.Scope
+   * @requires zoltar:service.User
+   * @requires ng.$timeout
+   * @requires socket.service:socket
+   * @requires ladda.service:delay
+   * @constructor
+   */
+  var AdminAddUserCtrl = function AdminAddUserCtrl($scope, Restangular, User,
+                                                   socket, $timeout, delay) {
+    $scope.tmp.newUser = new User();
     $scope.mismatchedPasswords = false;
     $scope.missingRequiredFields = true;
 
-    $scope.addUser = function () {
+    $scope.addUser = function addUser() {
       var newUser, register;
       delete $scope.addedUser;
       delete $scope.registrationError;
       $scope.addUserProgress = 0;
       if ($scope.schemaForm.$valid) {
         $scope.missingRequiredFields = false;
-        if ($scope.selected.newUser.password1 !==
-            $scope.selected.newUser.password2) {
+        if ($scope.tmp.newUser.password1 !==
+            $scope.tmp.newUser.password2) {
           $scope.mismatchedPasswords = true;
-          delete $scope.selected.newUser.password;
+          delete $scope.tmp.newUser.password;
         } else {
           $scope.mismatchedPasswords = false;
-          $scope.selected.newUser.password =
-              $scope.selected.newUser.password1;
-          newUser = $scope.selected.newUser;
+          $scope.tmp.newUser.password =
+          $scope.tmp.newUser.password1;
+          newUser = $scope.tmp.newUser;
           newUser.password = newUser.password1;
           delete newUser.password1;
           delete newUser.password2;
@@ -76,37 +146,51 @@
           $scope.schemaForm.$setDirty();
         }, 400);
         $scope.addUserProgress = 0;
-        $timeout(function () {
-          $scope.addUserProgress = false;
-        }, 200);
+        delay($scope, 'addUserProgress');
       }
 
     };
 
-    socket.on('admin:registrationSuccessful', function (user) {
+    /**
+     *
+     * @param user
+     */
+    var onAdminRegistrationSuccess = function onAdminRegistrationSuccess(user) {
 
       $scope.addUserProgress = 1;
-      $timeout(function () {
-        $scope.addUserProgress = false;
-      }, 200);
+      delay($scope, 'addUserProgress');
 
-      $scope.selected.newUser = new User();
+      $scope.tmp.newUser = new User();
 
       $scope.addedUser = user.username;
-    });
+    };
 
-    socket.on('admin:registrationFailure', function (err) {
+    /**
+     *
+     * @param err
+     */
+    var onAdminRegistrationFailure = function onAdminRegistrationFailure(err) {
       $scope.addUserProgress = 1;
-      $timeout(function () {
-
-        $scope.addUserProgress = false;
-      }, 200);
-
+      delay($scope, 'addUserProgress');
       $scope.registrationError = err;
-    });
+    };
+
+    socket.on('admin:registrationSuccess', onAdminRegistrationSuccess);
+    socket.on('admin:registrationFailure', onAdminRegistrationFailure);
+
   };
 
-  var AdminUserListCtrl = function AdminUserListCtrl($scope, socket, $timeout, User, $dialog) {
+  /**
+   *
+   * @param $scope
+   * @param socket
+   * @param $timeout
+   * @param User
+   * @param $dialog
+   * @constructor
+   */
+  var AdminUserListCtrl = function AdminUserListCtrl($scope, socket, $timeout,
+                                                     User, $dialog) {
 
     var PAGE_LENGTH = 10;
 
@@ -117,40 +201,59 @@
       }
     });
 
-    socket.on('admin:userlist', function (userlist) {
+    /**
+     *
+     * @param userlist
+     * @private
+     */
+    var _onUserlist = function _onUserList(userlist) {
       $scope.userlist = userlist.map(function (user) {
         return new User(user);
       });
 
       $scope.noOfPages =
-          Math.ceil($scope.userlist.length / PAGE_LENGTH);
+      Math.ceil($scope.userlist.length / PAGE_LENGTH);
       $scope.currentPage = $scope.currentPage || 1;
 
-    });
+    };
 
-    $scope.openConfirmDeleteUserDialog = function (user) {
-      $scope.selected.deleteUser = user;
-      $dialog.dialog({templateUrl: 'confirmDelete', controller: 'AdminConfirmDeleteUserCtrl', resolve: {selected: function () {
-        return $scope.selected
+    /**
+     *
+     * @param user
+     */
+    $scope.openConfirmDeleteUserDialog =
+    function openConfirmDeleteUserDialog(user) {
+      $scope.tmp.deleteUser = user;
+      $dialog.dialog({templateUrl: 'confirmDelete', controller: 'AdminConfirmDeleteUserCtrl', resolve: {tmp: function () {
+        return $scope.tmp
       }}})
           .open().then(function () {
-            delete $scope.selected.deleteUser;
-          });
+                         delete $scope.tmp.deleteUser;
+                       });
 
     };
 
+    /**
+     *
+     * @private
+     */
     $scope._onViewEditUserDialogClose = function () {
       $scope.toggles.userEditMode = false;
-      delete $scope.selected.viewUser;
-      delete $scope.selected.editUser;
+      delete $scope.tmp.viewUser;
+      delete $scope.tmp.editUser;
     };
 
+    /**
+     *
+     * @param user
+     * @private
+     */
     $scope._openViewUserDialog = function (user) {
-      $scope.selected.viewUser = user;
-      $scope.selected.editUser = angular.copy(user);
+      $scope.tmp.viewUser = user;
+      $scope.tmp.editUser = angular.copy(user);
 
-      $dialog.dialog({templateUrl: 'viewUser', controller: 'AdminEditUserCtrl', resolve: {selected: function () {
-        return $scope.selected
+      $dialog.dialog({templateUrl: 'viewUser', controller: 'AdminEditUserCtrl', resolve: {tmp: function () {
+        return $scope.tmp
       }, toggles: function () {
         return $scope.toggles
       }}})
@@ -158,50 +261,80 @@
 
     };
 
+    /**
+     *
+     * @param user
+     */
     $scope.openViewUserDialog = function (user) {
       $scope.toggles.userEditMode = false;
       $scope._openViewUserDialog(user);
     };
 
+    /**
+     *
+     * @param user
+     */
     $scope.openEditUserDialog = function (user) {
       $scope.toggles.userEditMode = true;
       $scope._openViewUserDialog(user);
     };
 
+    /**
+     *
+     * @param field
+     */
     $scope.setOrder = function (field) {
       $scope.order = $scope.order === field ? '-' + field : field;
     };
 
+    socket.on('admin:userlist', _onUserlist);
     socket.emit('admin:ready');
 
   };
 
-  var AdminEditUserCtrl = function AdminEditUserCtrl($scope, socket, $timeout, dialog, selected, toggles) {
+  /**
+   *
+   * @param $scope
+   * @param socket
+   * @param delay
+   * @param dialog
+   * @param tmp
+   * @param toggles
+   * @constructor
+   */
+  var AdminEditUserCtrl = function AdminEditUserCtrl($scope, socket, delay,
+                                                     dialog, tmp,
+                                                     toggles) {
 
     $scope.toggles = toggles;
-    $scope.selected = selected;
+    $scope.tmp = tmp;
 
-    socket.on('admin:saveUserSuccess', function () {
+    /**
+     *
+     */
+    var onSaveUserSuccess = function onSaveUserSuccess() {
       $scope.editUserProgress = 1;
-      $timeout(function () {
-        $scope.editUserProgress = false;
-        $scope.cancelEditUser();
-      }, 200);
-    });
+      delay($scope, 'editUserProgress').then($scope.cancelEditUser);
+    };
 
-    socket.on('admin:saveUserFailure', function (err) {
+    /**
+     *
+     * @param err
+     */
+    var onSaveUserFailure = function onSaveUserFailure(err) {
       $scope.editUserProgress = 1;
       $scope.saveUserFailure = err;
-      $timeout(function () {
-        $scope.editUserProgress = false;
-      }, 200);
+      delay($scope, 'editUserProgress');
+    };
 
-    });
-
-    $scope.saveUser = function (user) {
+    /**
+     *
+     * @param user
+     */
+    $scope.saveUser = function saveUser(user) {
       if ($scope.schemaForm.$valid) {
         if ((user.password1 || user.password2) && user.password1 !==
-            user.password2) {
+                                                  user.password2) {
           $scope.saveUserFailure = 'Mismatched passwords.';
           return;
         } else if (user.password1 === user.password2) {
@@ -217,35 +350,78 @@
       }
     };
 
-    $scope.cancelEditUser = function () {
+    /**
+     *
+     */
+    $scope.cancelEditUser = function cancelEditUser() {
       dialog.close();
     };
 
+    socket.on('admin:saveUserSuccess', onSaveUserSuccess);
+    socket.on('admin:saveUserFailure', onSaveUserFailure);
+
   };
 
-  var AdminOrgListCtrl = function AdminOrgListCtrl($scope, socket, Org, $dialog) {
+  /**
+   *
+   * @param $scope
+   * @param socket
+   * @param Org
+   * @param $dialog
+   * @constructor
+   */
+  var AdminOrgListCtrl = function AdminOrgListCtrl($scope, socket, Org,
+                                                   $dialog) {
 
-    socket.on('admin:orglist', function (orglist) {
+    var PAGE_LENGTH = 10;
+
+    var onAdminOrglist = function onAdminOrglist(orglist) {
       $scope.orglist = orglist.map(function (org) {
         return new Org(org);
       });
-    });
 
+      $scope.noOfPages =
+      Math.ceil($scope.orglist.length / PAGE_LENGTH);
+      $scope.currentPage = $scope.currentPage || 1;
+    };
+
+    /**
+     *
+     */
     $scope.openAddOrgDialog = function openAddOrgDialog() {
       $dialog.dialog({templateUrl: 'addOrg', controller: 'AdminAddOrgCtrl', dialogClass: 'addOrgModal modal'})
           .open();
 
     };
+
+    socket.on('admin:orglist', onAdminOrglist);
   };
 
-  var AdminAddOrgCtrl = function AdminAddOrgCtrl($scope, socket, $timeout, dialog, Org) {
+  /**
+   *
+   * @param $scope
+   * @param socket
+   * @param dialog
+   * @param Org
+   * @param delay
+   * @constructor
+   */
+  var AdminAddOrgCtrl = function AdminAddOrgCtrl($scope, socket, dialog, Org,
+                                                 delay) {
 
     $scope.newOrg = new Org();
 
+    /**
+     *
+     */
     $scope.cancelAddOrg = function cancelAddOrg() {
       dialog.close();
     };
 
+    /**
+     *
+     * @param org
+     */
     $scope.addOrg = function saveOrg(org) {
       if ($scope.schemaForm.$valid) {
         $scope.addOrgProgress = 0;
@@ -253,28 +429,30 @@
       }
     };
 
-    socket.on('admin:addOrgSuccess', function () {
+    /**
+     *
+     */
+    var onAdminAddOrgSuccess = function onAdminAddOrgSuccess() {
       $scope.addOrgProgress = 1;
-      $timeout(function () {
-        $scope.addOrgProgress = false;
-        $scope.cancelAddOrg();
-      }, 200);
-    });
+      delay($scope, 'addOrgProgress').then($scope.cancelAddOrg);
+    };
 
-    socket.on('admin:addOrgFailure', function (err) {
+    /**
+     *
+     * @param err
+     */
+    var onAdminAddOrgFailure = function onAdminAddOrgFailure(err) {
       $scope.addOrgProgress = 1;
       $scope.addOrgError = err;
-      console.log(err);
-      $timeout(function () {
-        $scope.addOrgProgress = false;
-      }, 200);
-    });
+      delay($scope, 'addOrgProgress');
+    };
 
-
+    socket.on('admin:addOrgSuccess', onAdminAddOrgSuccess);
+    socket.on('admin:addOrgFailure', onAdminAddOrgFailure);
   };
 
   admin.controller('AdminCtrl', AdminCtrl);
-  admin.controller('AdminConfirmDeleteUserCtrl', AdminConfirmDeleteUserCtrl);
+  admin.controller('AdminConfirmDeleteUserCtrl', AdminDeleteUserCtrl);
   admin.controller('AdminAddUserCtrl', AdminAddUserCtrl);
   admin.controller('AdminUserListCtrl', AdminUserListCtrl);
   admin.controller('AdminEditUserCtrl', AdminEditUserCtrl);

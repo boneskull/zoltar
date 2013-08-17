@@ -37,7 +37,7 @@ module.exports = function (app) {
                   })
                 }
                 io.broadcastUserlist(req);
-                req.io.emit('admin:registrationSuccessful', user);
+                req.io.emit('admin:registrationSuccess', user);
               } else {
                 switch (err.code) {
                   case 11000:

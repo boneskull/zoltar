@@ -46,7 +46,7 @@ module.exports = function (app) {
      * @name utils.io:broadcastUserlist
      * @param {Object} req Request
      * @description
-     * Broadcasts the userlist to all connected sockets.
+     * Broadcasts the userlist to all sockets in room "admin".
      */
     broadcastUserlist: function broadcastUserlist(req) {
       this.ifAdminSocket(req)
@@ -60,6 +60,13 @@ module.exports = function (app) {
                 }));
           });
     },
+    /**
+     * @doc function
+     * @name utils.io:broadcastOrglist
+     * @param {Object} req Request
+     * @description
+     * Broadcasts orglist to all sockets in room "admin"
+     */
     broadcastOrglist: function broadcastOrglist(req) {
       this.ifAdminSocket(req)
           .then(function () {
