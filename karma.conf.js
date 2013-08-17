@@ -4,28 +4,7 @@
 "use strict";
 var fs = require('fs');
 
-var support = JSON.parse(fs.readFileSync(process.env.PWD + '/support.json'));
-//
-//module.exports = function (config) {
-//    config.set({
-//        basePath: '',
-//        frameworks: ['jasmine'],
-//        files: support.concat([
-//                'public/test/support/angular-mocks.js',
-//                'public/test/spec/**/*.spec.js'
-//            ]),
-//        exclude: ['public/javascripts/dist/*.js'],
-//        reporters: ['progress', 'osx'],
-//        port: 9876,
-//        colors: true,
-//        autoWatch: true,
-//        browsers: [process.env.TRAVIS ? 'Firefox' : 'Chrome'],
-//        captureTimeout: 20000,
-//        singleRun: false,
-//        plugins: ['karma-jasmine', 'karma-osx-reporter'],
-//        reportSlowerThan: 500
-//    });
-//};
+var support = JSON.parse(fs.readFileSync(process.env.PWD + '/sources.json'));
 
 module.exports = function (config) {
     config.set({

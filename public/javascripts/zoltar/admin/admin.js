@@ -43,7 +43,10 @@
    * @name zoltarAdmin.controller:AdminDeleteUserCtrl
    * @requires socket.service:socket
    * @requires ladda.service:delay
+   * @param {ng.$rootScope.Scope} $scope Scope
+   * @param {Object} socket Socket service
    * @param {Object} dialog Dialog object from ui-bootstrap
+   * @param {ladda.service:delay} delay Delay service
    * @param {Object} tmp {@link zoltarAdmin.controller:AdminCtrl#tmp object}
    * @constructor
    */
@@ -113,17 +116,42 @@
    */
   var AdminAddUserCtrl = function AdminAddUserCtrl($scope, Restangular, User,
                                                    socket, $timeout, delay) {
-    $scope.tmp.newUser = new User();
-    $scope.mismatchedPasswords = false;
-    $scope.missingRequiredFields = true;
 
+    /**
+     * @ngdoc property
+     * @name zoltarAdmin.controller:AdminAddUserCtrl#tmp.newUser
+     * @propertyOf zoltarAdmin.controller:AdminAddUserCtrl
+     * @description
+     * Temp variable for new user.
+     * @type {zoltar.service:User}
+     */
+    $scope.tmp.newUser = new User();
+
+    /**
+     * @ngdoc property
+     * @name zoltarAdmin.controller:AdminAddUserCtrl#mismatchedPasswords
+     * @propertyOf zoltarAdmin.controller:AdminAddUserCtrl
+     * @description
+     * Whether or not the passwords in the form are mismatched.
+     * @type {boolean}
+     */
+    $scope.mismatchedPasswords = false;
+
+    /**
+     * @ngdoc method
+     * @name zoltarAdmin.controller:AdminAddUserCtrl#addUser
+     * @methodOf zoltarAdmin.controller:AdminAddUserCtrl
+     * @description
+     * Attemps to add {@link zoltarAdmin.controller:AdminAddUserCtrl#tmp.newUser `tmp.newUser`}
+     * to db.  Checks for mismatched passwords.  Emits `admin:register` socket
+     * event if valid.
+     */
     $scope.addUser = function addUser() {
       var newUser, register;
       delete $scope.addedUser;
       delete $scope.registrationError;
       $scope.addUserProgress = 0;
       if ($scope.schemaForm.$valid) {
-        $scope.missingRequiredFields = false;
         if ($scope.tmp.newUser.password1 !==
             $scope.tmp.newUser.password2) {
           $scope.mismatchedPasswords = true;
@@ -140,7 +168,6 @@
         }
       }
       else {
-        $scope.missingRequiredFields = true;
         $scope.schemaForm.$setPristine();
         $timeout(function () {
           $scope.schemaForm.$setDirty();
@@ -152,22 +179,22 @@
     };
 
     /**
-     *
-     * @param user
+     * @description
+     * Handler for `admin:registrationSuccess` event.
+     * @param {zoltar.service:User} user User instance from server
      */
     var onAdminRegistrationSuccess = function onAdminRegistrationSuccess(user) {
 
       $scope.addUserProgress = 1;
       delay($scope, 'addUserProgress');
-
       $scope.tmp.newUser = new User();
-
       $scope.addedUser = user.username;
     };
 
     /**
-     *
-     * @param err
+     * @description
+     * Handler for `admin:registrationFailure` event.
+     * @param {string} err Error message
      */
     var onAdminRegistrationFailure = function onAdminRegistrationFailure(err) {
       $scope.addUserProgress = 1;
@@ -190,9 +217,10 @@
    * @constructor
    */
   var AdminUserListCtrl = function AdminUserListCtrl($scope, socket, $timeout,
-                                                     User, $dialog) {
+                                                     User, $dialog,
+                                                     zoltarConstants) {
 
-    var PAGE_LENGTH = 10;
+    var PAGE_LENGTH = zoltarConstants.pageLength;
 
     $scope.$watch('currentPage', function (newval) {
       if ($scope.userlist) {
@@ -303,8 +331,7 @@
    * @constructor
    */
   var AdminEditUserCtrl = function AdminEditUserCtrl($scope, socket, delay,
-                                                     dialog, tmp,
-                                                     toggles) {
+                                                     dialog, tmp, toggles) {
 
     $scope.toggles = toggles;
     $scope.tmp = tmp;
@@ -363,17 +390,19 @@
   };
 
   /**
-   *
-   * @param $scope
-   * @param socket
-   * @param Org
-   * @param $dialog
+   * @ngdoc controller
+   * @name zoltarAdmin.controller:AdminOrgListCtrl
+   * @param {ng.$rootScope:Scope} $scope Scope
+   * @param {socket.service:socket} socket service
+   * @param {zoltar:service:Org} Org pseudoclass
+   * @param {ui.bootstrap.service:$dialog} $dialog $dialog service
+   * @param {zoltar.object:zoltarConstants} zoltarConstants App-level constants
    * @constructor
    */
-  var AdminOrgListCtrl = function AdminOrgListCtrl($scope, socket, Org,
-                                                   $dialog) {
+  var AdminOrgListCtrl = function AdminOrgListCtrl($scope, socket, Org, $dialog,
+                                                   zoltarConstants) {
 
-    var PAGE_LENGTH = 10;
+    var PAGE_LENGTH = zoltarConstants.pageLength;
 
     var onAdminOrglist = function onAdminOrglist(orglist) {
       $scope.orglist = orglist.map(function (org) {

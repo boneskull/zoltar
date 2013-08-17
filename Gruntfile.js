@@ -1,14 +1,12 @@
 'use strict';
 
 module.exports = function (grunt) {
-
-  //noinspection JSHint,JSHint
   grunt.initConfig(
       {
         pkg: grunt.file.readJSON('package.json'),
         concat: {
           dist: {
-            src: grunt.file.readJSON('support.json'),
+            src: grunt.file.readJSON('sources.json'),
             dest: 'public/javascripts/dist/<%= pkg.name %>-' +
                   '<%= pkg.version %>.js'
           }
@@ -37,6 +35,7 @@ module.exports = function (grunt) {
           scripts: {
             files: [
               'public/schemas/*.json',
+              'public/javascripts/zoltar/*.js',
               'public/javascripts/zoltar/**/*.js',
               'public/javascripts/support/**/*.js',
               '!public/javascripts/dist/*.js',
@@ -77,6 +76,14 @@ module.exports = function (grunt) {
               groupTitle: 'Zoltar Client',
               groupId: 'client',
               sections: [
+                {
+                  id: 'zoltar',
+                  title: 'Application',
+                  showSource: true,
+                  scripts: [
+                    'public/javascripts/zoltar/zoltar.js'
+                  ]
+                },
                 {
                   id: 'zoltarIndex',
                   title: 'Main Page',

@@ -207,5 +207,4 @@ scope.alert = function() {
   schemaForm.directive('schemaForm', schemaFormDirective);
   schemaForm.directive('validate', validateDirective);
 
-})
-    ();
+})();
