@@ -38,7 +38,7 @@
          * user from {@link zoltarCommon.controller:LoginCtrl#credentials `credentials`}.
          */
         $scope.login = function () {
-          var user, login;
+          var user, login = Restangular.all('login');
           if (!$scope.loginForm.$valid) {
             return;
           }
@@ -46,9 +46,7 @@
             username: $scope.credentials.username,
             password: $scope.credentials.password
           });
-          console.log(user);
           $scope.loginProgress = 0;
-          login = Restangular.all('login');
           login.post(user)
               .always(function (res) {
                 $scope.loginProgress = 1;

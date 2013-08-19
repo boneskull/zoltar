@@ -16,9 +16,13 @@
     <link rel="stylesheet" href="/stylesheets/ladda-themeless.min.css"/>
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
     <link rel="stylesheet" href="/stylesheets/style.css"/>
-
+    <% if (development) { %>
+    <% for (var i = 0; i < files.length; i++) { %>
+    <script src="/<%= files[i] %>"></script>
+    <% } %>
+    <% } else { %>
     <script src="/javascripts/dist/<%= name %>-<%= version %>.min.js"></script>
-
+    <% } %>
     <% if (user) { %>
     <script type="text/javascript">
         angular.module('zoltar').value('currentUser', <%-user %>);

@@ -106,9 +106,9 @@
         /**
          * Handy-dandy assertion function.
          */
-          assert = function assert(exp) {
+          assert = function assert(exp, msg) {
           if (!exp) {
-            throw new Error("assertion failed");
+            throw new Error(msg || "assertion failed");
           }
         };
 
@@ -134,11 +134,11 @@
         // for each schema found, create model pseudoclasses for them
         angular.forEach(zoltarSchemas, function (data, name) {
           var Model = function Model(o) {
-            angular.extend(this, o);
             this.$schema = data.schema;
             this.$metadata = data.metadata;
             this.$name = name;
             this.$defineProperties();
+            angular.extend(this, o);
           };
 
           /**
@@ -155,6 +155,10 @@
            */
           Model.getMetadata = function () {
             return data.metadata;
+          };
+
+          Model.prototype.toString = function() {
+            return JSON.stringify(this);
           };
 
           /**
@@ -174,6 +178,7 @@
                 }
                 type = definition.type;
               }
+
               Object.defineProperty(model, field, {
                 enumerable: true,
                 configurable: true,
@@ -191,20 +196,20 @@
                     // assert we have a valid date.  getTime() will
                     // return 0 if invalid.
                     case 'Date':
-                      assert(new Date(value).getTime() > 0);
+                      assert(new Date(value).getTime() > 0, value + ' is a valid date');
                       break;
 
                     // ObjectIds are always strings, so assert we
                     // have a string
                     case 'ObjectId':
-                      assert(angular.isString(value));
+                      assert(angular.isObject(value) || angular.isString(value) ,value + ' is an object or an _id (string)');
                       break;
 
                     // if we have a string and it's an enum,
                     // assert the value is within the enum
                     case 'String':
-                      if (angular.isDefined(definition.enum)) {
-                        assert(definition.enum.indexOf(value) >= 0);
+                      if (angular.isArray(definition.enum)) {
+                        assert(definition.enum.indexOf(value) >= 0, value + ' is within the enumeration ' + definition.enum);
                       }
 
                       // if we want to trim, trim.
@@ -219,7 +224,7 @@
                     /* falls through */
                     default:
                       assert(Object.prototype.toString.call(value) ===
-                        '[object ' + type + ']');
+                        '[object ' + type + ']', value + ' is of type ' + type);
                   }
 
                   // validate if we have defined a validator.

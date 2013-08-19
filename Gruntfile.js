@@ -22,9 +22,8 @@ module.exports = function (grunt) {
       dist: {
         files: {
           /*jshint maxlength:false*/
-          'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.min.js': [
-            grunt.file.readJSON('sources.json').concat('public/javascripts/dist/generated/**/*.js')
-          ]
+          'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.min.js':
+            grunt.file.readJSON('support.json').concat('public/javascripts/dist/generated/**/*.js')
         }
       }
     },
@@ -37,8 +36,8 @@ module.exports = function (grunt) {
       scripts: {
         files: [
           'public/schemas/*.json', 'public/javascripts/zoltar/**/*.js',
-          'public/javascripts/support/**/*.js', '!public/javascripts/dist/*.js',
-          'utils/**/*.js'
+          'public/javascripts/support/**/*.js',
+          '!public/javascripts/dist/**/*.js'
         ],
         tasks: ['ngmin', 'uglify', 'docular']
       },
@@ -62,7 +61,7 @@ module.exports = function (grunt) {
         options: {
           file: 'server.js',
           watchedExtensions: ['js'],
-          ignoredFiles: ['node_modules/**'],
+          ignoredFiles: ['node_modules/**', 'public/**'],
           nodeArgs: ['--debug']
         }
       }

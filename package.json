@@ -40,7 +40,8 @@
     "passport-local-mongoose": "~0.2.4",
     "validator": "~1.4.0",
     "mongoose-gen": "0.0.3",
-    "underscore": "1.x"
+    "underscore": "1.x",
+    "glob": "~3.2.6"
   },
   "repository": "https://github.com/boneskull/zoltar.git"
 }

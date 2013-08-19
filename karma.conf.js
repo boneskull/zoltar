@@ -4,73 +4,73 @@
 "use strict";
 var fs = require('fs');
 
-var support = JSON.parse(fs.readFileSync(process.env.PWD + '/sources.json'));
+var support = JSON.parse(fs.readFileSync(process.env.PWD + '/support.json'));
 
 module.exports = function (config) {
-    config.set({
+  config.set({
 
-        // base path, that will be used to resolve files and exclude
-        basePath: '',
-
-
-        // frameworks to use
-        frameworks: ['jasmine'],
+    // base path, that will be used to resolve files and exclude
+    basePath: '',
 
 
-        // list of files / patterns to load in the browser
-        files: support.concat([
-            'public/test/support/angular-mocks.js',
-            'public/test/spec/**/*.spec.js'
-        ]),
+    // frameworks to use
+    frameworks: ['jasmine'],
 
 
-        // list of files to exclude
-        exclude: [
-            'public/javascripts/dist/*.js'
-        ],
+    // list of files / patterns to load in the browser
+    files: support.concat([
+      'public/test/support/angular-mocks.js',
+      'public/javascripts/zoltar/**/*.js', 'public/test/spec/**/*.spec.js' ]),
 
 
-        // test results reporter to use
-        // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-        reporters: ['progress', 'osx'],
+    // list of files to exclude
+    exclude: [
+      'public/javascripts/dist/*.js',
+      'public/javascripts/zoltar/preinit.js'
+    ],
 
 
-        // web server port
-        port: 9876,
+    // test results reporter to use
+    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
+    reporters: ['progress', 'osx'],
 
 
-        // enable / disable colors in the output (reporters and logs)
-        colors: true,
+    // web server port
+    port: 9876,
 
 
-        // level of logging
-        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_INFO,
+    // enable / disable colors in the output (reporters and logs)
+    colors: true,
 
 
-        // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: true,
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_INFO,
 
 
-        // Start these browsers, currently available:
-        // - Chrome
-        // - ChromeCanary
-        // - Firefox
-        // - Opera
-        // - Safari (only Mac)
-        // - PhantomJS
-        // - IE (only Windows)
-        browsers: ['Chrome'],
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true,
 
 
-        // If browser does not capture in given timeout [ms], kill it
-        captureTimeout: 60000,
+    // Start these browsers, currently available:
+    // - Chrome
+    // - ChromeCanary
+    // - Firefox
+    // - Opera
+    // - Safari (only Mac)
+    // - PhantomJS
+    // - IE (only Windows)
+    browsers: ['Chrome'],
 
 
-        // Continuous Integration mode
-        // if true, it capture browsers, run tests and exit
-        singleRun: false,
+    // If browser does not capture in given timeout [ms], kill it
+    captureTimeout: 60000,
 
-        plugins: ['karma-jasmine', 'karma-osx-reporter', 'karma-chrome-launcher']
-    });
+
+    // Continuous Integration mode
+    // if true, it capture browsers, run tests and exit
+    singleRun: false,
+
+    plugins: ['karma-jasmine', 'karma-osx-reporter', 'karma-chrome-launcher']
+  });
 };
