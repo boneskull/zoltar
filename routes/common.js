@@ -6,16 +6,16 @@ var Q = require('q'),
   Job = require('../models/job'),
   State = require('../models/state');
 
-/**
- * @doc module
- * @name utils:io
- * @description
- * Provides common functionality for express.io routes.
- * @param {Object} app Application object
- * @returns {Object} Utilities
- */
 module.exports = function (app) {
   return {
+    isAdmin: function isAdmin(req, res, next) {
+      if (!req.user || !req.user.admin) {
+        res.redirect('/');
+      }
+      else {
+        next();
+      }
+    },
 
     emitStates: function (req) {
       State.find({}).exec().then(function (states) {
@@ -82,7 +82,7 @@ module.exports = function (app) {
         })
         .then(function (orgs) {
           app.io.room('admin').broadcast('admin:orglist', orgs);
-        }, function(err) {
+        }, function (err) {
           console.log('some err ' + err);
         });
     }

@@ -2,7 +2,7 @@
 
 var express = require('express');
 
-var packageJson = require('./package.json');
+var packageJson = require('../package.json');
 
 var app = express();
 
@@ -11,6 +11,6 @@ module.exports.appVersion = packageJson.version;
 module.exports.development = 'development' === app.get('env');
 
 module.exports.server = {
-    cookieSecret: "i'm the firestarter"
+    cookieSecret: process.env.COOKIE_SECRET || "i'm the firestarter"
 };
 

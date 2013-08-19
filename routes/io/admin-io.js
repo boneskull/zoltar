@@ -8,18 +8,18 @@ var User = require('../../models/user'),
 
 module.exports = function (app) {
 
-  var io = require('../../utils/io')(app);
+  var common = require('../common')(app);
 
-  return {
+  app.io.route('admin', {
     ready: function (req) {
-      io.ifAdminSocket(req).then(function () {
+      common.ifAdminSocket(req).then(function () {
         req.io.join('admin');
-        io.broadcastUserlist(req);
-        io.broadcastOrglist(req);
+        common.broadcastUserlist(req);
+        common.broadcastOrglist(req);
       });
     },
     register: function (req) {
-      io.ifAdminSocket(req).then(function () {
+      common.ifAdminSocket(req).then(function () {
         User.register({
               username: req.data.username,
               url: req.data.url,
@@ -33,10 +33,10 @@ module.exports = function (app) {
                   Org.findById(user.org).exec().then(function(org) {
                     org.users = _.uniq(org.users.concat(user._id));
                     org.save();
-                    io.broadcastOrglist(req);
+                    common.broadcastOrglist(req);
                   })
                 }
-                io.broadcastUserlist(req);
+                common.broadcastUserlist(req);
                 req.io.emit('admin:registrationSuccess', user);
               } else {
                 switch (err.code) {
@@ -53,7 +53,7 @@ module.exports = function (app) {
       });
     },
     deleteUser: function (req) {
-      io.ifAdminSocket(req).then(function () {
+      common.ifAdminSocket(req).then(function () {
         User.findOne({username: req.data.username}).exec()
             .then(function (user) {
               var dfrd = Q.defer();
@@ -69,7 +69,7 @@ module.exports = function (app) {
               req.io.emit('admin:deleteUserFailure', err);
             })
             .then(function () {
-              io.broadcastUserlist(req);
+              common.broadcastUserlist(req);
               req.io.emit('admin:deleteUserSuccess');
             }, function (err) {
               req.io.emit('admin:deleteUserFailure', err);
@@ -79,7 +79,7 @@ module.exports = function (app) {
 
     },
     saveUser: function (req) {
-      io.ifAdminSocket(req).then(function () {
+      common.ifAdminSocket(req).then(function () {
         User.findOne({username: req.data.username}).exec()
             .then(function (user) {
               var dfrd = Q.defer(),
@@ -109,7 +109,7 @@ module.exports = function (app) {
               req.io.emit('admin:saveUserFailure', err);
             })
             .then(function () {
-              io.broadcastUserlist(req);
+              common.broadcastUserlist(req);
               req.io.emit('admin:saveUserSuccess');
             }, function (err) {
               var msg;
@@ -126,7 +126,7 @@ module.exports = function (app) {
       });
     },
     addOrg: function (req) {
-      io.ifAdminSocket(req).then(function () {
+      common.ifAdminSocket(req).then(function () {
         var org = new Org({
           name: req.data.name,
           ein: req.data.ein,
@@ -141,7 +141,7 @@ module.exports = function (app) {
           if (err) {
             req.io.emit('admin:addOrgFailure', err);
           } else {
-            io.broadcastOrglist(req);
+            common.broadcastOrglist(req);
             req.io.emit('admin:addOrgSuccess');
           }
         });
@@ -149,5 +149,5 @@ module.exports = function (app) {
 
       });
     }
-  };
+  });
 };

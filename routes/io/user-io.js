@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (app) {
-    return {
+    app.io.route('user', {
         'ready': function (req) {
             req.io.join('user');
         },
@@ -9,5 +9,5 @@ module.exports = function (app) {
             req.io.leave('user');
             req.io.leave('admin');
         }
-    };
+    });
 };

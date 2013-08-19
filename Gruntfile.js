@@ -124,14 +124,14 @@ module.exports = function (grunt) {
               id: 'utils',
               title: 'Utilities',
               scripts: [
-                'utils/io.js'
+
               ]
             },
             {
               id: 'models',
               title: 'Models',
               scripts: [
-                'models/init.js'
+                'models/index.js'
               ]
             }
           ]

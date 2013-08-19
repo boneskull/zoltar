@@ -1,7 +1,14 @@
-/**
- * Created with PyCharm.
- * User: chiller
- * Date: 8/17/13
- * Time: 12:22 PM
- * To change this template use File | Settings | File Templates.
- */
+'use strict';
+
+var State = require('../models/state');
+
+module.exports = function (app) {
+
+  app.get('/states', function (req, res) {
+    State.find({}).sort('name').exec().then(function (states) {
+      res.send(states);
+    });
+
+  });
+
+};

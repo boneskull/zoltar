@@ -1,7 +1,17 @@
-/**
- * Created with PyCharm.
- * User: chiller
- * Date: 8/17/13
- * Time: 12:22 PM
- * To change this template use File | Settings | File Templates.
- */
+'use strict';
+
+var User = require('../models/user');
+
+module.exports = function (app) {
+
+  var isAdmin = require('./common')(app).isAdmin;
+
+  app.get('/users', isAdmin, function (req, res) {
+    User.find({}).exec().then(function (users) {
+      res.send(users.map(function (user) {
+        return user.sanitize();
+      }));
+    })
+  });
+
+};

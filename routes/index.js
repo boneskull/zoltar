@@ -1,26 +1,16 @@
 'use strict';
 
-var config = require('../config'), glob = require('glob'), support = require('../support.json'), path = require('path');
+module.exports = function (app) {
 
-module.exports = function (req, res) {
+  require('./admin')(app);
+  require('./io')(app);
+  require('./jobs')(app);
+  require('./login')(app);
+  require('./logout')(app);
+  require('./main')(app);
+  require('./orgs')(app);
+  require('./register')(app);
+  require('./states')(app);
+  require('./users')(app);
 
-  var files, i, sources = 'public/javascripts/zoltar/**/*.js';
-
-  files = support.concat(glob.sync(sources));
-  i = files.length;
-  while (i--) {
-    // toss 'public'
-    files[i] = files[i].split(path.sep).slice(1).join(path.sep);
-  }
-
-
-  var data = {
-    version: config.appVersion,
-    name: config.appName,
-    development: config.development,
-    user: req.user && req.user.sanitize(true),
-    files: files
-  };
-
-  res.render('index', data);
 };

@@ -1,23 +1,24 @@
 'use strict';
 
 var express = require('express.io'),
-    config = require('./config'),
-    mongoose = require('mongoose'),
-    MongoStore = require('connect-mongo')(express),
-    passport = require('passport'),
-    xsrf = require('./utils/xsrf'),
-    protectJSON = require('./utils/protectJSON'),
-    LocalStrategy = require('passport-local').Strategy,
-    app, User, server, path = require('path');
+  config = require('./config'),
+  mongoose = require('mongoose'),
+  MongoStore = require('connect-mongo')(express),
+  passport = require('passport'),
+  xsrf = require('./utils/xsrf'),
+  protectJSON = require('./utils/protectJSON'),
+  LocalStrategy = require('passport-local').Strategy,
+  app,
+  User,
+  server,
+  path = require('path');
 
-require('./models/init')();
+require('./models');
 
 app = express();
 
-// requires the model with Passport-Local Mongoose plugged in
-User = require('./models/user');
-
 // use static authenticate method of model in LocalStrategy
+User = require('./models/user');
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -28,7 +29,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 mongoose.connect(process.env.DB_URI ||
-    'mongodb://localhost/db');
+  'mongodb://localhost/db');
 
 app.use(protectJSON);
 app.use(express.favicon());
@@ -40,11 +41,11 @@ app.use(express.session({
   secret: config.server.cookieSecret,
   maxAge: new Date(Date.now() + 3600000),
   store: new MongoStore({
-        db: mongoose.connection.db
-      },
-      function (err) {
-        console.log(err || 'connect-mongodb setup ok');
-      })
+      db: mongoose.connection.db
+    },
+    function (err) {
+      console.log(err || 'connect-mongodb setup ok');
+    })
 }));
 
 app.use(express.methodOverride());
@@ -68,10 +69,12 @@ app.configure('production', function () {
   app.use(express.errorHandler());
 });
 
-require('./bootstrap')();
+require('./config/bootstrap');
 
 app.http().io();
-require('./routing')(app);
+
+require('./routes')(app);
+
 app.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });

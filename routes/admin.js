@@ -1,7 +1,9 @@
 'use strict';
 
-var User = require('../models/user');
+module.exports = function (app) {
+  var isAdmin = require('./common')(app).isAdmin;
 
-module.exports = function (req, res) {
-    require('./index')(req, res);
+  app.get('/admin', isAdmin, function (req, res) {
+    require('./main')(req, res);
+  });
 };

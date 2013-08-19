@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
  * @doc module
  * @name routes.io:visitor-io
@@ -9,9 +8,9 @@
  */
 module.exports = function (app) {
 
-  var io = require('../../utils/io')(app);
+  var common = require('../common')(app);
 
-  return {
+  app.io.route('visitor', {
     /**
      * @doc function
      * @name routes.io:visitor-io#ready
@@ -19,9 +18,9 @@ module.exports = function (app) {
      * @descripion
      * Joins the "visitor" room and emits joblist.
      */
-    'ready': function ready (req) {
+    'ready': function ready(req) {
       req.io.join('visitor');
-      io.emitJobs(req);
+      common.emitJobs(req);
     }
-  };
+  });
 };
