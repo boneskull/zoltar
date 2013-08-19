@@ -22,8 +22,7 @@ module.exports = function (grunt) {
       dist: {
         files: {
           /*jshint maxlength:false*/
-          'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.min.js':
-            grunt.file.readJSON('support.json').concat('public/javascripts/dist/generated/**/*.js')
+          'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.min.js': grunt.file.readJSON('support.json').concat('public/javascripts/dist/generated/**/*.js')
         }
       }
     },
@@ -41,9 +40,14 @@ module.exports = function (grunt) {
         ],
         tasks: ['ngmin', 'uglify', 'docular']
       },
-      tests: {
-        files: 'test/spec/*.js',
-        tasks: ['test']
+      serverTests: {
+        files: ['config/**/*.js', 'server.js', 'models/**/*.js',
+          'routes/**/*.js', 'utils/**/*.js', 'spec/**/*.js'],
+        tasks: ['jasmine_node']
+      },
+      clientTests: {
+        files: ['public/test/spec/**/*.js'],
+        tasks: ['karma']
       }
     },
 
@@ -55,7 +59,9 @@ module.exports = function (grunt) {
         }
       }
     },
-
+    jasmine_node: {
+      projectRoot: "./spec"
+    },
     nodemon: {
       dev: {
         options: {
@@ -147,8 +153,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-docular');
   grunt.loadNpmTasks('grunt-ngmin');
+  grunt.loadNpmTasks('grunt-jasmine-node');
 
-  grunt.registerTask('test', ['karma']);
+  grunt.registerTask('test', ['jasmine_node', 'karma']);
   grunt.registerTask('build', ['ngmin', 'uglify', 'docular']);
   grunt.registerTask('default', ['build', 'test']);
   grunt.registerTask('start', ['concurrent']);

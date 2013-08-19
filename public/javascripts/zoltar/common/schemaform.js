@@ -16,7 +16,7 @@
 
   var schemaForm = angular.module('schemaForm', []);
 
- /**
+  /**
    * @ngdoc service
    * @name schemaForm.service:$validatorProvider
    * @requires ng.$filterProvider
@@ -103,126 +103,125 @@
     };
   });
 
-  schemaForm.directive('schemaForm', function schemaFormDirective($injector, Restangular,
-    $cacheFactory) {
-    return {
-      restrict: 'E',
-      scope: {
-        legend: '=',
-        formName: '@',
-        schemaName: '@',
-        model: '=',
-        readOnly: '='
-      },
-      replace: true,
-      transclude: true,
-      templateUrl: '/partials/schemaform.html',
-      link: function postLink(scope) {
-        var model = $injector.get(scope.schemaName), schema = model.getSchema(), metadata = model.getMetadata(), orderedSchema =
-          [
-          ], Ref, resource, refWatches = {}, objectCache = $cacheFactory.get('objects'), plural, cachedData;
+  schemaForm.directive('schemaForm',
+    function schemaFormDirective($injector, Restangular, $cacheFactory) {
+      return {
+        restrict: 'E',
+        scope: {
+          legend: '=',
+          formName: '@',
+          schemaName: '@',
+          model: '=',
+          readOnly: '='
+        },
+        replace: true,
+        transclude: true,
+        templateUrl: '/partials/schemaform.html',
+        link: function postLink(scope) {
+          var model = $injector.get(scope.schemaName), schema = model.getSchema(), metadata = model.getMetadata(), orderedSchema =
+            [
+            ], Ref, resource, refWatches = {}, objectCache = $cacheFactory.get('objects'), plural, cachedData;
 
-        scope.refData = {};
-        scope.refSchema = {};
-        scope.refMetadata = {};
+          scope.refData = {};
+          scope.refSchema = {};
+          scope.refMetadata = {};
 
-        angular.forEach(schema, function (def, field) {
-          // correct the schema for form FIELD: TYPE
-          // when we really want FIELD: {type: TYPE}
-          if (angular.isString(def)) {
-            schema[field] = {
-              type: def
-            };
-          }
+          angular.forEach(schema, function (def, field) {
+            // correct the schema for form FIELD: TYPE
+            // when we really want FIELD: {type: TYPE}
+            if (angular.isString(def)) {
+              schema[field] = {
+                type: def
+              };
+            }
 
-          if (angular.isArray(def)) {
-            def = def[0];
-            def.$multiple = true;
-          } else {
-            def.$multiple = false;
-          }
+            if (angular.isArray(def)) {
+              def = def[0];
+              def.$multiple = true;
+            } else {
+              def.$multiple = false;
+            }
 
-          // set the placeholder
-          if (angular.isDefined(metadata.placeholders) &&
-            metadata.placeholders[field]) {
-            def.$placeholder = metadata.placeholders[field]
-          } else {
-            def.$placeholder = def.title ? def.title : field;
-          }
+            // set the placeholder
+            if (angular.isDefined(metadata.placeholders) &&
+              metadata.placeholders[field]) {
+              def.$placeholder = metadata.placeholders[field]
+            } else {
+              def.$placeholder = def.title ? def.title : field;
+            }
 
-          if (!def.ref) {
-            // handle native fields
-            def.$type = 'text';
-            if (angular.isDefined(def.validate)) {
-              if (types.indexOf(def.validate) === -1) {
-                // TODO: use this for validation
-                def.$pattern = def.validate;
-              } else {
+            if (!def.ref) {
+              // handle native fields
+              def.$type = 'text';
+              // TODO: remove crap from the types array when we find out
+              // it's broken, like 'email' and 'tel' are.
+              if (angular.isDefined(def.validate) &&
+                types.indexOf(def.validate) >= 0) {
                 def.$type = def.validate;
               }
-            }
-          } else {
-            // handle references. gather data from the server.
-            Ref = $injector.get(def.ref);
-            plural = def.ref.toLowerCase() + 's';
-            scope.refSchema[def.ref] = Ref.getSchema();
-            scope.refMetadata[def.ref] = Ref.getMetadata();
-            cachedData = objectCache.get(plural);
-            if (angular.isDefined(cachedData)) {
-              scope.refData[def.ref] = cachedData;
             } else {
-              resource = Restangular.all(plural);
-              resource.getList().then(function (items) {
-                items = items.map(function (item) {
-                  return new Ref(item);
+              // handle references. gather data from the server.
+              Ref = $injector.get(def.ref);
+              plural = def.ref.toLowerCase() + 's';
+              scope.refSchema[def.ref] = Ref.getSchema();
+              scope.refMetadata[def.ref] = Ref.getMetadata();
+              cachedData = objectCache.get(plural);
+              if (angular.isDefined(cachedData)) {
+                scope.refData[def.ref] = cachedData;
+              } else {
+                resource = Restangular.all(plural);
+                resource.getList().then(function (items) {
+                  items = items.map(function (item) {
+                    return new Ref(item);
+                  });
+                  objectCache.put(items.route, items);
+                  scope.refData[def.ref] = objectCache.get(items.route);
                 });
-                objectCache.put(items.route, items);
-                scope.refData[def.ref] = objectCache.get(items.route);
+              }
+              // clear watch
+              if (angular.isFunction(refWatches[plural])) {
+                refWatches[plural]();
+              }
+              // set up new watch
+              refWatches[plural] = scope.$watch(function () {
+                return objectCache.get(plural);
+              }, function (newval, oldval) {
+                if (newval !== oldval) {
+                  scope.refData[def.ref] = newval;
+                }
+              }, true);
+            }
+          });
+
+          if (angular.isDefined(metadata) &&
+            angular.isDefined(metadata.order)) {
+            orderedSchema = metadata.order.map(function (field) {
+              return {
+                field: field,
+                def: angular.isArray(schema[field]) ? schema[field][0] :
+                  schema[field]
+              }
+            });
+          } else {
+            orderedSchema = _.map(schema, function (def, field) {
+              return {
+                field: field,
+                def: angular.isArray(def) ? def[0] : def
+              };
+            });
+            if (metadata.hidden) {
+              orderedSchema = orderedSchema.filter(function (prop) {
+                return metadata.hidden.indexOf(prop.field) === -1;
               });
             }
-            // clear watch
-            if (angular.isFunction(refWatches[plural])) {
-              refWatches[plural]();
-            }
-            // set up new watch
-            refWatches[plural] = scope.$watch(function () {
-              return objectCache.get(plural);
-            }, function (newval, oldval) {
-              if (newval !== oldval) {
-                scope.refData[def.ref] = newval;
-              }
-            }, true);
           }
-        });
 
-        if (angular.isDefined(metadata) && angular.isDefined(metadata.order)) {
-          orderedSchema = metadata.order.map(function (field) {
-            return {
-              field: field,
-              def: angular.isArray(schema[field]) ? schema[field][0] :
-                schema[field]
-            }
-          });
-        } else {
-          orderedSchema = _.map(schema, function (def, field) {
-            return {
-              field: field,
-              def: angular.isArray(def) ? def[0] : def
-            };
-          });
-          if (metadata.hidden) {
-            orderedSchema = orderedSchema.filter(function (prop) {
-              return metadata.hidden.indexOf(prop.field) === -1;
-            });
-          }
+          scope.schema = orderedSchema;
+
+          scope.$parent.schemaForm = scope.schemaForm;
         }
-
-        scope.schema = orderedSchema;
-
-        scope.$parent.schemaForm = scope.schemaForm;
       }
-    }
-  });
+    });
 
   schemaForm.directive('validate', function validateDirective($validator) {
     return {

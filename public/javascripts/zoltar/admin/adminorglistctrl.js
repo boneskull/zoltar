@@ -2,7 +2,6 @@
 (function () {
   'use strict';
 
-
   /**
    * @ngdoc controller
    * @name zoltarAdmin.controller:AdminOrgListCtrl
@@ -37,7 +36,7 @@
       $scope.openAddOrgDialog = function openAddOrgDialog() {
         $dialog.dialog({templateUrl: 'addOrg', controller: 'AdminAddOrgCtrl', dialogClass: 'addOrgModal modal'}).open();
       };
-      
+
       /**
        *
        * @param org
@@ -55,7 +54,6 @@
 
       };
 
-      
       /**
        *
        * @param org
@@ -73,7 +71,6 @@
         $scope.toggles.orgEditMode = true;
         $scope._openViewOrgDialog(org);
       };
-
 
       socket.on('admin:orglist', onAdminOrglist);
     });
