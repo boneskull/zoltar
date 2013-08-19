@@ -10,6 +10,8 @@ var express = require('express.io'),
     LocalStrategy = require('passport-local').Strategy,
     app, User, server, path = require('path');
 
+require('./models/init')();
+
 app = express();
 
 // requires the model with Passport-Local Mongoose plugged in
@@ -24,7 +26,6 @@ passport.deserializeUser(User.deserializeUser());
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-
 
 mongoose.connect(process.env.DB_URI ||
     'mongodb://localhost/db');

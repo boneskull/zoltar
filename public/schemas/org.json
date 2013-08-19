@@ -45,7 +45,7 @@
     },
     "state": {
       "required": true,
-      "type": "String",
+      "type": "ObjectId",
       "ref": "State",
       "title": "State"
     },

@@ -4,20 +4,20 @@
 
   /**
    * @ngdoc controller
-   * @name zoltarCommonControllers.controller:LoginCtrl
+   * @name zoltarCommon.controller:LoginCtrl
    * @requires $scope
    * @requires Restangular
    * @requires zoltar.service:User
    * @requires $timeout
    * @requires socketIO.service:socket
    */
-  angular.module('zoltarCommonControllers').controller('LoginCtrl',
+  angular.module('zoltarCommon').controller('LoginCtrl',
       function ($scope, Restangular, User, $timeout, socket, dialog, $window) {
 
         /**
          * @ngdoc object
-         * @name zoltarCommonControllers.controller:LoginCtrl#credentials
-         * @propertyOf zoltarCommonControllers.controller:LoginCtrl
+         * @name zoltarCommon.controller:LoginCtrl#credentials
+         * @propertyOf zoltarCommon.controller:LoginCtrl
          * @description
          * Stores credentials
          * @property {string} username Username
@@ -31,11 +31,11 @@
 
         /**
          * @ngdoc method
-         * @name zoltarCommonControllers.controller:LoginCtrl#login
-         * @methodOf zoltarCommonControllers.controller:LoginCtrl
+         * @name zoltarCommon.controller:LoginCtrl#login
+         * @methodOf zoltarCommon.controller:LoginCtrl
          * @description
          * Attempts a login.  Fails if the form is not valid.  Builds
-         * user from {@link zoltarCommonControllers.controller:LoginCtrl#credentials `credentials`}.
+         * user from {@link zoltarCommon.controller:LoginCtrl#credentials `credentials`}.
          */
         $scope.login = function () {
           var user, login;
@@ -46,6 +46,7 @@
             username: $scope.credentials.username,
             password: $scope.credentials.password
           });
+          console.log(user);
           $scope.loginProgress = 0;
           login = Restangular.all('login');
           login.post(user)
@@ -53,7 +54,7 @@
                 $scope.loginProgress = 1;
                 return res;
               })
-              .then(function (res) {
+              .then(function () {
                 $scope.failedLogin = false;
                 $timeout(function () {
                   $scope.loginProgress = false;

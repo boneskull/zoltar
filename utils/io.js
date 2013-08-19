@@ -1,12 +1,14 @@
 'use strict';
 
 var Q = require('q'),
-    User = require('../models/user'),
-    Org = require('../models/org'),
-    State = require('../models/state');
+  User = require('../models/user'),
+  Org = require('../models/org'),
+  Job = require('../models/job'),
+  State = require('../models/state');
 
 /**
  * @doc module
+ * @name utils:io
  * @description
  * Provides common functionality for express.io routes.
  * @param {Object} app Application object
@@ -15,10 +17,16 @@ var Q = require('q'),
 module.exports = function (app) {
   return {
 
-    emitStates: function(req) {
-      State.find({}).exec().then(function(states) {
+    emitStates: function (req) {
+      State.find({}).exec().then(function (states) {
         req.io.emit('visitor:states', states);
       })
+    },
+
+    emitJobs: function (req) {
+      Job.find({}).populate('org').exec().then(function (jobs) {
+        req.io.emit('visitor:jobs', jobs);
+      });
     },
 
     /**
@@ -34,11 +42,11 @@ module.exports = function (app) {
       return User.findOne({
         username: req.session.passport.user
       }).exec().then(function (user) {
-            if (!user.admin) {
-              return Q.reject();
-            }
-            return user;
-          });
+          if (!user.admin) {
+            return Q.reject();
+          }
+          return user;
+        });
     },
 
     /**
@@ -50,15 +58,15 @@ module.exports = function (app) {
      */
     broadcastUserlist: function broadcastUserlist(req) {
       this.ifAdminSocket(req)
-          .then(function () {
-            return User.find({}).exec();
-          })
-          .then(function (users) {
-            app.io.room('admin').broadcast('admin:userlist',
-                users.map(function (user) {
-                  return user.sanitize();
-                }));
-          });
+        .then(function () {
+          return User.find({}).exec();
+        })
+        .then(function (users) {
+          app.io.room('admin').broadcast('admin:userlist',
+            users.map(function (user) {
+              return user.sanitize();
+            }));
+        });
     },
     /**
      * @doc function
@@ -69,12 +77,14 @@ module.exports = function (app) {
      */
     broadcastOrglist: function broadcastOrglist(req) {
       this.ifAdminSocket(req)
-          .then(function () {
-            return Org.find({}).populate('users').exec();
-          })
-          .then(function (orgs) {
-            app.io.room('admin').broadcast('admin:orglist', orgs);
-          });
+        .then(function () {
+          return Org.find({}).populate('users state').exec();
+        })
+        .then(function (orgs) {
+          app.io.room('admin').broadcast('admin:orglist', orgs);
+        }, function(err) {
+          console.log('some err ' + err);
+        });
     }
   };
 };

@@ -1,46 +1,46 @@
 {
-    "name": "zoltar",
-    "version": "0.0.1",
-    "devDependencies": {
-        "grunt": "*",
-        "grunt-contrib-concat": "*",
-        "grunt-contrib-uglify": "*",
-        "grunt-contrib-watch": "*",
-        "grunt-karma": "*",
-        "grunt-nodemon": "~0.1.0",
-        "nodemon": "~0.7.10",
-        "grunt-concurrent": "*",
-        "karma": "*",
-        "karma-jasmine": "*",
-        "karma-osx-reporter": "*",
-        "karma-chrome-launcher": "*",
-        "grunt-docular": "~0.1.1",
-        "karma-coverage": "~0.1.0",
-        "grunt-ngmin": "0.0.3"
-    },
-    "subdomain": "zoltar",
-    "engines": {
-        "node": "0.10.x"
-    },
-    "scripts": {
-        "start": "grunt start",
-        "test": "grunt test"
-    },
-    "main": "server.js",
-    "dependencies": {
-        "express": "3.x",
-        "express.io": "~1.1.12",
-        "q": "~0.9.6",
-        "ejs": "*",
-        "less-middleware": "*",
-        "connect-mongo": "~0.3.3",
-        "mongoose": "~3.6.15",
-        "passport": "~0.1.17",
-        "passport-local": "~0.1.6",
-        "passport-local-mongoose": "~0.2.4",
-        "validator": "~1.4.0",
-        "mongoose-gen": "0.0.3",
-        "underscore": "1.x"
-    },
-    "repository": "https://github.com/boneskull/zoltar.git"
+  "name": "zoltar",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-karma": "*",
+    "grunt-nodemon": "~0.1.0",
+    "nodemon": "~0.7.10",
+    "grunt-concurrent": "*",
+    "karma": "*",
+    "karma-jasmine": "*",
+    "karma-osx-reporter": "*",
+    "karma-chrome-launcher": "*",
+    "grunt-docular": "~0.1.1",
+    "karma-coverage": "~0.1.0",
+    "grunt-ngmin": "0.0.3"
+  },
+  "subdomain": "zoltar",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "scripts": {
+    "start": "grunt start",
+    "test": "grunt test"
+  },
+  "main": "server.js",
+  "dependencies": {
+    "express": "3.x",
+    "express.io": "~1.1.12",
+    "q": "~0.9.6",
+    "ejs": "*",
+    "less-middleware": "*",
+    "connect-mongo": "~0.3.3",
+    "mongoose": "~3.6.15",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "passport-local-mongoose": "~0.2.4",
+    "validator": "~1.4.0",
+    "mongoose-gen": "0.0.3",
+    "underscore": "1.x"
+  },
+  "repository": "https://github.com/boneskull/zoltar.git"
 }

@@ -1,21 +1,21 @@
 'use strict';
 
 var passport = require('passport'),
-    User = require('./models/user'),
-    Org = require('./models/org'),
-    State = require('./models/state');
+  User = require('./models/user'),
+  Org = require('./models/org'),
+  State = require('./models/state');
 
-module.exports = function (app) {
+module.exports = function routing (app) {
 
   var io = require('./utils/io')(app),
-      isAdmin = function isAdmin(req, res, next) {
-        if (!req.user || !req.user.admin) {
-          res.redirect('/');
-        }
-        else {
-          next();
-        }
-      };
+    isAdmin = function isAdmin(req, res, next) {
+      if (!req.user || !req.user.admin) {
+        res.redirect('/');
+      }
+      else {
+        next();
+      }
+    };
 
   app.get('/', require('./routes/index'));
 
@@ -28,8 +28,8 @@ module.exports = function (app) {
 
   });
 
-  app.get('/orgs', isAdmin, function(req, res) {
-    Org.find({}).sort('name').exec().then(function(orgs) {
+  app.get('/orgs', isAdmin, function (req, res) {
+    Org.find({}).sort('name').exec().then(function (orgs) {
       res.send(orgs);
     });
   });
@@ -42,6 +42,18 @@ module.exports = function (app) {
     })
   });
 
+  app.get('/jobs', function (req, res) {
+    Jobs.find({}).exec().then(function (jobs) {
+      res.send(jobs);
+    });
+  });
+
+  app.get('/jobs/:id', function(req, res) {
+    Jobs.findById(req.params.id).exec().then(function(job) {
+      res.send(job);
+    });
+  });
+
   app.io.route('admin', require('./routes/io/admin-io')(app));
 
   app.io.route('user', require('./routes/io/user-io')(app));
@@ -50,24 +62,24 @@ module.exports = function (app) {
 
   app.post('/register', function (req, res) {
     User.register({
-          username: req.body.username,
-          url: req.body.url,
-          email: req.body.email
-        },
-        req.body.password,
-        function (err, user) {
-          if (err) {
-            res.send(500, err);
-          }
-          else {
-            io.broadcastUserlist(req);
-            res.send({user: user.sanitize()});
-          }
-        });
+        username: req.body.username,
+        url: req.body.url,
+        email: req.body.email
+      },
+      req.body.password,
+      function (err, user) {
+        if (err) {
+          res.send(500, err);
+        }
+        else {
+          io.broadcastUserlist(req);
+          res.send({user: user.sanitize()});
+        }
+      });
   });
 
   app.post('/login', passport.authenticate('local'),
-      require('./routes/login'));
+    require('./routes/login'));
 
   app.post('/logout', require('./routes/logout'));
 };

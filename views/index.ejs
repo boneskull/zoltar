@@ -17,11 +17,7 @@
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
     <link rel="stylesheet" href="/stylesheets/style.css"/>
 
-    <% if (development) { %>
-    <script src="/javascripts/dist/<%= name %>-<%= version %>.js"></script>
-    <% } else { %>
     <script src="/javascripts/dist/<%= name %>-<%= version %>.min.js"></script>
-    <% } %>
 
     <% if (user) { %>
     <script type="text/javascript">
@@ -174,7 +170,7 @@
 <ng-include src="'footer'"></ng-include>
 
 <script type="text/ng-template" id="login">
-    <form name="loginForm" class="form-horizontal" novalidate="novalidate"
+    <form name="loginForm" class="form-horizontal" novalidate="novalidate" style="margin-bottom: 0;"
           ng-submit="login()">
         <div class="modal-header"><h4>Login</h4></div>
         <div class="modal-body">

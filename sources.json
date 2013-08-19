@@ -9,21 +9,5 @@
   "public/javascripts/support/underscore.js",
   "public/javascripts/support/restangular.js",
   "public/javascripts/support/socket.io.js",
-  "public/javascripts/support/validator-min.js",
-  "public/javascripts/zoltar/common/services/services.js",
-  "public/javascripts/zoltar/common/directives/directives.js",
-  "public/javascripts/zoltar/common/controllers/controllers.js",
-  "public/javascripts/zoltar/common/ladda.js",
-  "public/javascripts/zoltar/common/placeholder.js",
-  "public/javascripts/zoltar/common/socket.js",
-  "public/javascripts/zoltar/common/services/schema.js",
-  "public/javascripts/zoltar/common/directives/schemaform.js",
-  "public/javascripts/zoltar/common/controllers/headerctrl.js",
-  "public/javascripts/zoltar/common/controllers/loginctrl.js",
-  "public/javascripts/zoltar/common/common.js",
-  "public/javascripts/zoltar/admin/admin.js",
-  "public/javascripts/zoltar/index/index.js",
-  "public/javascripts/zoltar/zoltar.js",
-  "public/javascripts/zoltar/preinit.js"
-
+  "public/javascripts/support/validator-min.js"
 ]

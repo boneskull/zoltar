@@ -2,12 +2,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     generator = require('mongoose-gen'),
-    fs = require('fs'),
-    State, data;
+    State, data = require('../public/schemas/state.json');
 
-generator.setConnection(mongoose);
-data = fs.readFileSync('public/schemas/state.json');
-
-State = new Schema(generator._convert(JSON.parse(data).schema));
-
+State = new Schema(generator._convert(data.schema));
 module.exports = mongoose.model('State', State);

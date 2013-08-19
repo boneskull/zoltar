@@ -1,6 +1,6 @@
 {
   "schema": {
-    "_id": {
+    "abbr": {
       "type": "String",
       "required": true,
       "trim": true,

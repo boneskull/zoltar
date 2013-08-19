@@ -17,7 +17,7 @@
    *
    * Don't use this directly; use {@link ladda.directive:laddaButton laddaButton} instead.
    */
-  var laddaDirective = function laddaDirective($window) {
+  ladda.directive('ladda', function laddaDirective($window) {
 
     return function link(scope, element, attrs) {
 
@@ -44,7 +44,7 @@
         }
       });
     };
-  };
+  });
 
   /**
    * @ngdoc directive
@@ -61,39 +61,34 @@
    </doc:source>
    </doc:example>
    */
-  var laddaButtonDirective = function laddaButtonDirective() {
+  ladda.directive('laddaButton', function laddaButtonDirective() {
     return {
       restrict: 'E',
       replace: true,
       transclude: true,
       templateUrl: 'ladda'
     };
-  };
-
-  var delay = function delay($timeout) {
-    /**
-     * @ngdoc function
-     * @name ladda.service:delay
-     * @requires ng.$timeout
-     * @description
-     * Handy dandy function to set a variable to false after x ms.  This is
-     * used to clear a Ladda button's state after it's been completed.
-     * @param {object} obj Object, typically a $scope
-     * @param {string} key Key in object
-     * @param {number=} [ms=200] Milliseconds
-     * @returns {Promise} Promise that will be resolved when the timeout is
-     * reached. The value this promise will be resolved with is the return value
-     * of the `fn` function.
-     */
+  });
+  /**
+   * @ngdoc function
+   * @name ladda.service:delay
+   * @requires ng.$timeout
+   * @description
+   * Handy dandy function to set a variable to false after x ms.  This is
+   * used to clear a Ladda button's state after it's been completed.
+   * @param {object} obj Object, typically a $scope
+   * @param {string} key Key in object
+   * @param {number=} [ms=200] Milliseconds
+   * @returns {Promise} Promise that will be resolved when the timeout is
+   * reached. The value this promise will be resolved with is the return value
+   * of the `fn` function.
+   */
+  ladda.factory('delay', function delay($timeout) {
     return function (obj, key, ms) {
       return $timeout(function () {
         obj[key] = false;
       }, ms || 200)
     };
-  };
-
-  ladda.directive('ladda', laddaDirective);
-  ladda.directive('laddaButton', laddaButtonDirective);
-  ladda.factory('delay', delay);
+  });
 
 })();

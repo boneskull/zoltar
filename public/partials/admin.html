@@ -103,7 +103,7 @@
                     class="icon-sort-by-alphabet-alt"></i></span>
                 </th>
                 <th>
-                  Users
+                  EIN
                 </th>
                 <th>Actions</th>
               </tr>
@@ -123,9 +123,9 @@
                   {{ org.name }}
                 </td>
                 <td>
-                  {{ org.state }}
+                  {{ org.state.name}}
                 </td>
-                <td>{{ org.users.length }}</td>
+                <td>{{ org.ein|ein }}</td>
                 <td>
                   <a ng-click="edit(user)"
                      title="edit {{ user.username }}">
@@ -157,6 +157,85 @@
     </div>
 
   </div>
+</div>
+<div ng-controller="AdminJobListCtrl" class="span6 well">
+  <h4><i class="icon-building"></i> Jobs <a
+      ng-click="toggles.collapseJobList = !toggles.collapseJobList"><i
+      class="icon-caret-down" ng-hide="toggles.collapseJobList"></i><i
+      class="icon-caret-up" ng-show="toggles.collapseJobList"></i></a></h4>
+  <fieldset>
+    <div class="row-fluid" collapse="toggles.collapseJobList">
+      <div class="center span12">
+        <table class="table">
+          <tr>
+            <th><a ng-click="setOrder('username')">Headline</a>
+              <span ng-show="order === 'username'"><i
+                  class="icon-sort-by-alphabet"></i></span><span
+                  ng-show="order === '-username'"><i
+                  class="icon-sort-by-alphabet-alt"></i></span>
+            </th>
+            <th>
+              <a ng-click="setOrder('org')">Org</a><span
+                ng-show="order === 'org'"><i
+                class="icon-sort-by-alphabet"></i></span><span
+                ng-show="order === '-org'"><i
+                class="icon-sort-by-alphabet-alt"></i></span>
+            </th>
+            <th>
+              <a ng-click="setOrder('created.createdon')">Created</a><span
+                ng-show="order === 'created.createdon'"><i
+                class="icon-sort-by-alphabet"></i></span><span
+                ng-show="order === '-created.createdon'"><i
+                class="icon-sort-by-alphabet-alt"></i></span>
+            </th>
+            <th>Actions</th>
+          </tr>
+          <tr ng-show="!joblist">
+            <td colspan="4" class="center">
+              <progress percent="100"
+                        class="progress progress-striped active"></progress>
+            </td>
+          </tr>
+          <tr ng-show="joblist && !joblist.length">
+            <td colspan="4">
+              No jobs. Sad :(
+            </td>
+          </tr>
+          <tr ng-repeat="job in joblist.slice(begin, end)|orderBy:order">
+            <td>
+              <a ng-click="">{{
+                job.headline|truncate:20
+                }}</a>
+            </td>
+            <td>
+              <a><i
+                  class="icon-envelope-alt"></i> {{
+                job.org.name
+                }}</a>
+            </td>
+            <td>{{ job.createdon|date }}</td>
+            <td>
+              <a ng-click="openEditUserDialog(user)"
+                 title="Edit {{ user.username }}"><i
+                  class="icon-edit"></i></a> <a
+                ng-hide="user.admin"
+                ng-click="openConfirmDeleteUserDialog(user)"
+                title="delete {{ user.username }}"><i
+                class="icon-remove"></i></a>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <pagination boundary-links="true" num-pages="noOfPages"
+                  current-page="currentPage"
+                  class="text-center pagination-small"
+                  previous-text="&lsaquo;" next-text="&rsaquo;"
+                  first-text="&laquo;"
+                  last-text="&raquo;"></pagination>
+    </div>
+  </fieldset>
+
 </div>
 <div ng-controller="AdminUserListCtrl" class="span6 well">
   <h4><i class="icon-group"></i> Users <a
@@ -235,13 +314,13 @@
                   previous-text="&lsaquo;" next-text="&rsaquo;"
                   first-text="&laquo;"
                   last-text="&raquo;"></pagination>
-
     </div>
-
   </fieldset>
 
 </div>
+
 </div>
+
 <div class="row-fluid">
 </div>
 <script type="text/ng-template" id="confirmDelete">

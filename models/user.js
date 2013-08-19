@@ -1,34 +1,25 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    Org = require('./org'),
-    passportLocalMongoose = require('passport-local-mongoose'),
-    sanitize = require('../utils/sanitize'),
-    check = require('validator').check,
-    generator = require('mongoose-gen'),
-    fs = require('fs'),
-    User, data;
+  Schema = mongoose.Schema,
+  Org = require('./org'),
+  passportLocalMongoose = require('passport-local-mongoose'),
+  sanitize = require('../utils/sanitize'),
+  generator = require('mongoose-gen'),
+  User, data = require('../public/schemas/user.json');
 
-generator.setConnection(mongoose);
-generator.setDefault('now', function () {
-  return Date.now();
-});
-
-generator.setDefault('false', function () {
-  return false;
-});
-
-generator.setValidator('email', function (str) {
-  return check(str).isEmail();
-});
-
-data = fs.readFileSync('public/schemas/user.json');
-
-User = new Schema(generator._convert(JSON.parse(data).schema));
+User = new Schema(generator._convert(data.schema));
 
 User.plugin(passportLocalMongoose, {});
-User.plugin(sanitize, {accept: ['_id', 'username', 'email', 'admin', 'createdon', 'org']});
-
+User.plugin(sanitize, {
+  accept: [
+    '_id',
+    'username',
+    'email',
+    'admin',
+    'createdon',
+    'org'
+  ]
+});
 
 module.exports = mongoose.model('User', User);

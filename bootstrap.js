@@ -13,7 +13,7 @@ module.exports = function bootstrap() {
             State.remove({}).exec().then(function () {
                 State.create(_.map(stateData, function (name, abbr) {
                     return new State({
-                        _id: abbr,
+                        abbr: abbr,
                         name: name
                         //TODO: dojMask
                     });

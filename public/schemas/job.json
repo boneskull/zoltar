@@ -1,0 +1,78 @@
+{
+  "schema": {
+    "created": {
+      "createdby": {
+        "type": "ObjectId",
+        "ref": "User",
+        "required": true,
+        "title": "Created By"
+      },
+      "createdon": {
+        "type": "Date",
+        "required": true,
+        "default": "now",
+        "title": "Created On"
+      }
+    },
+    "edited": {
+      "editedby": {
+        "type": "ObjectId",
+        "ref": "User",
+        "title": "Edited By"
+      },
+      "editedon": {
+        "type": "Date",
+        "title": "Edited By"
+      }
+    },
+    "org": {
+      "type": "ObjectId",
+      "ref": "Org",
+      "required": true,
+      "title": "Organization"
+    },
+    "headline": {
+      "type": "String",
+      "required": true,
+      "title": "Headline"
+    },
+    "tweet": {
+      "text": {
+        "type": "String",
+        "validate": "tweet",
+        "trim": true,
+        "title": "Tweet"
+      },
+      "senton": {
+        "type": "Date",
+        "title": "Tweet Sent On"
+      }
+    },
+    "email": {
+      "text": {
+        "type": "String",
+        "trim": true,
+        "title": "Email"
+      },
+      "replyto": {
+        "type": "String",
+        "trim": true,
+        "validate": "email",
+        "title": "Reply-To"
+      },
+      "senton": {
+        "type": "Date",
+        "title": "Sent On"
+      }
+    },
+    "content": {
+      "type": "String",
+      "trim": true,
+      "title": "Content"
+    },
+    "open": {
+      "type": "Boolean",
+      "default": "false"
+    }
+  }
+}

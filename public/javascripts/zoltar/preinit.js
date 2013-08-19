@@ -34,7 +34,7 @@
                 zoltarSchemas[schemas[i].name] = schemas[i].data;
             }
 
-            angular.module('zoltarCommonServices').constant('zoltarSchemas', zoltarSchemas);
+            angular.module('zoltarCommon').constant('zoltarSchemas', zoltarSchemas);
             angular.bootstrap($document[0].documentElement, ['zoltar']);
         });
     });

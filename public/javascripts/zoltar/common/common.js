@@ -2,8 +2,5 @@
 (function () {
   'use strict';
 
-  angular.module('zoltarCommon', [
-    'zoltarCommonDirectives',
-    'zoltarCommonServices',
-    'zoltarCommonControllers']);
+  angular.module('zoltarCommon', ['schemaForm']);
 })();
