@@ -1,10 +1,5 @@
 <component name="libraryTable">
   <library name="test-support" type="javaScript">
-    <properties>
-      <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/test/support/angular-mocks.js" />
-      </sourceFilesUrls>
-    </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/public/test/support/angular-mocks.js" />
     </CLASSES>
