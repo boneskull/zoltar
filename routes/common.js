@@ -4,7 +4,11 @@ var Q = require('q'),
   User = require('../models/user'),
   Org = require('../models/org'),
   Job = require('../models/job'),
-  State = require('../models/state');
+  State = require('../models/state'),
+  config = require('../config'),
+  glob = require('glob'),
+  support = require('../support.json'),
+  path = require('path');
 
 module.exports = function (app) {
   return {
@@ -85,6 +89,30 @@ module.exports = function (app) {
         }, function (err) {
           console.log('some err ' + err);
         });
+    },
+
+    renderMain: function (req, res) {
+      var files,
+        i,
+        sources = 'public/javascripts/zoltar/**/*.js',
+        data;
+
+      files = support.concat(glob.sync(sources));
+      i = files.length;
+      while (i--) {
+        // toss 'public'
+        files[i] = files[i].split(path.sep).slice(1).join(path.sep);
+      }
+
+      data = {
+        version: config.appVersion,
+        name: config.appName,
+        development: config.development,
+        user: req.user && req.user.sanitize(true),
+        files: files
+      };
+
+      res.render('index', data);
     }
   };
 };

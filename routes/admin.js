@@ -1,9 +1,11 @@
 'use strict';
 
 module.exports = function (app) {
-  var isAdmin = require('./common')(app).isAdmin;
+  var common = require('./common')(app),
+    isAdmin = common.isAdmin,
+    renderMain = common.renderMain;
 
   app.get('/admin', isAdmin, function (req, res) {
-    require('./main')(req, res);
+    renderMain(req, res);
   });
 };
