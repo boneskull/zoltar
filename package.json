@@ -10,7 +10,7 @@
     "grunt-nodemon": "~0.1.0",
     "nodemon": "~0.7.10",
     "grunt-concurrent": "*",
-    "karma": "*",
+    "karma": "~0.10.0",
     "karma-jasmine": "*",
     "karma-osx-reporter": "*",
     "karma-chrome-launcher": "*",

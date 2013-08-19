@@ -2,9 +2,8 @@
 // Generated on Sat Aug 10 2013 19:36:31 GMT-0700 (PDT)
 
 "use strict";
-var fs = require('fs');
 
-var support = JSON.parse(fs.readFileSync(process.env.PWD + '/support.json'));
+var support = require('./support.json');
 
 module.exports = function (config) {
   config.set({
@@ -25,7 +24,7 @@ module.exports = function (config) {
 
     // list of files to exclude
     exclude: [
-      'public/javascripts/dist/*.js',
+      'public/javascripts/dist/**/*.js',
       'public/javascripts/zoltar/preinit.js'
     ],
 

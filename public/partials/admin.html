@@ -120,21 +120,21 @@
               </tr>
               <tr ng-repeat="org in orglist|orderBy:order">
                 <td>
-                  {{ org.name }}
+                  <a ng-click="openViewOrgDialog(org)">{{ org.name }}</a>
                 </td>
                 <td>
                   {{ org.state.name}}
                 </td>
                 <td>{{ org.ein|ein }}</td>
                 <td>
-                  <a ng-click="edit(user)"
-                     title="edit {{ user.username }}">
+                  <a ng-click="openEditOrgDialog(org)"
+                     title="edit {{ org.name }}">
                     <i class="icon-edit"></i>
                   </a>
 
-                  <a ng-hide="user.admin"
-                     ng-click="openConfirmDeleteUserDialog(user)"
-                     title="delete {{ user.username }}">
+                  <a
+                     ng-click="openConfirmDeleteOrgDialog(org)"
+                     title="delete {{ org.name }}">
                     <i class="icon-remove"></i>
                   </a>
 
@@ -442,6 +442,55 @@
                   ng-click="addOrg(newOrg)">
       Save
     </ladda-button>
+  </div>
+</script>
+
+<script type="text/ng-template" id="viewOrg">
+  <div class="modal-header">
+    <h4 ng-show="toggles.orgEditMode">Edit Organization</h4>
+    <h4 ng-hide="toggles.orgEditMode">View Organization</h4>
+  </div>
+  <div class="modal-body">
+
+    <div ng-show="toggles.orgEditMode">
+      <schema-form form-name="editOrgForm"
+                   model="tmp.editOrg"
+                   schema-name="Org">
+      </schema-form>
+    </div>
+    <div ng-hide="toggles.orgEditMode">
+      <schema-form form-name="viewOrgForm"
+                   model="tmp.viewOrg"
+                   schema-name="Org" read-only="true">
+      </schema-form>
+    </div>
+
+  </div>
+  <div class="modal-footer" ng-show="toggles.orgEditMode">
+    <div class="row-fluid">
+      <div class="span12">
+        <button ng-click="cancelEditOrg()" class="btn">
+          Cancel
+        </button>
+        <ladda-button ladda="editOrgProgress"
+                      class="btn-primary"
+                      ng-click="saveOrg(tmp.editOrg)">
+          Save
+        </ladda-button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" ng-hide="toggles.orgEditMode">
+    <div class="row-fluid">
+      <div class="span12">
+        <button ng-click="toggles.orgEditMode = true" class="btn">
+          Edit
+        </button>
+        <button ng-click="cancelEditOrg()" class="btn btn-primary">
+          OK
+        </button>
+      </div>
+    </div>
   </div>
 </script>
 </div>
