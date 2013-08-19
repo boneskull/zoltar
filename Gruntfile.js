@@ -36,8 +36,7 @@ module.exports = function (grunt) {
     watch: {
       scripts: {
         files: [
-          'public/schemas/*.json', 'public/javascripts/zoltar/*.js',
-          'public/javascripts/zoltar/**/*.js',
+          'public/schemas/*.json', 'public/javascripts/zoltar/**/*.js',
           'public/javascripts/support/**/*.js', '!public/javascripts/dist/*.js',
           'utils/**/*.js'
         ],
