@@ -12,7 +12,8 @@
    * @requires socketIO.service:socket
    */
   angular.module('zoltarCommon').controller('LoginCtrl',
-    function ($scope, Restangular, User, $timeout, socket, dialog, $window) {
+    function ($scope, Restangular, User, $timeout, socket, dialog, $window,
+      delay) {
 
       /**
        * @ngdoc object
@@ -44,10 +45,7 @@
         if (!$scope.loginForm.$valid) {
           return;
         }
-        user = new User({
-          username: $scope.credentials.username,
-          password: $scope.credentials.password
-        });
+        user = new User($scope.credentials);
         $scope.loginProgress = 0;
         login.post(user)
           .always(function (res) {
@@ -56,16 +54,13 @@
           })
           .then(function () {
             $scope.failedLogin = false;
-            $timeout(function () {
-              $scope.loginProgress = false;
+            delay($scope, 'loginProgress').then(function() {
               $window.location.href = '/';
-            }, 200);
+            });
             socket.emit('user:ready');
           }, function () {
             $scope.failedLogin = true;
-            $timeout(function () {
-              $scope.loginProgress = false;
-            }, 200);
+            delay($scope, 'loginProgress');
           });
       };
 

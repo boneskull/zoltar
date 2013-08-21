@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
+  <meta charset="utf-8"/>
 
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width"/>
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width"/>
 
-    <title>voluntech.ie: tech volunteer clearinghouse</title>
-    <link href='http://fonts.googleapis.com/css?family=Wire+One'
-          rel='stylesheet' type='text/css'/>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
-          rel="stylesheet">
+  <title>voluntech.ie: tech volunteer clearinghouse</title>
+  <link href='http://fonts.googleapis.com/css?family=Wire+One'
+        rel='stylesheet' type='text/css'/>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="/stylesheets/normalize.css"/>
-    <link rel="stylesheet" href="/stylesheets/ladda-themeless.min.css"/>
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/stylesheets/style.css"/>
-    <% if (development) { %>
-    <% for (var i = 0; i < files.length; i++) { %>
-    <script src="/<%= files[i] %>"></script>
-    <% } %>
-    <% } else { %>
-    <script src="/javascripts/dist/<%= name %>-<%= version %>.min.js"></script>
-    <% } %>
-    <% if (user) { %>
-    <script type="text/javascript">
-        angular.module('zoltar').value('currentUser', <%-user %>);
-    </script>
-    <% } else { %>
-    <script type="text/javascript">
-        angular.module('zoltar').value('currentUser', null);
-    </script>
-    <% } %>
+  <link rel="stylesheet" href="/stylesheets/normalize.css"/>
+  <link rel="stylesheet" href="/stylesheets/ladda-themeless.min.css"/>
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/stylesheets/style.css"/>
+  <% if (development) { %>
+  <% for (var i = 0; i < files.length; i++) { %>
+  <script src="/<%= files[i] %>"></script>
+  <% } %>
+  <% } else { %>
+  <script src="/javascripts/dist/<%= name %>-<%= version %>.min.js"></script>
+  <% } %>
+  <% if (user) { %>
+  <script type="text/javascript">
+    angular.module('zoltar').value('currentUser', <%-user %>);
+  </script>
+  <% } else { %>
+  <script type="text/javascript">
+    angular.module('zoltar').value('currentUser', null);
+  </script>
+  <% } %>
 </head>
 <body ng-controller="ZoltarCtrl">
 
@@ -72,6 +72,7 @@
         </div>
 
     </div>
+
 </script>
 
 <script type="text/ng-template" id="footer">
@@ -91,6 +92,7 @@
             </div>
         </div>
     </footer>
+
 </script>
 
 <script type="text/ng-template" id="main">
@@ -161,15 +163,16 @@
             <img src="http://placehold.it/400x300&text=[img]">
         </div>
     </div>
+
 </script>
 
 <ng-include src="'header'" ng-controller="HeaderCtrl"></ng-include>
 <div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span12">
-            <ng-view></ng-view>
-        </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <ng-view></ng-view>
     </div>
+  </div>
 </div>
 <ng-include src="'footer'"></ng-include>
 
@@ -227,12 +230,14 @@
             </div>
         </div>
     </form>
+
 </script>
 
 <script type="text/ng-template" id="ladda">
     <button data-spinner-size="30" type="submit" class="btn ladda-button"
             style="overflow: visible;" data-style="zoom-in"><span
             class="ladda-label" ng-transclude></span></button>
+
 
 </script>
 </body>

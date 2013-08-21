@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var admin = angular.module('zoltarAdmin', []);
+  angular.module('zoltarAdmin', []);
 
 
 })();

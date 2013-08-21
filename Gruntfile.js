@@ -120,8 +120,7 @@ module.exports = function (grunt) {
                 'public/javascripts/zoltar/common/socket.js',
                 'public/javascripts/zoltar/common/placeholder.js',
                 'public/javascripts/zoltar/common/ladda.js',
-                'public/javascripts/zoltar/common/schema.js',
-                'public/javascripts/zoltar/common/schemaform.js'
+                'public/javascripts/zoltar/common/schema.js'
 
               ]
             }

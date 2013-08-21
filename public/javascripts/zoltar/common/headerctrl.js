@@ -27,7 +27,9 @@
        * Alias to {@link ng.$location $location.path()}
        * @returns {string} Current path
        */
-      $scope.path = $location.path;
+      $scope.path = function path() {
+        return $location.path();
+      };
 
       /**
        * @ngdoc method
@@ -51,7 +53,7 @@
         var logout = Restangular.all('logout');
         socket.emit('user:logout');
         logout.post().then(function () {
-          $window.$location.href = '/';
+          $window.location.href = '/';
         });
 
       };

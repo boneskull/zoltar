@@ -18,20 +18,19 @@
   index.controller('ZoltarCtrl',
     function ZoltarCtrl($scope, currentUser, User, $cacheFactory, socket, Job) {
 
-      var objectCache = $cacheFactory('objects');
+      var objectCache = $cacheFactory('objects'),
+        onJoblist = function onJoblist(jobs) {
+          objectCache.put('jobs', jobs.map(function (job) {
+            return new Job(job);
+          }));
+        };
+
+      socket.on('visitor:jobs', onJoblist);
 
       if (currentUser) {
         $scope.user = new User(currentUser);
         socket.emit('user:ready');
       }
-
-      var onJoblist = function onJoblist(jobs) {
-        objectCache.put('jobs', jobs.map(function (job) {
-          return new Job(job);
-        }));
-      };
-
-      socket.on('visitor:jobs', onJoblist);
 
       socket.emit('visitor:ready');
 

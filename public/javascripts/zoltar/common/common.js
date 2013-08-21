@@ -2,5 +2,5 @@
 (function () {
   'use strict';
 
-  angular.module('zoltarCommon', ['schemaForm']);
+  angular.module('zoltarCommon', ['schema']);
 })();

@@ -10,5 +10,9 @@
   {
     "path": "/schemas/state.json",
     "name": "State"
+  },
+  {
+    "path": "/schemas/job.json",
+    "name": "Job"
   }
 ]

@@ -37,7 +37,8 @@
           <div class="control-group">
 
             <label class="control-label"
-                   for="password2">Again: <span class="help-inline">*</span></label>
+                   for="password2">Again: <span
+                class="help-inline">*</span></label>
 
             <div class="controls">
               <input type="password" required
@@ -47,7 +48,8 @@
           </div>
           <div class="control-group">
             <div class="controls">
-              <ladda-button ladda="addUserProgress" ng-click="$parent.addUser()">Add User
+              <ladda-button ladda="addUserProgress"
+                            ng-click="$parent.addUser()">Add User
               </ladda-button>
             </div>
           </div>
@@ -81,9 +83,8 @@
       <h4 class="left"><i class="icon-globe"></i> Organizations <a
           ng-click="toggles.collapseOrgList = !toggles.collapseOrgList"><i
           class="icon-caret-down" ng-hide="toggles.collapseOrgList"></i><i
-          class="icon-caret-up" ng-show="toggles.collapseOrgList"></i></a></h4><a class="right"
-                                                                                  ng-click="openAddOrgDialog()">Add
-      Org</a>
+          class="icon-caret-up" ng-show="toggles.collapseOrgList"></i></a></h4>
+      <div class="text-right"><a ng-click="openAddOrgDialog()">Add Org</a></div>
       <fieldset>
         <div class="row-fluid" collapse="toggles.collapseOrgList">
           <div class="center span12">
@@ -133,8 +134,8 @@
                   </a>
 
                   <a
-                     ng-click="openConfirmDeleteOrgDialog(org)"
-                     title="delete {{ org.name }}">
+                      ng-click="openConfirmDeleteOrgDialog(org)"
+                      title="delete {{ org.name }}">
                     <i class="icon-remove"></i>
                   </a>
 
@@ -163,6 +164,7 @@
       ng-click="toggles.collapseJobList = !toggles.collapseJobList"><i
       class="icon-caret-down" ng-hide="toggles.collapseJobList"></i><i
       class="icon-caret-up" ng-show="toggles.collapseJobList"></i></a></h4>
+  <div class="text-right"><a ng-click="openAddJobDialog()">Add Job</a></div>
   <fieldset>
     <div class="row-fluid" collapse="toggles.collapseJobList">
       <div class="center span12">
@@ -352,6 +354,9 @@
       </div>
     </div>
   </div>
+
+
+
 </script>
 
 <script type="text/ng-template" id="viewUser">
@@ -424,6 +429,9 @@
       </div>
     </div>
   </div>
+
+
+
 </script>
 <script type="text/ng-template" id="addOrg">
   <div class="modal-header">
@@ -443,6 +451,9 @@
       Save
     </ladda-button>
   </div>
+
+
+
 </script>
 
 <script type="text/ng-template" id="viewOrg">
@@ -492,6 +503,9 @@
       </div>
     </div>
   </div>
+
+
+
 </script>
 </div>
 </div>

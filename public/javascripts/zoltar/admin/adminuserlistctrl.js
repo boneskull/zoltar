@@ -13,16 +13,7 @@
    */
   angular.module('zoltarAdmin').controller('AdminUserListCtrl',
     function AdminUserListCtrl($scope, socket, $timeout, User, $dialog,
-      zoltarConstants) {
-
-      var PAGE_LENGTH = zoltarConstants.pageLength;
-
-      $scope.$watch('currentPage', function (newval) {
-        if ($scope.userlist) {
-          $scope.begin = (newval - 1) * PAGE_LENGTH;
-          $scope.end = $scope.begin + PAGE_LENGTH;
-        }
-      });
+      $controller) {
 
       /**
        *
@@ -34,8 +25,14 @@
           return new User(user);
         });
 
-        $scope.noOfPages = Math.ceil($scope.userlist.length / PAGE_LENGTH);
-        $scope.currentPage = $scope.currentPage || 1;
+        $controller('ListMixinCtrl', {
+          $scope: $scope,
+          config: function () {
+            return {
+              list: $scope.userlist
+            };
+          }
+        });
 
       };
 

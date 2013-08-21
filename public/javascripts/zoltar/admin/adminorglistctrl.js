@@ -16,19 +16,25 @@
    */
   angular.module('zoltarAdmin').controller('AdminOrgListCtrl',
     function AdminOrgListCtrl($scope, socket, Org, $dialog, zoltarConstants,
-      $cacheFactory) {
+      $cacheFactory, $controller) {
 
-      var PAGE_LENGTH = zoltarConstants.pageLength,
-        objectCache = $cacheFactory.get('objects'), onAdminOrglist =
-          function onAdminOrglist(orglist) {
-            objectCache.put('orgs', orglist.map(function (org) {
-              return new Org(org);
-            }));
-            $scope.orglist = objectCache.get('orgs');
+      var objectCache = $cacheFactory.get('objects'),
+        onAdminOrglist = function onAdminOrglist(orglist) {
+          objectCache.put('orgs', orglist.map(function (org) {
+            return new Org(org);
+          }));
+          $scope.orglist = objectCache.get('orgs');
 
-            $scope.noOfPages = Math.ceil($scope.orglist.length / PAGE_LENGTH);
-            $scope.currentPage = $scope.currentPage || 1;
-          };
+          $controller('ListMixinCtrl', {
+            $scope: $scope,
+            config: function() {
+              return {
+                list: $scope.orglist
+              };
+            }
+          });
+
+        };
 
       /**
        *

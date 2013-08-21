@@ -1,277 +1,286 @@
-/*global angular*/
+/*global angular, _*/
 (function () {
   "use strict";
 
   /**
-   * @ngdoc service
-   * @name zoltarCommon.service:Schema
-   * @requires ng.$provide
-   * @requires zoltar.object:zoltarSchemas
-   * @requires zoltarCommon.service:$validator
-   * @description
-   * Creates a bunch of factories out of mongoose-gen-ish schema
-   * definition files.
-   * @constructor
+   * Certain HTML5 field types validate things incorrectly; this probably
+   * changes browser-to-browser.  For example, "email" does not validate
+   * email properly (allows "foo@bar")
+   * @type {Array}
    */
-  angular.module('zoltarCommon').provider('Schema',
-    function Schema($provide, zoltarSchemas, $validatorProvider) {
+  var types = [
+      'button', 'checkbox', 'color', 'date', 'datetime', 'datetime-local',
+      'file',
+      'hidden', 'image', 'month', 'number', 'password', 'radio', 'range',
+      'reset',
+      'search', 'submit', 'text', 'time', 'url', 'week'
+    ],
+    PAGE_LENGTH = 10,
+    schema = angular.module('schema', []);
 
-      /**
-       * These provide default values for model properties.
-       * @type {{now: Function, false: Function, email: Function}}
-       */
-      var defaults = {
+  /**
+   * @ngdoc controller
+   * @name schema.controller:ListMixinCtrl
+   * @description
+   * Provides list-related scope variables.
+   */
+  schema.controller('ListMixinCtrl', function ($scope, config) {
+    $scope.noOfPages = Math.ceil(config.list.length / PAGE_LENGTH);
+    $scope.currentPage = $scope.currentPage || 1;
 
-          /**
-           * Returns the current date timestamp w/ ms
-           * @returns {number}
-           */
-          now: function () {
-            return Date.now();
-          },
+    $scope.$watch('currentPage', function (page) {
+      if (config.list) {
+        $scope.begin = (page - 1) * PAGE_LENGTH;
+        $scope.end = $scope.begin + PAGE_LENGTH;
+      }
+    });
+  });
 
-          /**
-           * Just returns false
-           * @returns {boolean}
-           */
-          'false': function () {
-            return false;
-          },
+  /**
+   * @ngdoc service
+   * @name schema.service:$validatorProvider
+   * @requires ng.$filterProvider
+   * @description
+   * Stores validators and formatters for validating and formatting
+   * generated forms.
+   */
+  schema.provider('$validator', function $validator($filterProvider) {
 
-          /**
-           * Returns the string "Email"; used by a certain enum
-           * @returns {string}
-           */
-          email: function () {
-            return 'Email';
+    this._validators = {};
+    this._formatters = {};
+
+    /**
+     * @ngdoc method
+     * @name schema.service:$validatorProvider#addValidator
+     * @methodOf schema.service:$validatorProvider
+     * @param {string} name Name of validator
+     * @param {function()} fn Validator function
+     * @description
+     * Adds a validator to the lookup object
+     */
+    this.addValidator = function (name, fn) {
+      this._validators[name] = fn;
+    };
+
+    /**
+     * @ngdoc method
+     * @name schema.service:$validatorProvider#addFormatter
+     * @methodOf schema.service:$validatorProvider
+     * @param {string} name Name of formatter
+     * @param {function()} fn Formatter function
+     * @description
+     * Adds a formatter to the lookup object.  As a bonus, registers
+     * a filter with the same name.
+     */
+    this.addFormatter = function (name, fn) {
+      this._formatters[name] = fn;
+      $filterProvider.register(name, function () {
+        return fn;
+      });
+    };
+
+    /**
+     * @ngdoc service
+     * @name schema.service:$validator
+     * @description
+     * Exposes validation/formatting functions based on registered
+     * validators and formatters.
+     */
+    this.$get = function () {
+      var validators = this._validators, formatters = this._formatters;
+      return {
+
+        /**
+         * @ngdoc method
+         * @name schema.service:$validator#validate
+         * @methodOf schema.service:$validator
+         * @param {string} validator Validator name
+         * @param {string} str String to validate
+         * @returns {boolean} Success
+         */
+        validate: function (validator, str) {
+          if (!validators[validator]) {
+            return true;
           }
+          return validators[validator].call(this, str);
         },
 
         /**
-         * These provide validation functions for model properties.
+         * @ngdoc method
+         * @name schema.service:$validator#format
+         * @methodOf schema.service:$validator
+         * @param {string} formatter Name of formatter
+         * @param {string} str String to format
+         * @returns {string} Formatted string
          */
-          validators = {
-
-          /**
-           * Asserts string is an email address
-           * @param {string} str String to test
-           * @returns {boolean} Success
-           */
-          email: function (str) {
-            var validator = new window.Validator();
-            try {
-              validator.check(str).isEmail();
-              return true;
-            } catch (e) {
-              return false;
-            }
-          },
-
-          /**
-           * Asserts string is a telephone number
-           * @param {string} str String to test
-           * @returns {boolean} Success
-           */
-          tel: function (str) {
-            /*jshint maxlen: false*/
-            return (/^1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?\.?\s+(\d*))?$/).test(str);
-          },
-
-          /**
-           * Asserts string is a federal tax id (EIN)
-           * @param {string} str String test
-           * @returns {boolean} Success
-           */
-          ein: function (str) {
-            return new RegExp("^\\d{2}-?\\d{7}$").test(str);
-          }
-        },
-
-        /**
-         * These provide formatters for model properties.  They are all
-         * also turned into filters in the $validator provider.
-         */
-          formatters = {
-          ein: function (str) {
-            if (!str) {
-              return;
-            }
-            str = str.replace(/\D/g, '').trim();
-            if (str.length === 9) {
-              str = str.substring(0, 2) + '-' + str.substring(2);
-            }
+        format: function (formatter, str) {
+          if (!formatters[formatter]) {
             return str;
           }
-        },
-
-        /**
-         * Handy-dandy assertion function.
-         */
-          assert = function assert(exp, msg) {
-          if (!exp) {
-            throw new Error(msg || "assertion failed");
-          }
-        };
-
-      /**
-       * @ngdoc method
-       * @name zoltarCommon.service:Schema#init
-       * @methodOf zoltarCommon.service:Schema
-       * @description
-       * Initializes the provider.  Actually creates a bunch of factories.
-       */
-      this.init = function init() {
-
-        // add all the validators to the $validatorProvider
-        angular.forEach(validators, function (validator, name) {
-          $validatorProvider.addValidator(name, validator);
-        });
-
-        // add all the formatters to $validatorProvide
-        angular.forEach(formatters, function (formatter, name) {
-          $validatorProvider.addFormatter(name, formatter);
-        });
-
-        // for each schema found, create model pseudoclasses for them
-        angular.forEach(zoltarSchemas, function (data, name) {
-          var Model = function Model(o) {
-            this.$schema = data.schema;
-            this.$metadata = data.metadata;
-            this.$name = name;
-            this.$defineProperties();
-            angular.extend(this, o);
-          };
-
-          /**
-           * Returns the schema
-           * @returns {Object} Schema definition
-           */
-          Model.getSchema = function () {
-            return data.schema;
-          };
-
-          /**
-           * Returns the metadata (generally form-specific settings)
-           * @returns {Object} Metadta
-           */
-          Model.getMetadata = function () {
-            return data.metadata;
-          };
-
-          Model.prototype.toString = function () {
-            return JSON.stringify(this);
-          };
-
-          /**
-           * Defines setters and getters for each of the model
-           * properties.  These perform validation and trimming.
-           * @todo Formatting?
-           */
-          Model.prototype.$defineProperties = function () {
-            var model = this;
-            angular.forEach(this.$schema, function (definition, field) {
-              var simpleDefinition = angular.isString(definition),
-                val,
-                type,
-                arrayDefinition = angular.isArray(definition);
-
-              if (simpleDefinition) {
-                type = definition;
-              } else {
-                if (arrayDefinition) {
-                  definition = definition[0];
-                }
-                type = definition.type;
-              }
-
-              Object.defineProperty(model, field, {
-                enumerable: true,
-                configurable: true,
-                get: function () {
-                  return val;
-                },
-                set: function (value) {
-                  var _validator;
-                  if (!angular.isDefined(value)) {
-                    val = value;
-                    return;
-                  }
-                  // validation here
-                  switch (type) {
-                    // assert we have a valid date.  getTime() will
-                    // return 0 if invalid.
-                    case 'Date':
-                      assert(new Date(value).getTime() > 0,
-                        value + ' is a valid date');
-                      break;
-
-                    // ObjectIds are always strings, so assert we
-                    // have a string
-                    case 'ObjectId':
-                      assert(angular.isObject(value) || angular.isString(value),
-                        value + ' is an object or an _id (string)');
-                      break;
-
-                    // if we have a string and it's an enum,
-                    // assert the value is within the enum
-                    case 'String':
-                      if (angular.isArray(definition.enum)) {
-                        assert(definition.enum.indexOf(value) >= 0, value +
-                          ' is within the enumeration ' + definition.enum);
-                      }
-
-                      // if we want to trim, trim.
-                      if (!!definition.trim) {
-                        value = value.trim();
-                      }
-
-                    // cast this thing to an object and assert whatever
-                    // we have matches the type.  for example, a boolean
-                    // value will be converted to a Boolean object,
-                    // which matches the type "Boolean" in the schema.
-                    /* falls through */
-                    default:
-                      assert(Object.prototype.toString.call(value) ===
-                        '[object ' + type + ']', value + ' is of type ' + type);
-                  }
-
-                  // validate if we have defined a validator.
-                  if (!simpleDefinition &&
-                    angular.isDefined(definition.validator) &&
-                    angular.isFunction(validators[definition.validator])) {
-                    _validator = validators[definition.validator];
-                    assert(_validator(value));
-                  }
-                  val = value;
-                }
-              });
-
-              // set defaults by default.
-              if (angular.isDefined(definition.default) &&
-                angular.isFunction(defaults[definition.default])) {
-                model[field] = defaults[definition.default]();
-              }
-            });
-          };
-
-          // turn this model into a factory with the same name
-          $provide.factory(name, function () {
-            return Model;
-          });
-        });
+          return formatters[formatter].call(this, str);
+        }
       };
+    };
+  });
 
-      /**
-       * @todo we have a provider, but it's not really providing a
-       * factory anywhere.  All this provider does is create more
-       * factories.
-       * That suggests to me we should put this thing into a config()
-       * somewhere, but this seems like quite a bit of code to just
-       * mash into a config().
-       */
-      this.$get = function $get() {
-        throw new Error('not implemented');
+  schema.directive('schemaForm',
+    function schemaFormDirective($injector, Restangular, $cacheFactory) {
+      return {
+        restrict: 'E',
+        scope: {
+          legend: '=',
+          formName: '@',
+          schemaName: '@',
+          model: '=',
+          readOnly: '='
+        },
+        replace: true,
+        transclude: true,
+        templateUrl: '/partials/schemaform.html',
+        link: function postLink(scope) {
+          var model = $injector.get(scope.schemaName),
+            schema = model.getSchema(),
+            metadata = model.getMetadata(),
+            orderedSchema = [],
+            Ref,
+            resource,
+            refWatches = {},
+            objectCache = $cacheFactory.get('objects'),
+            plural,
+            cachedData;
+
+          scope.refData = {};
+          scope.refSchema = {};
+          scope.refMetadata = {};
+
+          angular.forEach(schema, function (def, field) {
+            // correct the schema for form FIELD: TYPE
+            // when we really want FIELD: {type: TYPE}
+            if (angular.isString(def)) {
+              schema[field] = {
+                type: def
+              };
+            }
+
+            if (angular.isArray(def)) {
+              def = def[0];
+              def.$multiple = true;
+            } else {
+              def.$multiple = false;
+            }
+
+            // set the placeholder
+            if (angular.isDefined(metadata.placeholders) &&
+              metadata.placeholders[field]) {
+              def.$placeholder = metadata.placeholders[field];
+            } else {
+              def.$placeholder = def.title ? def.title : field;
+            }
+
+            if (!def.ref) {
+              // handle native fields
+              def.$type = 'text';
+              // TODO: remove crap from the types array when we find out
+              // it's broken, like 'email' and 'tel' are.
+              if (angular.isDefined(def.validate) &&
+                types.indexOf(def.validate) >= 0) {
+                def.$type = def.validate;
+              }
+            } else {
+              // handle references. gather data from the server.
+              Ref = $injector.get(def.ref);
+              plural = def.ref.toLowerCase() + 's';
+              scope.refSchema[def.ref] = Ref.getSchema();
+              scope.refMetadata[def.ref] = Ref.getMetadata();
+              cachedData = objectCache.get(plural);
+              if (angular.isDefined(cachedData)) {
+                scope.refData[def.ref] = cachedData;
+              } else {
+                resource = Restangular.all(plural);
+                resource.getList().then(function (items) {
+                  items = items.map(function (item) {
+                    return new Ref(item);
+                  });
+                  objectCache.put(items.route, items);
+                  scope.refData[def.ref] = objectCache.get(items.route);
+                });
+              }
+              // clear watch
+              if (angular.isFunction(refWatches[plural])) {
+                refWatches[plural]();
+              }
+              // set up new watch
+              refWatches[plural] = scope.$watch(function () {
+                return objectCache.get(plural);
+              }, function (newval, oldval) {
+                if (newval !== oldval) {
+                  scope.refData[def.ref] = newval;
+                }
+              }, true);
+            }
+          });
+
+          if (angular.isDefined(metadata) &&
+            angular.isDefined(metadata.order)) {
+            orderedSchema = metadata.order.map(function (field) {
+              return {
+                field: field,
+                def: angular.isArray(schema[field]) ? schema[field][0] :
+                  schema[field]
+              };
+            });
+          } else {
+            orderedSchema = _.map(schema, function (def, field) {
+              return {
+                field: field,
+                def: angular.isArray(def) ? def[0] : def
+              };
+            });
+            if (metadata.hidden) {
+              orderedSchema = orderedSchema.filter(function (prop) {
+                return metadata.hidden.indexOf(prop.field) === -1;
+              });
+            }
+          }
+
+          scope.schema = orderedSchema;
+
+          scope.$parent.schemaForm = scope.schemaForm;
+        }
       };
     });
+
+  schema.directive('validate', function validateDirective($validator) {
+    return {
+      restrict: 'A',
+      require: 'ngModel',
+      link: function (scope, element, attrs, ngModel) {
+        var type = scope.$eval(attrs.validate);
+        if (type) {
+          ngModel.$parsers.unshift(function (viewValue) {
+            var valid = true;
+            if (viewValue || attrs.required) {
+              valid =
+                $validator.validate(type, $validator.format(type, viewValue));
+            }
+            ngModel.$setValidity(attrs.id, valid);
+            if (valid) {
+              ngModel.$render();
+              return viewValue;
+            }
+          });
+          ngModel.$formatters.push(function (viewValue) {
+            return $validator.format(type, viewValue);
+          });
+          ngModel.$render = function () {
+            var formatted = $validator.format(type, ngModel.$viewValue);
+            if (angular.isDefined(formatted)) {
+              element.val(formatted);
+            }
+          };
+        }
+      }
+    };
+  });
 
 })();
