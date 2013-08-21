@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/views" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/utils" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/config" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/projectFilesBackup" />
       <excludeFolder url="file://$MODULE_DIR$/public/javascripts/dist" />
