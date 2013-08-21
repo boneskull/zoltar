@@ -25,7 +25,8 @@
     }
   });
    </script>
-   <select ng-options="foo.baz for foo in [{baz:'trix'}, {baz:'kix'}]" ng-model="cereal"
+   <select ng-options="foo.baz for foo in
+   [{baz:'trix'}, {baz:'kix'}]" ng-model="cereal"
    placeholder="Choose wisely...">
    </doc:source>
    </doc:example>
@@ -43,6 +44,6 @@
             '</option>');
         }
       }
-    }
+    };
   });
 })();

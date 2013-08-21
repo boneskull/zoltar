@@ -1,4 +1,4 @@
-/*global angular*/
+/*global angular, _*/
 (function () {
   "use strict";
 
@@ -118,9 +118,16 @@
         transclude: true,
         templateUrl: '/partials/schemaform.html',
         link: function postLink(scope) {
-          var model = $injector.get(scope.schemaName), schema = model.getSchema(), metadata = model.getMetadata(), orderedSchema =
-            [
-            ], Ref, resource, refWatches = {}, objectCache = $cacheFactory.get('objects'), plural, cachedData;
+          var model = $injector.get(scope.schemaName),
+            schema = model.getSchema(),
+            metadata = model.getMetadata(),
+            orderedSchema = [],
+            Ref,
+            resource,
+            refWatches = {},
+            objectCache = $cacheFactory.get('objects'),
+            plural,
+            cachedData;
 
           scope.refData = {};
           scope.refSchema = {};
@@ -145,7 +152,7 @@
             // set the placeholder
             if (angular.isDefined(metadata.placeholders) &&
               metadata.placeholders[field]) {
-              def.$placeholder = metadata.placeholders[field]
+              def.$placeholder = metadata.placeholders[field];
             } else {
               def.$placeholder = def.title ? def.title : field;
             }
@@ -200,7 +207,7 @@
                 field: field,
                 def: angular.isArray(schema[field]) ? schema[field][0] :
                   schema[field]
-              }
+              };
             });
           } else {
             orderedSchema = _.map(schema, function (def, field) {
@@ -220,7 +227,7 @@
 
           scope.$parent.schemaForm = scope.schemaForm;
         }
-      }
+      };
     });
 
   schemaForm.directive('validate', function validateDirective($validator) {

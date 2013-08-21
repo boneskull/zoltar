@@ -42,7 +42,9 @@
        * @name zoltarAdmin.controller:AdminAddUserCtrl#addUser
        * @methodOf zoltarAdmin.controller:AdminAddUserCtrl
        * @description
-       * Attemps to add {@link zoltarAdmin.controller:AdminAddUserCtrl#tmp.newUser `tmp.newUser`}
+       * Attemps to add
+       * {@link zoltarAdmin.controller:AdminAddUserCtrl#tmp.newUser
+       * `tmp.newUser`}
        * to db.  Checks for mismatched passwords.  Emits `admin:register` socket
        * event if valid.
        */
@@ -80,24 +82,26 @@
        * Handler for `admin:registrationSuccess` event.
        * @param {zoltar.service:User} user User instance from server
        */
-      var onAdminRegistrationSuccess = function onAdminRegistrationSuccess(user) {
+      var onAdminRegistrationSuccess =
+        function onAdminRegistrationSuccess(user) {
 
-        $scope.addUserProgress = 1;
-        delay($scope, 'addUserProgress');
-        $scope.tmp.newUser = new User();
-        $scope.addedUser = user.username;
-      };
+          $scope.addUserProgress = 1;
+          delay($scope, 'addUserProgress');
+          $scope.tmp.newUser = new User();
+          $scope.addedUser = user.username;
+        };
 
       /**
        * @description
        * Handler for `admin:registrationFailure` event.
        * @param {string} err Error message
        */
-      var onAdminRegistrationFailure = function onAdminRegistrationFailure(err) {
-        $scope.addUserProgress = 1;
-        delay($scope, 'addUserProgress');
-        $scope.registrationError = err;
-      };
+      var onAdminRegistrationFailure =
+        function onAdminRegistrationFailure(err) {
+          $scope.addUserProgress = 1;
+          delay($scope, 'addUserProgress');
+          $scope.registrationError = err;
+        };
 
       socket.on('admin:registrationSuccess', onAdminRegistrationSuccess);
       socket.on('admin:registrationFailure', onAdminRegistrationFailure);

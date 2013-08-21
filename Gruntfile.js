@@ -1,8 +1,9 @@
 'use strict';
 
 module.exports = function (grunt) {
+  //noinspection JSHint
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: require('./package.json'),
     ngmin: {
       zoltar: {
         cwd: 'public/javascripts/zoltar',
@@ -14,15 +15,18 @@ module.exports = function (grunt) {
     uglify: {
       options: {
         report: 'min',
-        sourceMap: 'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.map.js',
+        sourceMap: 'public/javascripts/dist/<%=' +
+          ' pkg.name %>-<%= pkg.version %>.map.js',
         sourceMapRoot: '/',
         sourceMapPrefix: 1,
-        sourceMappingURL: '/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.map.js'
+        sourceMappingURL: '/javascripts/dist/<%=' +
+          ' pkg.name %>-<%= pkg.version %>.map.js'
       },
       dist: {
         files: {
-          /*jshint maxlength:false*/
-          'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.min.js': grunt.file.readJSON('support.json').concat('public/javascripts/dist/generated/**/*.js')
+          'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.min.js':
+            require('./support.json')
+            .concat('public/javascripts/dist/generated/**/*.js')
         }
       }
     },
@@ -42,11 +46,13 @@ module.exports = function (grunt) {
       },
       serverTests: {
         files: ['config/**/*.js', 'server.js', 'models/**/*.js',
-          'routes/**/*.js', 'utils/**/*.js', 'spec/**/*.js'],
+          'routes/**/*.js', 'utils/**/*.js', 'spec/**/*.js',
+          'public/schemas/**/*.json'],
         tasks: ['jasmine_node']
       },
       clientTests: {
-        files: ['public/test/spec/**/*.js'],
+        files: ['public/test/spec/**/*.js', 'public/javascripts/zoltar/**/*.js',
+          'public/javascripts/support/**/*.js'],
         tasks: ['karma']
       }
     },
@@ -143,6 +149,18 @@ module.exports = function (grunt) {
           ]
         }
       ]
+    },
+    jshint: {
+      files: ['**/*.js'],
+      options: {
+        jshintrc: './.jshintrc',
+        ignores: [
+          'node_modules/**/*.js',
+          'public/javascripts/support/**/*.js',
+          'public/test/support/**/*.js',
+          'public/javascripts/dist/**/*.js'
+        ]
+      }
     }
   });
 
@@ -154,8 +172,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-docular');
   grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-jasmine-node');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('test', ['jasmine_node', 'karma']);
+  grunt.registerTask('test', ['jshint', 'jasmine_node', 'karma']);
   grunt.registerTask('build', ['ngmin', 'uglify', 'docular']);
   grunt.registerTask('default', ['build', 'test']);
   grunt.registerTask('start', ['concurrent']);

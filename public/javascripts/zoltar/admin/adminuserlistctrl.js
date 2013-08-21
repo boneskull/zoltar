@@ -46,9 +46,14 @@
       $scope.openConfirmDeleteUserDialog =
         function openConfirmDeleteUserDialog(user) {
           $scope.tmp.deleteUser = user;
-          $dialog.dialog({templateUrl: 'confirmDelete', controller: 'AdminConfirmDeleteUserCtrl', resolve: {tmp: function () {
-            return $scope.tmp
-          }}}).open().then(function () {
+          $dialog.dialog({
+            templateUrl: 'confirmDelete',
+            controller: 'AdminConfirmDeleteUserCtrl',
+            resolve: {
+              tmp: function () {
+                return $scope.tmp;
+              }
+            }}).open().then(function () {
               delete $scope.tmp.deleteUser;
             });
 
@@ -73,11 +78,19 @@
         $scope.tmp.viewUser = user;
         $scope.tmp.editUser = angular.copy(user);
 
-        $dialog.dialog({templateUrl: 'viewUser', controller: 'AdminEditUserCtrl', resolve: {tmp: function () {
-          return $scope.tmp
-        }, toggles: function () {
-          return $scope.toggles
-        }}}).open().then($scope._onViewEditUserDialogClose);
+        $dialog.dialog({
+          templateUrl: 'viewUser',
+          controller: 'AdminEditUserCtrl',
+          resolve: {
+            tmp: function () {
+              return $scope.tmp;
+            },
+            toggles: function () {
+              return $scope.toggles;
+            }
+          }
+        }).open()
+          .then($scope._onViewEditUserDialogClose);
 
       };
 

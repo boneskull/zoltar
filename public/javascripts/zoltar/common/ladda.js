@@ -15,7 +15,9 @@
    * @description
    * Wires up a button to a Ladda progressive button.
    *
-   * Don't use this directly; use {@link ladda.directive:laddaButton laddaButton} instead.
+   * Don't use this directly; use
+   * {@link ladda.directive:laddaButton laddaButton}
+   * instead.
    */
   ladda.directive('ladda', function laddaDirective($window) {
 
@@ -87,7 +89,7 @@
     return function (obj, key, ms) {
       return $timeout(function () {
         obj[key] = false;
-      }, ms || 200)
+      }, ms || 200);
     };
   });
 

@@ -17,7 +17,8 @@
     "grunt-docular": "~0.1.1",
     "karma-coverage": "~0.1.0",
     "grunt-ngmin": "~0.0.3",
-    "grunt-jasmine-node": "~0.1.0"
+    "grunt-jasmine-node": "~0.1.0",
+    "grunt-contrib-jshint": "~0.6.3"
   },
   "engines": {
     "node": "0.10.x"

@@ -8,24 +8,28 @@
     $q = $injector.get('$q'),
     $rootScope = $injector.get('$rootScope'),
     $document = $injector.get('$document'),
-    schemaFiles, i, schemaFile,
-    schemas = {}, queue = [];
+    schemaFiles,
+    i,
+    schemas = {},
+    queue = [];
 
   $http.get('/schemas/schemas.json').success(function (data) {
     schemaFiles = data;
     i = schemaFiles.length;
+
+    function getSchema(schemaFile) {
+      return $http.get(schemaFile.path)
+        .then(function (res) {
+          var json = res.data;
+          return {
+            name: schemaFile.name,
+            data: angular.fromJson(json)
+          };
+        });
+    }
+
     while (i--) {
-      schemaFile = schemaFiles[i];
-      queue.push((function (name) {
-        return $http.get(schemaFile.path)
-          .then(function (res) {
-            var json = res.data;
-            return {
-              name: name,
-              data: angular.fromJson(json)
-            };
-          })
-      }(schemaFile.name)));
+      queue.push(getSchema(schemaFiles[i]));
     }
 
     $q.all(queue).then(function (schemas) {

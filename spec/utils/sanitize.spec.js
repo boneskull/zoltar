@@ -1,3 +1,4 @@
+/*global beforeEach, afterEach, describe, it, expect */
 "use strict";
 
 var sanitize = require('../../utils/sanitize'),
@@ -8,7 +9,7 @@ beforeEach(function () {
   schema = new Schema({
     bar: 'String',
     baz: 'String'
-  })
+  });
 });
 
 afterEach(function () {

@@ -1,4 +1,4 @@
-/*global describe, beforeEach, it, inject, expect, module*/
+/*global angular, describe, beforeEach, it, inject, expect, module, jasmine*/
 
 'use strict';
 

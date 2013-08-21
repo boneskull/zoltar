@@ -24,7 +24,7 @@ module.exports = function (app) {
     emitStates: function (req) {
       State.find({}).exec().then(function (states) {
         req.io.emit('visitor:states', states);
-      })
+      });
     },
 
     emitJobs: function (req) {

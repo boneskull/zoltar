@@ -18,23 +18,28 @@
     function AdminOrgListCtrl($scope, socket, Org, $dialog, zoltarConstants,
       $cacheFactory) {
 
-      var PAGE_LENGTH = zoltarConstants.pageLength, objectCache = $cacheFactory.get('objects');
+      var PAGE_LENGTH = zoltarConstants.pageLength,
+        objectCache = $cacheFactory.get('objects'), onAdminOrglist =
+          function onAdminOrglist(orglist) {
+            objectCache.put('orgs', orglist.map(function (org) {
+              return new Org(org);
+            }));
+            $scope.orglist = objectCache.get('orgs');
 
-      var onAdminOrglist = function onAdminOrglist(orglist) {
-        objectCache.put('orgs', orglist.map(function (org) {
-          return new Org(org);
-        }));
-        $scope.orglist = objectCache.get('orgs');
-
-        $scope.noOfPages = Math.ceil($scope.orglist.length / PAGE_LENGTH);
-        $scope.currentPage = $scope.currentPage || 1;
-      };
+            $scope.noOfPages = Math.ceil($scope.orglist.length / PAGE_LENGTH);
+            $scope.currentPage = $scope.currentPage || 1;
+          };
 
       /**
        *
        */
       $scope.openAddOrgDialog = function openAddOrgDialog() {
-        $dialog.dialog({templateUrl: 'addOrg', controller: 'AdminAddOrgCtrl', dialogClass: 'addOrgModal modal'}).open();
+        $dialog.dialog(
+          {
+            templateUrl: 'addOrg',
+            controller: 'AdminAddOrgCtrl',
+            dialogClass: 'addOrgModal modal'
+          }).open();
       };
 
       /**
@@ -46,11 +51,19 @@
         $scope.tmp.viewOrg = org;
         $scope.tmp.editOrg = angular.copy(org);
 
-        $dialog.dialog({templateUrl: 'viewOrg', controller: 'AdminEditOrgCtrl', resolve: {tmp: function () {
-          return $scope.tmp
-        }, toggles: function () {
-          return $scope.toggles
-        }}}).open().then($scope._onViewEditOrgDialogClose);
+        $dialog.dialog(
+          {
+            templateUrl: 'viewOrg',
+            controller: 'AdminEditOrgCtrl',
+            resolve: {
+              tmp: function () {
+                return $scope.tmp;
+              }, toggles: function () {
+                return $scope.toggles;
+              }
+            }
+          }).open()
+          .then($scope._onViewEditOrgDialogClose);
 
       };
 

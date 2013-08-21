@@ -34,7 +34,7 @@ module.exports = function (app) {
                     org.users = _.uniq(org.users.concat(user._id));
                     org.save();
                     common.broadcastOrglist(req);
-                  })
+                  });
                 }
                 common.broadcastUserlist(req);
                 req.io.emit('admin:registrationSuccess', user);

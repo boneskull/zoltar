@@ -18,8 +18,11 @@ generator.setValidator('email', function (str) {
 });
 
 generator.setValidator('tel', function (str) {
+
   return !str ||
-    /^1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?(\d*))?$/.test(str);
+    new RegExp("^1?\\W*([2-9][0-8][0-9])\\W*" +
+      "([2-9][0-9]{2})\\W*([0-9]{4})(\\se?x?t?(\\d*))" +
+      "?$").test(str);
 });
 
 generator.setValidator('ein', function (str) {

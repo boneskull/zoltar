@@ -11,7 +11,7 @@ module.exports = function (app) {
       res.send(users.map(function (user) {
         return user.sanitize();
       }));
-    })
+    });
   });
 
 };

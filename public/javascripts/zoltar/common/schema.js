@@ -73,7 +73,8 @@
            * @returns {boolean} Success
            */
           tel: function (str) {
-            return /^1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?\.?\s+(\d*))?$/.test(str);
+            /*jshint maxlen: false*/
+            return (/^1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?\.?\s+(\d*))?$/).test(str);
           },
 
           /**
@@ -82,7 +83,7 @@
            * @returns {boolean} Success
            */
           ein: function (str) {
-            return /^\d{2}-?\d{7}$/.test(str);
+            return new RegExp("^\\d{2}-?\\d{7}$").test(str);
           }
         },
 
@@ -157,7 +158,7 @@
             return data.metadata;
           };
 
-          Model.prototype.toString = function() {
+          Model.prototype.toString = function () {
             return JSON.stringify(this);
           };
 
@@ -169,7 +170,11 @@
           Model.prototype.$defineProperties = function () {
             var model = this;
             angular.forEach(this.$schema, function (definition, field) {
-              var simpleDefinition = angular.isString(definition), val, type, arrayDefinition = angular.isArray(definition);
+              var simpleDefinition = angular.isString(definition),
+                val,
+                type,
+                arrayDefinition = angular.isArray(definition);
+
               if (simpleDefinition) {
                 type = definition;
               } else {
@@ -196,20 +201,23 @@
                     // assert we have a valid date.  getTime() will
                     // return 0 if invalid.
                     case 'Date':
-                      assert(new Date(value).getTime() > 0, value + ' is a valid date');
+                      assert(new Date(value).getTime() > 0,
+                        value + ' is a valid date');
                       break;
 
                     // ObjectIds are always strings, so assert we
                     // have a string
                     case 'ObjectId':
-                      assert(angular.isObject(value) || angular.isString(value) ,value + ' is an object or an _id (string)');
+                      assert(angular.isObject(value) || angular.isString(value),
+                        value + ' is an object or an _id (string)');
                       break;
 
                     // if we have a string and it's an enum,
                     // assert the value is within the enum
                     case 'String':
                       if (angular.isArray(definition.enum)) {
-                        assert(definition.enum.indexOf(value) >= 0, value + ' is within the enumeration ' + definition.enum);
+                        assert(definition.enum.indexOf(value) >= 0, value +
+                          ' is within the enumeration ' + definition.enum);
                       }
 
                       // if we want to trim, trim.
