@@ -28,18 +28,17 @@
    * @property {string} partialPath Path to partials.
    */
   zoltar.constant('zoltarConstants', {
-    partialPath: '/partials/'
+    root: '/javascripts/'
   });
 
   zoltar.config(function ($locationProvider, $routeProvider, $provide,
     zoltarConstants, $dialogProvider, zoltarSchemas, $validatorProvider) {
-    var partialPath = zoltarConstants.partialPath,
 
-      /**
-       * These provide default values for model properties.
-       * @type {{now: Function, false: Function, email: Function}}
-       */
-        defaults = {
+    /**
+     * These provide default values for model properties.
+     * @type {{now: Function, false: Function, email: Function}}
+     */
+    var defaults = {
 
         /**
          * Returns the current date timestamp w/ ms
@@ -138,7 +137,7 @@
 
     $routeProvider
       .when('/admin', {
-        templateUrl: partialPath + 'admin.html',
+        templateUrl: zoltarConstants.root + 'zoltar/admin/admin.html',
         controller: 'AdminCtrl'
       })
       .otherwise({

@@ -42,7 +42,7 @@ module.exports = function (grunt) {
           'public/javascripts/support/**/*.js',
           '!public/javascripts/dist/**/*.js'
         ],
-        tasks: ['ngmin', 'uglify', 'docular']
+        tasks: ['build']
       },
       serverTests: {
         files: ['config/**/*.js', 'server.js', 'models/**/*.js',

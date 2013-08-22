@@ -23,14 +23,12 @@
           objectCache.put('orgs', orglist.map(function (org) {
             return new Org(org);
           }));
-          $scope.orglist = objectCache.get('orgs');
+          $scope.orglist = objectCache.get('orgs') || [];
 
           $controller('ListMixinCtrl', {
             $scope: $scope,
-            config: function() {
-              return {
-                list: $scope.orglist
-              };
+            config: {
+              list: $scope.orglist
             }
           });
 
@@ -44,7 +42,7 @@
           {
             templateUrl: 'addOrg',
             controller: 'AdminAddOrgCtrl',
-            dialogClass: 'addOrgModal modal'
+            dialogClass: 'orgModal modal'
           }).open();
       };
 
@@ -61,6 +59,7 @@
           {
             templateUrl: 'viewOrg',
             controller: 'AdminEditOrgCtrl',
+            dialogClass: 'orgModal modal',
             resolve: {
               tmp: function () {
                 return $scope.tmp;

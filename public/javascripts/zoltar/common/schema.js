@@ -25,6 +25,7 @@
    * Provides list-related scope variables.
    */
   schema.controller('ListMixinCtrl', function ($scope, config) {
+
     $scope.noOfPages = Math.ceil(config.list.length / PAGE_LENGTH);
     $scope.currentPage = $scope.currentPage || 1;
 
@@ -124,7 +125,8 @@
   });
 
   schema.directive('schemaForm',
-    function schemaFormDirective($injector, Restangular, $cacheFactory) {
+    function schemaFormDirective($injector, Restangular, $cacheFactory,
+      zoltarConstants) {
       return {
         restrict: 'E',
         scope: {
@@ -136,8 +138,8 @@
         },
         replace: true,
         transclude: true,
-        templateUrl: '/partials/schemaform.html',
-        link: function postLink(scope) {
+        templateUrl: zoltarConstants.root + 'zoltar/common/schemaform.html',
+        link: function link(scope) {
           var model = $injector.get(scope.schemaName),
             schema = model.getSchema(),
             metadata = model.getMetadata(),

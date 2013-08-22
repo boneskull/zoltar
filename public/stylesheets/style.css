@@ -5,6 +5,6 @@
 .fade-hide-active{opacity:0}
 .wire-one{font-family:'Wire One',sans-serif !important;font-size:7em !important}
 @media (min-width:981px){body{padding-top:60px}}.center{margin:0 auto !important;float:none !important;text-align:center !important}
-.addOrgModal .modal-body{max-height:800px}
+.orgModal .modal-body,.jobModal .modal-body{max-height:800px}
 a{cursor:pointer}
 ng-form:not(.ng-pristine) input.ng-invalid,ng-form:not(.ng-pristine) select.ng-invalid{border:2px solid red}

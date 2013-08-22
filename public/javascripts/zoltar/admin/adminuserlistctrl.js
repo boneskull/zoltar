@@ -20,17 +20,16 @@
        * @param userlist
        * @private
        */
-      var _onUserlist = function _onUserList(userlist) {
+      var onUserlist = function _onUserList(userlist) {
         $scope.userlist = userlist.map(function (user) {
           return new User(user);
         });
 
         $controller('ListMixinCtrl', {
           $scope: $scope,
-          config: function () {
-            return {
-              list: $scope.userlist
-            };
+          config: {
+            list: $scope.userlist
+
           }
         });
 
@@ -44,7 +43,7 @@
         function openConfirmDeleteUserDialog(user) {
           $scope.tmp.deleteUser = user;
           $dialog.dialog({
-            templateUrl: 'confirmDelete',
+            templateUrl: 'confirmDeleteUser',
             controller: 'AdminConfirmDeleteUserCtrl',
             resolve: {
               tmp: function () {
@@ -117,7 +116,7 @@
         $scope.order = $scope.order === field ? '-' + field : field;
       };
 
-      socket.on('admin:userlist', _onUserlist);
+      socket.on('admin:userlist', onUserlist);
       socket.emit('admin:ready');
 
     });
