@@ -20,7 +20,7 @@
        * @param userlist
        * @private
        */
-      var onUserlist = function _onUserList(userlist) {
+      var onUserlist = function onUserList(userlist) {
         $scope.userlist = userlist.map(function (user) {
           return new User(user);
         });
@@ -41,16 +41,24 @@
        */
       $scope.openConfirmDeleteUserDialog =
         function openConfirmDeleteUserDialog(user) {
-          $scope.tmp.deleteUser = user;
-          $dialog.dialog({
-            templateUrl: 'confirmDeleteUser',
-            controller: 'AdminConfirmDeleteUserCtrl',
-            resolve: {
-              tmp: function () {
-                return $scope.tmp;
+          $dialog.messageBox('Confirm Delete User',
+              'Are you sure you want to delete user "' + user.username +
+                '"?',
+              [
+                {
+                  label: 'Cancel'
+                },
+                {
+                  label: 'Delete',
+                  result: 'delete',
+                  cssClass: 'btn-danger'
+                }
+              ]
+            ).open()
+            .then(function (result) {
+              if (result === 'delete') {
+                socket.emit('admin:deleteUser', user);
               }
-            }}).open().then(function () {
-              delete $scope.tmp.deleteUser;
             });
 
         };

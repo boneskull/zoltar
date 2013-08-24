@@ -7,7 +7,6 @@
 
       var objectCache = $cacheFactory.get('objects');
       $scope.joblist = objectCache.get('jobs') || [];
-      console.log($scope.joblist);
       $controller('ListMixinCtrl', {
         $scope: $scope,
         config: {

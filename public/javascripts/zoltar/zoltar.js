@@ -180,10 +180,6 @@
         return data.metadata;
       };
 
-      Model.prototype.toString = function () {
-        return JSON.stringify(this);
-      };
-
       /**
        * Defines setters and getters for each of the model
        * properties.  These perform validation and trimming.

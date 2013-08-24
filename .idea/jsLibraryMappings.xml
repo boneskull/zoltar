@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{Node.js Dependencies for zoltar, Node.js v0.10.15 Core Modules}" />
-    <file url="file://$PROJECT_DIR$/models" libraries="{Node.js v0.10.15 Core Modules}" />
+    <file url="file://$PROJECT_DIR$" libraries="{Node.js Dependencies for zoltar}" />
     <file url="file://$PROJECT_DIR$/public" libraries="{HTML5 / EcmaScript 5, support}" />
-    <file url="file://$PROJECT_DIR$/public/test" libraries="{Node.js v0.10.15 Core Modules, test-support}" />
-    <file url="file://$PROJECT_DIR$/routes" libraries="{Node.js v0.10.15 Core Modules}" />
+    <file url="file://$PROJECT_DIR$/public/test" libraries="{test-support}" />
     <file url="PROJECT" libraries="{support, test-support}" />
     <excludedPredefinedLibrary name="HTML" />
   </component>

@@ -125,7 +125,7 @@
                   <a ng-click="openViewOrgDialog(org)">{{ org.name }}</a>
                 </td>
                 <td>
-                  {{ org.state.name}}
+                  {{ org.state.name }}
                 </td>
                 <td>{{ org.ein|ein }}</td>
                 <td>
@@ -324,37 +324,6 @@
 
 </div>
 
-<script type="text/ng-template" id="confirmDeleteUser">
-  <div class="modal-header"><h4>Delete user "{{ tmp.deleteUser.username
-    }}"?</h4></div>
-
-  <div class="modal-body">
-    <div class="row-fluid">
-      <div class="span12"><p>Are you sure you want
-        to delete user "{{
-        tmp.deleteUser.username
-        }}"
-        ({{ tmp.deleteUser.email
-        }})?</p>
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <div class="row-fluid">
-      <div class="span12">
-        <button ng-click="cancelDeleteUser()" class="btn">
-          n/m
-        </button>
-        <ladda-button ladda="deleteProgress" class="btn-danger"
-                      ng-click="deleteUser()">
-          KILL
-        </ladda-button>
-
-      </div>
-    </div>
-  </div>
-</script>
-
 <script type="text/ng-template" id="viewUser">
   <div class="modal-header">
     <h4 ng-show="toggles.userEditMode">Edit User</h4>
@@ -473,7 +442,13 @@
                    schema-name="Org" read-only="true">
       </schema-form>
     </div>
-
+    <div ng-show="saveOrgFailure" class="alert alert-error">
+      <ul>
+        <li ng-repeat="err in saveOrgFailure">
+        {{err}}
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="modal-footer" ng-show="toggles.orgEditMode">
     <div class="row-fluid">

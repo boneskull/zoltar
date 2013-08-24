@@ -82,7 +82,7 @@ module.exports = function (app) {
     broadcastOrglist: function broadcastOrglist(req) {
       this.ifAdminSocket(req)
         .then(function () {
-          return Org.find({}).populate('users state').exec();
+          return Org.find({}).populate('user state').exec();
         })
         .then(function (orgs) {
           app.io.room('admin').broadcast('admin:orglist', orgs);

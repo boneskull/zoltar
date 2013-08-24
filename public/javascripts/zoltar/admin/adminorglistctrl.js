@@ -21,7 +21,7 @@
       var objectCache = $cacheFactory.get('objects'),
         onAdminOrglist = function onAdminOrglist(orglist) {
           objectCache.put('orgs', orglist.map(function (org) {
-            return new Org(org);
+            return  new Org(org);
           }));
           $scope.orglist = objectCache.get('orgs') || [];
 
@@ -32,6 +32,29 @@
             }
           });
 
+        };
+
+      $scope.openConfirmDeleteOrgDialog =
+        function openConfirmDeleteOrgDialog(org) {
+          $dialog.messageBox('Confirm Delete Organization',
+              'Are you sure you want to delete organization "' + org.name +
+                '"?',
+              [
+                {
+                  label: 'Cancel'
+                },
+                {
+                  label: 'Delete',
+                  result: 'delete',
+                  cssClass: 'btn-danger'
+                }
+              ]
+            ).open()
+            .then(function (result) {
+              if (result === 'delete') {
+                socket.emit('admin:deleteOrg', org);
+              }
+            });
         };
 
       /**

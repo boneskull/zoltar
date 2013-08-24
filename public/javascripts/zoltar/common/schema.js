@@ -144,18 +144,18 @@
             schema = model.getSchema(),
             metadata = model.getMetadata(),
             orderedSchema = [],
-            Ref,
             resource,
             refWatches = {},
             objectCache = $cacheFactory.get('objects'),
-            plural,
             cachedData;
 
-          scope.refData = {};
+          scope.refList = {};
           scope.refSchema = {};
           scope.refMetadata = {};
 
           angular.forEach(schema, function (def, field) {
+            var Ref, plural;
+
             // correct the schema for form FIELD: TYPE
             // when we really want FIELD: {type: TYPE}
             if (angular.isString(def)) {
@@ -196,15 +196,15 @@
               scope.refMetadata[def.ref] = Ref.getMetadata();
               cachedData = objectCache.get(plural);
               if (angular.isDefined(cachedData)) {
-                scope.refData[def.ref] = cachedData;
+                scope.refList[def.ref] = cachedData;
               } else {
                 resource = Restangular.all(plural);
                 resource.getList().then(function (items) {
                   items = items.map(function (item) {
                     return new Ref(item);
                   });
-                  objectCache.put(items.route, items);
-                  scope.refData[def.ref] = objectCache.get(items.route);
+                  objectCache.put(plural, items);
+                  scope.refList[def.ref] = items;
                 });
               }
               // clear watch
@@ -216,7 +216,7 @@
                 return objectCache.get(plural);
               }, function (newval, oldval) {
                 if (newval !== oldval) {
-                  scope.refData[def.ref] = newval;
+                  scope.refList[def.ref] = newval;
                 }
               }, true);
             }
