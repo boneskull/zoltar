@@ -199,7 +199,13 @@
             if (arrayDefinition) {
               definition = definition[0];
             }
-            type = definition.type;
+
+            if (angular.isUndefined(definition.type)) {
+              type = 'Object';
+            }
+            else {
+              type = definition.type;
+            }
           }
 
           Object.defineProperty(model, field, {

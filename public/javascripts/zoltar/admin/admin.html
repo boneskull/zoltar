@@ -212,12 +212,11 @@
                 }}</a>
             </td>
             <td>
-              <a><i
-                  class="icon-envelope-alt"></i> {{
+              {{
                 job.org.name
-                }}</a>
+                }}
             </td>
-            <td>{{ job.createdon|date }}</td>
+            <td>{{ job.created.createdon|date }}</td>
             <td>
               <a ng-click="openEditJobDialog(job)"
                  title="Edit {{ job.headline|truncate:20 }}"><i
@@ -394,11 +393,8 @@
       </div>
     </div>
   </div>
-
-
-
-
 </script>
+
 <script type="text/ng-template" id="addOrg">
   <div class="modal-header">
     <h4>Add Organization</h4>
@@ -417,10 +413,6 @@
       Save
     </ladda-button>
   </div>
-
-
-
-
 </script>
 
 <script type="text/ng-template" id="viewOrg">
@@ -476,10 +468,26 @@
       </div>
     </div>
   </div>
+</script>
 
-
-
-
+<script type="text/ng-template" id="addJob">
+  <div class="modal-header">
+    <h4>Add Job</h4>
+  </div>
+  <div class="modal-body">
+    <schema-form form-name="addJobForm" model="newJob"
+                 schema-name="Job"></schema-form>
+  </div>
+  <div class="modal-footer">
+    <button ng-click="cancelAddJob()" class="btn">
+      Cancel
+    </button>
+    <ladda-button ladda="addJobProgress"
+                  class="btn-primary"
+                  ng-click="addJob(newJob)">
+      Save
+    </ladda-button>
+  </div>
 </script>
 </div>
 </div>

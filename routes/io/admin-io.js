@@ -2,6 +2,7 @@
 
 var User = require('../../models/user'),
   Org = require('../../models/org'),
+  Job = require('../../models/job'),
   Q = require('q'),
   _ = require('underscore'),
   extend = require('util')._extend;
@@ -144,8 +145,39 @@ module.exports = function (app) {
             req.io.emit('admin:addOrgSuccess');
           }
         });
-
       });
+    },
+    addJob: function (req) {
+      common.ifAdminSocket(req).then(function () {
+        User.findOne({username: req.session.passport.user}).exec()
+          .then(function (user) {
+            var job = new Job({
+              org: req.data.org,
+              headline: req.data.headline,
+              created: {
+                createdby: user._id
+              },
+              email: {
+                text: req.data['email.text'],
+                replyto: req.data['email.replyto'] ? req.data['email.replyto'] :
+                  req.data['email.text']
+              },
+              tweet: {
+                text: req.data['tweet.text']
+              },
+              content: req.data.content
+            });
+            job.save(function (err) {
+              if (err) {
+                req.io.emit('admin:addJobFailure', err);
+              } else {
+                common.broadcastJoblist(req);
+                req.io.emit('admin:addJobSuccess');
+              }
+            });
+          });
+      })
+
     },
     saveOrg: function (req) {
       common.ifAdminSocket(req).then(function () {

@@ -1,12 +1,25 @@
-<ng-form name="schemaForm" id="form_{{ formName }}" class="form-horizontal"
-         novalidate="novalidate">
-  <fieldset>
-    <legend ng-show="legend">{{ legend }}</legend>
-    <div class="control-group" ng-repeat="item in schema">
+<div>
+  <ng-form name="schemaForm" id="form_{{ formName }}" class="form-horizontal"
+           novalidate="novalidate">
+    <fieldset>
+      <legend ng-show="legend">{{ legend }}</legend>
+      <ng-include src="'schemaForm-controls'"></ng-include>
+      <div ng-transclude></div>
+      <small><i class="icon-asterisk"></i> denotes required field</small>
+    </fieldset>
+  </ng-form>
+
+  <script type="text/ng-template" id="schemaForm-controls">
+      <div ng-repeat="item in schema">
+      <div ng-if="isObject(item)">
+      <div ng-if="isArray(item.def)">
+      <ng-include src="'schemaForm-controls'" ng-repeat="schema in item"></ng-include>
+      </div>
+      <div ng-if="!isArray(item.def)" class="control-group">
       <label class="control-label" for="{{ formName }}_{{ item.field }}">{{
         item.def.title
         }}
-        <span ng-show="item.def.required" class="help-inline">*</span></label>
+        <span ng-show="item.def.required" class="help-inline"><i class="icon-asterisk"></i></span></label>
 
       <div class="controls">
         <ng-switch on="item.def.$multiple" ng-show="item.def.ref">
@@ -46,12 +59,21 @@
                     </span>
                         <span ng-if="!item.def.enum">
                     <input ng-required="item.def.required"
+                           ng-if="!item.def.$textarea"
                            type="{{ item.def.$type }}"
                            ng-model="model[item.field]"
                            ng-disabled="readOnly"
                            validate="item.def.validate"
                            placeholder="{{ item.def.$placeholder }}"
                            id="{{ formName }}_{{ item.field }}"/>
+                           <textarea ng-required="item.def.required"
+                           ng-if="item.def.$textarea"
+                           type="{{ item.def.$type }}"
+                           ng-model="model[item.field]"
+                           ng-disabled="readOnly"
+                           validate="item.def.validate"
+                           placeholder="{{ item.def.$placeholder }}"
+                           id="{{ formName }}_{{ item.field }}"></textarea>
                     </span>
                     </span>
           <input ng-switch-when="Boolean" type="checkbox"
@@ -66,8 +88,10 @@
         </ng-switch>
 
       </div>
+      </div>
+</div>
     </div>
-    <div ng-transclude></div>
-    <small>* denotes required field</small>
-  </fieldset>
-</ng-form>
+
+  </script>
+
+</div>

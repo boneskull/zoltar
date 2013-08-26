@@ -63,6 +63,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.configure('development', function () {
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  mongoose.set('debug', true);
 });
 
 app.configure('production', function () {

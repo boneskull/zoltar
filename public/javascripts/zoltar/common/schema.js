@@ -126,7 +126,7 @@
 
   schema.directive('schemaForm',
     function schemaFormDirective($injector, Restangular, $cacheFactory,
-      zoltarConstants) {
+      zoltarConstants, $parse) {
       return {
         restrict: 'E',
         scope: {
@@ -143,111 +143,148 @@
           var model = $injector.get(scope.schemaName),
             schema = model.getSchema(),
             metadata = model.getMetadata(),
-            orderedSchema = [],
+            orderedSchema,
             resource,
             refWatches = {},
             objectCache = $cacheFactory.get('objects'),
-            cachedData;
+            cachedData, setup;
 
           scope.refList = {};
           scope.refSchema = {};
           scope.refMetadata = {};
 
-          angular.forEach(schema, function (def, field) {
-            var Ref, plural;
+          setup = function setup(schema) {
+            angular.forEach(schema, function (def, field) {
+              var Ref, plural;
 
-            // correct the schema for form FIELD: TYPE
-            // when we really want FIELD: {type: TYPE}
-            if (angular.isString(def)) {
-              schema[field] = {
-                type: def
-              };
-            }
-
-            if (angular.isArray(def)) {
-              def = def[0];
-              def.$multiple = true;
-            } else {
-              def.$multiple = false;
-            }
-
-            // set the placeholder
-            if (angular.isDefined(metadata.placeholders) &&
-              metadata.placeholders[field]) {
-              def.$placeholder = metadata.placeholders[field];
-            } else {
-              def.$placeholder = def.title ? def.title : field;
-            }
-
-            if (!def.ref) {
-              // handle native fields
-              def.$type = 'text';
-              // TODO: remove crap from the types array when we find out
-              // it's broken, like 'email' and 'tel' are.
-              if (angular.isDefined(def.validate) &&
-                types.indexOf(def.validate) >= 0) {
-                def.$type = def.validate;
+              // correct the schema for form FIELD: TYPE
+              // when we really want FIELD: {type: TYPE}
+              if (angular.isString(def)) {
+                schema[field] = {
+                  type: def
+                };
               }
-            } else {
-              // handle references. gather data from the server.
-              Ref = $injector.get(def.ref);
-              plural = def.ref.toLowerCase() + 's';
-              scope.refSchema[def.ref] = Ref.getSchema();
-              scope.refMetadata[def.ref] = Ref.getMetadata();
-              cachedData = objectCache.get(plural);
-              if (angular.isDefined(cachedData)) {
-                scope.refList[def.ref] = cachedData;
+              // nested field.  oy
+              else if (angular.isObject(def) && angular.isUndefined(def.type)) {
+                def.$nested = true;
+                setup(def);
+                return;
               } else {
-                resource = Restangular.all(plural);
-                resource.getList().then(function (items) {
-                  items = items.map(function (item) {
-                    return new Ref(item);
+                def.$nested = false;
+              }
+
+              if (angular.isArray(def)) {
+                def = def[0];
+                def.$multiple = true;
+              } else {
+                def.$multiple = false;
+              }
+
+              if(metadata && metadata.textareas && metadata.textareas.indexOf(field) >= 0) {
+                def.$textarea = true;
+              }
+
+              // set the placeholder
+              if (angular.isDefined(metadata) &&
+                angular.isDefined(metadata.placeholders) &&
+                metadata.placeholders[field]) {
+                def.$placeholder = metadata.placeholders[field];
+              } else {
+                def.$placeholder = def.title ? def.title : field;
+              }
+
+              if (!def.ref) {
+                // handle native fields
+                def.$type = 'text';
+                // TODO: remove crap from the types array when we find out
+                // it's broken, like 'email' and 'tel' are.
+                if (angular.isDefined(def.validate) &&
+                  types.indexOf(def.validate) >= 0) {
+                  def.$type = def.validate;
+                }
+              } else {
+                // handle references. gather data from the server.
+                Ref = $injector.get(def.ref);
+                plural = def.ref.toLowerCase() + 's';
+                scope.refSchema[def.ref] = Ref.getSchema();
+                scope.refMetadata[def.ref] = Ref.getMetadata();
+                cachedData = objectCache.get(plural);
+                if (angular.isDefined(cachedData)) {
+                  scope.refList[def.ref] = cachedData;
+                } else {
+                  resource = Restangular.all(plural);
+                  resource.getList().then(function (items) {
+                    items = items.map(function (item) {
+                      return new Ref(item);
+                    });
+                    objectCache.put(plural, items);
+                    scope.refList[def.ref] = items;
                   });
-                  objectCache.put(plural, items);
-                  scope.refList[def.ref] = items;
+                }
+                // clear watch
+                if (angular.isFunction(refWatches[plural])) {
+                  refWatches[plural]();
+                }
+                // set up new watch
+                refWatches[plural] = scope.$watch(function () {
+                  return objectCache.get(plural);
+                }, function (newval, oldval) {
+                  if (newval !== oldval) {
+                    scope.refList[def.ref] = newval;
+                  }
+                }, true);
+              }
+            });
+
+          };
+
+          setup(schema);
+
+          var order = function order(schema) {
+            var orderedSchema;
+            if (angular.isDefined(metadata) &&
+              angular.isDefined(metadata.order)) {
+              orderedSchema = metadata.order.map(function (field) {
+                console.log('parsing ' + field + ' within ');
+                console.log(schema);
+                var value = $parse(field)(schema),
+                  d = angular.isArray(value) ? value[0] : value;
+                return {
+                  field: field,
+                  def: d
+                };
+              });
+            } else {
+              orderedSchema = _.map(schema, function (def, field) {
+                var d = angular.isArray(def) ? def[0] : def;
+                if (d.$nested) {
+                  delete d.$nested;
+                  return {
+                    field: field,
+                    def: order(def)
+                  };
+                }
+                return {
+                  field: field,
+                  def: d
+                };
+              });
+              if (metadata.hidden) {
+                orderedSchema = orderedSchema.filter(function (prop) {
+                  return metadata.hidden.indexOf(prop.field) === -1;
                 });
               }
-              // clear watch
-              if (angular.isFunction(refWatches[plural])) {
-                refWatches[plural]();
-              }
-              // set up new watch
-              refWatches[plural] = scope.$watch(function () {
-                return objectCache.get(plural);
-              }, function (newval, oldval) {
-                if (newval !== oldval) {
-                  scope.refList[def.ref] = newval;
-                }
-              }, true);
             }
-          });
+            return orderedSchema;
 
-          if (angular.isDefined(metadata) &&
-            angular.isDefined(metadata.order)) {
-            orderedSchema = metadata.order.map(function (field) {
-              return {
-                field: field,
-                def: angular.isArray(schema[field]) ? schema[field][0] :
-                  schema[field]
-              };
-            });
-          } else {
-            orderedSchema = _.map(schema, function (def, field) {
-              return {
-                field: field,
-                def: angular.isArray(def) ? def[0] : def
-              };
-            });
-            if (metadata.hidden) {
-              orderedSchema = orderedSchema.filter(function (prop) {
-                return metadata.hidden.indexOf(prop.field) === -1;
-              });
-            }
-          }
+          };
+
+          orderedSchema = order(schema);
 
           scope.schema = orderedSchema;
-
           scope.$parent.schemaForm = scope.schemaForm;
+          scope.isArray = angular.isArray;
+          scope.isObject = angular.isObject;
         }
       };
     });

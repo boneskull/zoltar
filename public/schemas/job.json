@@ -68,11 +68,29 @@
     "content": {
       "type": "String",
       "trim": true,
-      "title": "Content"
+      "title": "Content",
+      "required": true
     },
     "open": {
       "type": "Boolean",
-      "default": "false"
+      "default": "false",
+      "title": "Open"
     }
+  },
+  "metadata": {
+    "textareas": [
+      "content"
+    ],
+    "placeholders": {
+
+    },
+    "order": [
+      "org",
+      "headline",
+      "email.text",
+      "email.replyto",
+      "tweet.text",
+      "content"
+    ]
   }
 }

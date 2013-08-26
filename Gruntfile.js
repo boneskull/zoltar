@@ -24,8 +24,7 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.min.js':
-            require('./support.json')
+          'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.min.js': require('./support.json')
             .concat('public/javascripts/dist/generated/**/*.js')
         }
       }

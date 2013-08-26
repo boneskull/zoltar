@@ -28,9 +28,12 @@ module.exports = function (app) {
     },
 
     emitJobs: function (req) {
-      Job.find({}).populate('org').exec().then(function (jobs) {
-        req.io.emit('visitor:jobs', jobs);
-      });
+      Job.find({}).populate('org created.createdby edited.editby').exec()
+
+        .then(function (jobs) {
+          console.log(jobs);
+          req.io.emit('visitor:jobs', jobs);
+        });
     },
 
     /**
@@ -47,6 +50,8 @@ module.exports = function (app) {
         username: req.session.passport.user
       }).exec().then(function (user) {
           if (!user.admin) {
+            console.log('illegal attempt on admin functionality by user ' +
+              user.username);
             return Q.reject();
           }
           return user;
@@ -70,6 +75,14 @@ module.exports = function (app) {
             users.map(function (user) {
               return user.sanitize();
             }));
+        });
+    },
+
+    broadcastJoblist: function broadcastJoblist() {
+      Job.find({}).populate('org created.createdby edited.editby').exec()
+        .then(function (jobs) {
+          console.log(jobs);
+          app.broadcast('admin:joblist', jobs);
         });
     },
     /**
