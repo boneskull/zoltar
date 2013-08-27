@@ -25,14 +25,10 @@
        */
       this.on = function on(eventName, callback) {
         var socket = this._socket;
-        socket.on(eventName, function () {
-          var args = arguments;
-          $log.log('socket: received ' + eventName + ':');
-          $log.log(args);
-          $rootScope.$apply(function () {
-            callback.apply(socket, args);
-          });
-        });
+        if (!eventName || !angular.isString(eventName)) {
+          throw 'invalid eventName';
+        }
+        socket.on(eventName, this._makeExecCallback(socket, callback));
       };
 
       /**
@@ -49,7 +45,7 @@
         var socket = this._socket;
 
         if (!eventName || !angular.isString(eventName)) {
-          throw 'invalid event name';
+          throw 'invalid eventName';
         }
 
         // strip internals
@@ -58,14 +54,28 @@
         if (data) {
           $log.log(data);
         }
-        socket.emit(eventName, data, function () {
+        socket.emit(eventName, data,
+          this._makeExecCallback(socket, callback));
+      };
+
+      this._makeExecCallback = function (socket, callback) {
+        if (!socket) {
+          throw 'invalid socket object';
+        }
+        if (angular.isDefined(callback) && !angular.isFunction(callback)) {
+          throw 'invalid callback';
+        }
+        return function () {
           var args = arguments;
+          $log.log('sent/recvd');
+          $log.log(args);
           $rootScope.$apply(function () {
             if (callback) {
               callback.apply(socket, args);
             }
           });
-        });
+        };
       };
     });
+
 })();

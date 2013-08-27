@@ -8,16 +8,16 @@ describe('Module: socketIO', function () {
 
   describe('Service: socket', function () {
     var socketSpy;
-    beforeEach(inject(function ($window) {
-      socketSpy = jasmine.createSpyObj('socket', ['on', 'emit']);
-      $window.io = {
-        connect: jasmine.createSpy('connect').andReturn(socketSpy)
-      };
 
+    beforeEach(inject(function ($window) {
+      socketSpy = jasmine.createSpyObj('socket', ['emit', 'on']);
+      $window.io = {
+        connect: jasmine.createSpy('connect')
+          .andReturn(socketSpy)
+      };
     }));
 
     it('should pass through an emit event', inject(function (socket) {
-      var cb = jasmine.createSpy('cb');
       expect(socket.emit).toThrow();
 
       socket.emit('butts');
@@ -29,9 +29,25 @@ describe('Module: socketIO', function () {
       expect(socketSpy.emit).toHaveBeenCalledWith('butts', {foo: 'baz'},
         jasmine.any(Function));
 
-      //todo: find some way to execute this callback without creating a
-      // huge stub object. probably refactor service.
-      socket.emit('butts', {}, cb);
+    }));
+
+    it('should pass through an on handler', inject(function (socket) {
+      expect(socket.on).toThrow();
+
+      socket.on('foo');
+      expect(socketSpy.on).toHaveBeenCalledWith('foo',
+        jasmine.any(Function));
+
+    }));
+
+    it('should create a callback execution function', inject(function (socket) {
+      var cb = jasmine.createSpy('cb');
+      expect(socket._makeExecCallback).toThrow();
+      expect(function () {
+        socket._makeExecCallback(socketSpy, 'foo');
+      }).toThrow();
+      socket._makeExecCallback(socketSpy, cb)('foo');
+      expect(cb).toHaveBeenCalledWith('foo');
     }));
   });
 
