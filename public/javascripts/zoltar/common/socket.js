@@ -27,8 +27,8 @@
         var socket = this._socket;
         socket.on(eventName, function () {
           var args = arguments;
-          $log.debug('socket: received ' + eventName + ':');
-          $log.debug(args);
+          $log.log('socket: received ' + eventName + ':');
+          $log.log(args);
           $rootScope.$apply(function () {
             callback.apply(socket, args);
           });
@@ -47,11 +47,16 @@
        */
       this.emit = function emit(eventName, data, callback) {
         var socket = this._socket;
+
+        if (!eventName || !angular.isString(eventName)) {
+          throw 'invalid event name';
+        }
+
         // strip internals
         data = angular.fromJson(angular.toJson(data));
-        $log.debug('sending ' + eventName + ':');
+        $log.log('sending ' + eventName + ':');
         if (data) {
-          $log.debug(data);
+          $log.log(data);
         }
         socket.emit(eventName, data, function () {
           var args = arguments;
