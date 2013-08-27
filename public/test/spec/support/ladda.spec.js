@@ -38,8 +38,9 @@ describe('Module: ladda', function () {
       markup = '<ladda-button>foo</ladda-button>',
       scope;
 
-    beforeEach(inject(function ($rootScope) {
+    beforeEach(inject(function ($rootScope, laddaOptions) {
       scope = $rootScope.$new();
+      laddaOptions.templatePath = 'ladda';
     }));
 
     it('should replace and transclude',

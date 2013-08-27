@@ -4,6 +4,15 @@
 
   var ladda = angular.module('ladda', []);
 
+  ladda.constant('laddaOptions', {});
+
+  ladda.config(function(laddaOptions) {
+    var defaults = {
+      templatePath: '/ladda.html'
+    };
+    angular.extend(defaults, laddaOptions);
+  });
+
   /**
    * @ngdoc directive
    * @restrict A
@@ -63,12 +72,12 @@
    </doc:source>
    </doc:example>
    */
-  ladda.directive('laddaButton', function laddaButtonDirective() {
+  ladda.directive('laddaButton', function laddaButtonDirective(laddaOptions) {
     return {
       restrict: 'E',
       replace: true,
       transclude: true,
-      templateUrl: 'ladda'
+      templateUrl: laddaOptions.templatePath
     };
   });
 

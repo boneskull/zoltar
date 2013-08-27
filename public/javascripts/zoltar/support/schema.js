@@ -138,7 +138,7 @@
         },
         replace: true,
         transclude: true,
-        templateUrl: zoltarConstants.root + 'zoltar/common/schemaform.html',
+        templateUrl: zoltarConstants.root + 'zoltar/support/schemaform.html',
         link: function link(scope) {
           var model = $injector.get(scope.schemaName),
             schema = model.getSchema(),

@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  angular.module('zoltarCommon').filter('truncate', function () {
+  angular.module('truncate', []).filter('truncate', function () {
     return function (text, length, end) {
       if (isNaN(length)) {
         length = 10;

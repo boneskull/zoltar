@@ -1,9 +1,9 @@
 'use strict';
 
-describe('Module: zoltarCommon', function () {
+describe('Module: truncate', function () {
 
   beforeEach(function () {
-    module('zoltarCommon');
+    module('truncate');
   });
 
   describe('Filter: truncate', function () {

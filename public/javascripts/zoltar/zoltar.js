@@ -32,7 +32,8 @@
   });
 
   zoltar.config(function ($locationProvider, $routeProvider, $provide,
-    zoltarConstants, $dialogProvider, zoltarSchemas, $validatorProvider) {
+    zoltarConstants, $dialogProvider, zoltarSchemas, $validatorProvider,
+    laddaOptions) {
 
     /**
      * These provide default values for model properties.
@@ -134,6 +135,9 @@
     $locationProvider.html5Mode(true);
 
     $dialogProvider.options({dialogFade: true});
+
+    laddaOptions.templatePath =
+      zoltarConstants.root + '/zoltar/support/ladda.html';
 
     $routeProvider
       .when('/admin', {
