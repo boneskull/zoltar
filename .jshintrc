@@ -59,5 +59,19 @@
   "onevar": false,
   "passfail": false,
   "white": false,
-  "maxerr": 50
+  "maxerr": 50,
+  "predef": [
+    "describe",
+    "it",
+    "beforeEach",
+    "afterEach",
+    "expect",
+    "module",
+    "inject",
+    "angular",
+    "jasmine",
+    "waitsFor",
+    "runs",
+    "spyOn"
+  ]
 }

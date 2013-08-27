@@ -1,4 +1,4 @@
-/*global angular, validator*/
+/*global validator*/
 (function () {
   'use strict';
 

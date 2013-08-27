@@ -42,18 +42,18 @@ module.exports = function (grunt) {
           '!public/javascripts/dist/**/*.js'
         ],
         tasks: ['build']
-      },
-      serverTests: {
-        files: ['config/**/*.js', 'server.js', 'models/**/*.js',
-          'routes/**/*.js', 'utils/**/*.js', 'spec/**/*.js',
-          'public/schemas/**/*.json'],
-        tasks: ['jasmine_node']
-      },
-      clientTests: {
-        files: ['public/test/spec/**/*.js', 'public/javascripts/zoltar/**/*.js',
-          'public/javascripts/support/**/*.js'],
-        tasks: ['karma']
       }
+//      serverTests: {
+//        files: ['config/**/*.js', 'server.js', 'models/**/*.js',
+//          'routes/**/*.js', 'utils/**/*.js', 'spec/**/*.js',
+//          'public/schemas/**/*.json'],
+//        tasks: ['jasmine_node']
+//      },
+//      clientTests: {
+//        files: ['public/test/spec/**/*.js', 'public/javascripts/zoltar/**/*.js',
+//          'public/javascripts/support/**/*.js'],
+//        tasks: ['karma']
+//      }
     },
 
     concurrent: {

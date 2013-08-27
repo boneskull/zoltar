@@ -1,5 +1,3 @@
-/*global angular, describe, beforeEach, it, inject, expect, module, jasmine*/
-
 'use strict';
 
 angular.module('zoltarCommon').constant('zoltarSchemas', []);

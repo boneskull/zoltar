@@ -71,6 +71,7 @@
       templateUrl: 'ladda'
     };
   });
+
   /**
    * @ngdoc function
    * @name ladda.service:delay
@@ -87,6 +88,18 @@
    */
   ladda.factory('delay', function delay($timeout) {
     return function (obj, key, ms) {
+      if (!obj) {
+        throw 'obj required';
+      }
+      if (!key) {
+        throw 'key required';
+      }
+      if (!angular.isObject(obj)) {
+        throw 'obj must be an object';
+      }
+      if (!angular.isString(key)) {
+        throw 'key must be a string';
+      }
       return $timeout(function () {
         obj[key] = false;
       }, ms || 200);
