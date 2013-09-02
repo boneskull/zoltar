@@ -17,7 +17,8 @@
     'restangular',
     'socketIO',
     'schema',
-    'placeholder'
+    'placeholder',
+    'truncate'
   ]);
 
   /**

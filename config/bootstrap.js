@@ -1,8 +1,10 @@
 'use strict';
 
-var State = require('./../models/state'),
-  User = require('./../models/user'),
+var State = require('../models/state'),
+  User = require('../models/user'),
+  Job = require('../models/job'),
   stateData = require('./../public/data/states.json'),
+  dummyJobData = require('./../public/data/dummy-jobs.json'),
   _ = require('underscore');
 
 // configure states
@@ -41,4 +43,20 @@ User.findOne({username: 'admin'}, function (err, user) {
   }
 });
 
-
+// add dummy jobs data
+Job.find({}).exec().then(function (jobs) {
+  if (!jobs.length) {
+    User.findOne({username: 'admin'}).exec()
+      .then(function (user) {
+        var i = dummyJobData.length;
+        while (i--) {
+          dummyJobData[i].created = {
+            createdby: user._id
+          };
+          var job = new Job(dummyJobData[i]);
+          job.save();
+        }
+        console.log('BOOTSTRAP: Added dummy jobs data.');
+      });
+  }
+});
