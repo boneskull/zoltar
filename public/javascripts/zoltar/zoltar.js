@@ -9,16 +9,21 @@
   }
 
   var zoltar = angular.module('zoltar', [
-    'zoltarAdmin',
-    'zoltarCommon',
-    'zoltarIndex',
-    'ladda',
+
+    'ngRoute',
     'ui.bootstrap',
     'restangular',
+
+    'ladda',
     'socketIO',
     'schema',
     'placeholder',
-    'truncate'
+    'truncate',
+
+    'zoltarAdmin',
+    'zoltarCommon',
+    'zoltarIndex'
+
   ]);
 
   /**
@@ -33,8 +38,7 @@
   });
 
   zoltar.config(function ($locationProvider, $routeProvider, $provide,
-    zoltarConstants, $dialogProvider, zoltarSchemas, $validatorProvider,
-    laddaOptions) {
+    zoltarConstants, zoltarSchemas, $validatorProvider, laddaOptions) {
 
     /**
      * These provide default values for model properties.
@@ -134,8 +138,6 @@
       };
 
     $locationProvider.html5Mode(true);
-
-    $dialogProvider.options({dialogFade: true});
 
     laddaOptions.templatePath =
       zoltarConstants.root + '/zoltar/support/ladda.html';

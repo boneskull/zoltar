@@ -180,7 +180,8 @@
                 def.$multiple = false;
               }
 
-              if(metadata && metadata.textareas && metadata.textareas.indexOf(field) >= 0) {
+              if(metadata && metadata.textareas &&
+                metadata.textareas.indexOf(field) >= 0) {
                 def.$textarea = true;
               }
 

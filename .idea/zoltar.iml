@@ -10,18 +10,14 @@
       <sourceFolder url="file://$MODULE_DIR$/config" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
-      <excludeFolder url="file://$MODULE_DIR$/node_modules" />
-      <excludeFolder url="file://$MODULE_DIR$/projectFilesBackup" />
-      <excludeFolder url="file://$MODULE_DIR$/public/javascripts/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/public/javascripts/support" />
-      <excludeFolder url="file://$MODULE_DIR$/public/test/support" />
+      <excludeFolder url="file://$MODULE_DIR$/public/javascripts/dist/generated" />
+      <excludeFolder url="file://$MODULE_DIR$/public/stylesheets/dist/generated" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Node.js v0.10.15 Core Modules" level="application" />
-    <orderEntry type="library" name="support" level="project" />
     <orderEntry type="library" name="test-support" level="project" />
-    <orderEntry type="library" name="Node.js Dependencies for zoltar" level="project" />
+    <orderEntry type="library" name="components" level="project" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="myDocStringFormat" value="Plain" />

@@ -3,7 +3,7 @@
   'use strict';
 
   angular.module('zoltarAdmin').controller('AdminJobListCtrl',
-    function AdminJobListCtrl($scope, $cacheFactory, $dialog, $controller) {
+    function AdminJobListCtrl($scope, $cacheFactory, $modal, $controller) {
 
       var objectCache = $cacheFactory.get('objects');
       $scope.joblist = objectCache.get('jobs') || [];
@@ -25,12 +25,12 @@
        *
        */
       $scope.openAddJobDialog = function openAddJobDialog() {
-        $dialog.dialog(
+        $modal.open(
           {
             templateUrl: 'addJob',
             controller: 'AdminAddJobCtrl',
-            dialogClass: 'jobModal modal'
-          }).open();
+            windowClass: 'jobModal'
+          });
       };
     });
 })();

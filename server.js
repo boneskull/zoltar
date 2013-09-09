@@ -35,6 +35,7 @@ app.use(protectJSON);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
+app.use(express.multipart({defer: true}));
 app.use(express.cookieParser());
 
 app.use(express.session({

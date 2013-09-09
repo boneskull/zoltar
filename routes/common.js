@@ -8,6 +8,7 @@ var Q = require('q'),
   config = require('../config'),
   glob = require('glob'),
   support = require('../support.json'),
+  stylesheets = require('../stylesheets.json'),
   path = require('path');
 
 module.exports = function (app) {
@@ -29,9 +30,7 @@ module.exports = function (app) {
 
     emitJobs: function (req) {
       Job.find({}).populate('org created.createdby edited.editby').exec()
-
         .then(function (jobs) {
-          console.log(jobs);
           req.io.emit('visitor:jobs', jobs);
         });
     },
@@ -105,16 +104,21 @@ module.exports = function (app) {
     },
 
     renderMain: function (req, res) {
-      var files,
+      var jsFiles,
+        cssFiles = stylesheets.concat(),
         i,
         sources = 'public/javascripts/zoltar/**/*.js',
         data;
 
-      files = support.concat(glob.sync(sources));
-      i = files.length;
+      jsFiles = support.concat(glob.sync(sources));
+      i = jsFiles.length;
       while (i--) {
         // toss 'public'
-        files[i] = files[i].split(path.sep).slice(1).join(path.sep);
+        jsFiles[i] = jsFiles[i].split(path.sep).slice(1).join(path.sep);
+      }
+      i = cssFiles.length;
+      while (i--) {
+        cssFiles[i] = cssFiles[i].split(path.sep).slice(1).join(path.sep);
       }
 
       data = {
@@ -122,7 +126,8 @@ module.exports = function (app) {
         name: config.appName,
         development: config.development,
         user: req.user && req.user.sanitize(true),
-        files: files
+        jsFiles: jsFiles,
+        cssFiles: cssFiles
       };
 
       res.render('index', data);

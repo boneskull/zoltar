@@ -8,11 +8,10 @@
    * @param socket
    * @param $timeout
    * @param User
-   * @param $dialog
    * @constructor
    */
   angular.module('zoltarAdmin').controller('AdminUserListCtrl',
-    function AdminUserListCtrl($scope, socket, $timeout, User, $dialog,
+    function AdminUserListCtrl($scope, socket, $timeout, User, $modal,
       $controller) {
 
       /**
@@ -41,25 +40,25 @@
        */
       $scope.openConfirmDeleteUserDialog =
         function openConfirmDeleteUserDialog(user) {
-          $dialog.messageBox('Confirm Delete User',
-              'Are you sure you want to delete user "' + user.username +
-                '"?',
-              [
-                {
-                  label: 'Cancel'
-                },
-                {
-                  label: 'Delete',
-                  result: 'delete',
-                  cssClass: 'btn-danger'
-                }
-              ]
-            ).open()
-            .then(function (result) {
-              if (result === 'delete') {
-                socket.emit('admin:deleteUser', user);
-              }
-            });
+//          $dialog.messageBox('Confirm Delete User',
+//              'Are you sure you want to delete user "' + user.username +
+//                '"?',
+//              [
+//                {
+//                  label: 'Cancel'
+//                },
+//                {
+//                  label: 'Delete',
+//                  result: 'delete',
+//                  cssClass: 'btn-danger'
+//                }
+//              ]
+//            ).open()
+//            .then(function (result) {
+//              if (result === 'delete') {
+//                socket.emit('admin:deleteUser', user);
+//              }
+//            });
 
         };
 

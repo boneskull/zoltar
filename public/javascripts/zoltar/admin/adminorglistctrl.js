@@ -4,7 +4,8 @@
 
   /**
    * @ngdoc controller
-   * @name zoltarAdmin.controller:AdminOrgListCtrl
+   * @name zolta
+   * rAdmin.controller:AdminOrgListCtrl
    * @requires ng.$rootScope:Scope
    * @requires socket.service:socket
    * @requires zoltar.service:Org
@@ -15,7 +16,7 @@
    * @constructor
    */
   angular.module('zoltarAdmin').controller('AdminOrgListCtrl',
-    function AdminOrgListCtrl($scope, socket, Org, $dialog, zoltarConstants,
+    function AdminOrgListCtrl($scope, socket, Org, $modal, zoltarConstants,
       $cacheFactory, $controller) {
 
       var objectCache = $cacheFactory.get('objects'),
@@ -36,37 +37,37 @@
 
       $scope.openConfirmDeleteOrgDialog =
         function openConfirmDeleteOrgDialog(org) {
-          $dialog.messageBox('Confirm Delete Organization',
-              'Are you sure you want to delete organization "' + org.name +
-                '"?',
-              [
-                {
-                  label: 'Cancel'
-                },
-                {
-                  label: 'Delete',
-                  result: 'delete',
-                  cssClass: 'btn-danger'
-                }
-              ]
-            ).open()
-            .then(function (result) {
-              if (result === 'delete') {
-                socket.emit('admin:deleteOrg', org);
-              }
-            });
+//          $dialog.messageBox('Confirm Delete Organization',
+//              'Are you sure you want to delete organization "' + org.name +
+//                '"?',
+//              [
+//                {
+//                  label: 'Cancel'
+//                },
+//                {
+//                  label: 'Delete',
+//                  result: 'delete',
+//                  cssClass: 'btn-danger'
+//                }
+//              ]
+//            ).open()
+//            .then(function (result) {
+//              if (result === 'delete') {
+//                socket.emit('admin:deleteOrg', org);
+//              }
+//            });
         };
 
       /**
        *
        */
       $scope.openAddOrgDialog = function openAddOrgDialog() {
-        $dialog.dialog(
-          {
-            templateUrl: 'addOrg',
-            controller: 'AdminAddOrgCtrl',
-            dialogClass: 'orgModal modal'
-          }).open();
+//        $dialog.dialog(
+//          {
+//            templateUrl: 'addOrg',
+//            controller: 'AdminAddOrgCtrl',
+//            dialogClass: 'orgModal modal'
+//          }).open();
       };
 
       /**
@@ -78,20 +79,20 @@
         $scope.tmp.viewOrg = org;
         $scope.tmp.editOrg = angular.copy(org);
 
-        $dialog.dialog(
-          {
-            templateUrl: 'viewOrg',
-            controller: 'AdminEditOrgCtrl',
-            dialogClass: 'orgModal modal',
-            resolve: {
-              tmp: function () {
-                return $scope.tmp;
-              }, toggles: function () {
-                return $scope.toggles;
-              }
-            }
-          }).open()
-          .then($scope._onViewEditOrgDialogClose);
+//        $dialog.dialog(
+//          {
+//            templateUrl: 'viewOrg',
+//            controller: 'AdminEditOrgCtrl',
+//            dialogClass: 'orgModal modal',
+//            resolve: {
+//              tmp: function () {
+//                return $scope.tmp;
+//              }, toggles: function () {
+//                return $scope.toggles;
+//              }
+//            }
+//          }).open()
+//          .then($scope._onViewEditOrgDialogClose);
 
       };
 

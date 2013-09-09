@@ -8,17 +8,17 @@
     "grunt-contrib-watch": "*",
     "grunt-karma": "*",
     "grunt-nodemon": "~0.1.0",
-    "nodemon": "~0.7.10",
     "grunt-concurrent": "*",
     "karma": "~0.10.0",
     "karma-jasmine": "*",
     "karma-osx-reporter": "*",
     "karma-chrome-launcher": "*",
-    "grunt-docular": "~0.1.1",
+    "grunt-docular": "~0.1.2",
     "karma-coverage": "~0.1.0",
     "grunt-ngmin": "~0.0.3",
     "grunt-jasmine-node": "~0.1.0",
-    "grunt-contrib-jshint": "~0.6.3"
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-cssmin": "~0.6.1"
   },
   "engines": {
     "node": "0.10.x"

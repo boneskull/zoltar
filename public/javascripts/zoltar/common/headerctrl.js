@@ -6,7 +6,7 @@
    * @ngdoc controller
    * @requires ng.$rootScope.Scope
    * @requires ng.$location
-   * @requires ui.bootstrap:$dialog
+   * @requires ui.bootstrap:$modal
    * @requires Restangular
    * @requires socketIO.service:socket
    * @requires ng.$window
@@ -16,7 +16,7 @@
    * @constructor
    */
   angular.module('zoltarCommon').controller('HeaderCtrl',
-    function HeaderCtrl($scope, $location, $dialog, Restangular, socket,
+    function HeaderCtrl($scope, $location, $modal, Restangular, socket,
       $window) {
 
       /**
@@ -39,7 +39,12 @@
        * Opens the login dialog.
        */
       $scope.openLoginDialog = function openLoginDialog() {
-        $dialog.dialog({templateUrl: 'login', controller: 'LoginCtrl'}).open();
+        $modal.open({
+          templateUrl: 'login',
+          controller: function($scope, $modalInstance) {
+            $scope.$modalInstance = $modalInstance;
+          }
+        });
       };
 
       /**

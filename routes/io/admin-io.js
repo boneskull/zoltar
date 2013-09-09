@@ -176,8 +176,7 @@ module.exports = function (app) {
               }
             });
           });
-      })
-
+      });
     },
     saveOrg: function (req) {
       common.ifAdminSocket(req).then(function () {

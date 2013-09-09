@@ -2,5 +2,10 @@ node_modules
 .tmp
 .sass-cache
 .nodemonignore
-public/javascripts/dist
+
 projectFilesBackup
+
+public/javascripts/dist/generated
+public/javascripts/components
+public/stylesheets/dist/generated
+

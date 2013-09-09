@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = function (grunt) {
-  //noinspection JSHint
   grunt.initConfig({
     pkg: require('./package.json'),
+
     ngmin: {
       zoltar: {
         cwd: 'public/javascripts/zoltar',
@@ -12,6 +12,7 @@ module.exports = function (grunt) {
         dest: 'public/javascripts/dist/generated'
       }
     },
+
     uglify: {
       options: {
         report: 'min',
@@ -24,36 +25,40 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
+          /*jshint maxlen:false*/
           'public/javascripts/dist/<%= pkg.name %>-<%= pkg.version %>.min.js': require('./support.json')
             .concat('public/javascripts/dist/generated/**/*.js')
         }
       }
     },
+
     karma: {
       unit: {
         configFile: 'karma.conf.js'
       }
     },
+
     watch: {
       scripts: {
         files: [
-          'public/schemas/*.json', 'public/javascripts/zoltar/**/*.js',
+          'public/schemas/*.json',
+          'public/javascripts/zoltar/**/*.js',
           'public/javascripts/support/**/*.js',
           '!public/javascripts/dist/**/*.js'
         ],
         tasks: ['build']
       }
-//      serverTests: {
-//        files: ['config/**/*.js', 'server.js', 'models/**/*.js',
-//          'routes/**/*.js', 'utils/**/*.js', 'spec/**/*.js',
-//          'public/schemas/**/*.json'],
-//        tasks: ['jasmine_node']
-//      },
-//      clientTests: {
-//        files: ['public/test/spec/**/*.js', 'public/javascripts/zoltar/**/*.js',
-//          'public/javascripts/support/**/*.js'],
-//        tasks: ['karma']
-//      }
+      //      serverTests: {
+      //        files: ['config/**/*.js', 'server.js', 'models/**/*.js',
+      //          'routes/**/*.js', 'utils/**/*.js', 'spec/**/*.js',
+      //          'public/schemas/**/*.json'],
+      //        tasks: ['jasmine_node']
+      //      },
+      //      clientTests: {
+      //        files: ['public/test/spec/**/*.js', 'public/javascripts/zoltar/**/*.js',
+      //          'public/javascripts/support/**/*.js'],
+      //        tasks: ['karma']
+      //      }
     },
 
     concurrent: {
@@ -64,9 +69,11 @@ module.exports = function (grunt) {
         }
       }
     },
+
     jasmine_node: {
       projectRoot: "./spec"
     },
+
     nodemon: {
       dev: {
         options: {
@@ -148,6 +155,7 @@ module.exports = function (grunt) {
         }
       ]
     },
+
     jshint: {
       files: ['**/*.js'],
       options: {
@@ -159,6 +167,23 @@ module.exports = function (grunt) {
           'public/javascripts/dist/**/*.js'
         ]
       }
+    },
+
+    cssmin: {
+      combine: {
+        files: {
+          'public/stylesheets/dist/generated/zoltar.css':
+            require('./stylesheets.json')
+        }
+      },
+      minify: {
+        expand: true,
+        cwd: 'public/stylesheets/dist/generated',
+        src: ['*.css'],
+        dest: 'public/stylesheets/dist',
+        ext: '.min.css'
+      }
+
     }
   });
 
@@ -171,9 +196,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-jasmine-node');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask('test', ['jshint', 'jasmine_node', 'karma']);
-  grunt.registerTask('build', ['ngmin', 'uglify', 'docular']);
+  grunt.registerTask('test', ['jshint', 'jasmine_node']);
+  grunt.registerTask('build', ['ngmin', 'uglify', 'cssmin']);
   grunt.registerTask('default', ['build', 'test']);
   grunt.registerTask('start', ['concurrent']);
 

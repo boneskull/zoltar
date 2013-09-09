@@ -1,13 +1,14 @@
 [
-  "public/javascripts/support/es5-sham.min.js",
-  "public/javascripts/support/custom.modernizr.js",
-  "public/javascripts/support/jquery-1.10.2.js",
-  "public/javascripts/support/angular.js",
-  "public/javascripts/support/ui-bootstrap-0.5.0.js",
-  "public/javascripts/support/spin.min.js",
-  "public/javascripts/support/ladda.min.js",
-  "public/javascripts/support/underscore.js",
-  "public/javascripts/support/restangular.js",
-  "public/javascripts/support/socket.io.js",
-  "public/javascripts/support/validator-min.js"
+  "public/javascripts/components/jquery/jquery.js",
+  "public/javascripts/components/angular/angular.js",
+  "public/javascripts/components/es5-shim/es5-sham.js",
+  "public/javascripts/components/angular-bootstrap/ui-bootstrap-tpls.js",
+  "public/javascripts/components/angular-route/angular-route.js",
+  "public/javascripts/components/spin.js/spin.js",
+  "public/javascripts/components/Ladda/js/ladda.js",
+  "public/javascripts/components/modernizr/modernizr.js",
+  "public/javascripts/components/lodash/lodash.js",
+  "public/javascripts/components/restangular/dist/restangular.js",
+  "public/javascripts/components/node-validator/validator.js",
+  "public/javascripts/components/socket.io-client/dist/socket.io.js"
 ]

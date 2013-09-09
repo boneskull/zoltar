@@ -1,0 +1,33 @@
+{
+  "name": "zoltar",
+  "version": "0.0.1",
+  "homepage": "https://github.com/boneskull/zoltar",
+  "authors": [
+    "Christopher Hiller <chiller@badwing.com>"
+  ],
+  "description": "a web site",
+  "main": "server.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Ladda": "~0.8.0",
+    "angular-bootstrap": "0.6.0",
+    "angular-route": "~1.2.0-rc.2",
+    "angular": "1.2.0-rc.2",
+    "bootstrap-css": "~3.0.0",
+    "es5-shim": "~2.1.0",
+    "font-awesome": "~3.2.1",
+    "jquery": "~2.0.3",
+    "modernizr": "~2.6.2",
+    "node-validator": "~1.5.1",
+    "restangular": "~1.1.3",
+    "socket.io-client": "~0.9.16"
+  }
+}
